@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <button width="1" alignment="left" title="Start Timing" id="DjQ-Eq-37Y">
+                            <connections>
+                                <segue destination="KEa-Wd-s2u" kind="push" id="rbl-e2-a6v"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="startTimingButton" destination="DjQ-Eq-37Y" id="0lx-05-qGR"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="412" y="350"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Timer Interface Controller-->
+        <scene sceneID="dRs-cL-0Uu">
+            <objects>
+                <controller id="KEa-Wd-s2u" customClass="TimerInterfaceController">
+                    <items>
+                        <label width="136" height="29.5" alignment="left" text="Salary: $65,000" textAlignment="center" id="qLd-cW-Qjw"/>
+                        <timer width="136" alignment="left" textAlignment="center" id="mdi-7W-MYV"/>
+                        <label width="136" height="83.5" alignment="left" text="I'M RICH" textAlignment="center" id="2R7-sR-Cb5"/>
+                    </items>
+                    <connections>
+                        <outlet property="imRichLabel" destination="2R7-sR-Cb5" id="Vt1-We-iqj"/>
+                        <outlet property="salaryLabel" destination="qLd-cW-Qjw" id="SZw-Kf-p5d"/>
+                        <outlet property="salaryTimer" destination="mdi-7W-MYV" id="u2t-Cm-AXi"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="656" y="350"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>
