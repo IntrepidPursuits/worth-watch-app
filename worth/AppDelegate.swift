@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "DINRoundPro-Medium", size: 18)!,  NSForegroundColorAttributeName : UIColor.whiteColor()]
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "DINRoundPro", size: 16)!,  NSForegroundColorAttributeName : UIColor.whiteColor()], forState: UIControlState.Normal)
         return true
     }
 

@@ -8,11 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		C9BD98691AB47047001B5A7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98681AB47047001B5A7D /* AppDelegate.swift */; };
-		C9BD986B1AB47047001B5A7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD986A1AB47047001B5A7D /* ViewController.swift */; };
 		C9BD986E1AB47047001B5A7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9BD986C1AB47047001B5A7D /* Main.storyboard */; };
 		C9BD98701AB47047001B5A7D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9BD986F1AB47047001B5A7D /* Images.xcassets */; };
 		C9BD98731AB47047001B5A7D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9BD98711AB47047001B5A7D /* LaunchScreen.xib */; };
 		C9BD987F1AB47047001B5A7D /* worthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD987E1AB47047001B5A7D /* worthTests.swift */; };
+		C9BD988A1AB4737E001B5A7D /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98891AB4737E001B5A7D /* TimerViewController.swift */; };
+		C9BD988E1AB473D0001B5A7D /* DINRoundPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9BD988C1AB473D0001B5A7D /* DINRoundPro-Medium.otf */; };
+		C9BD988F1AB473D0001B5A7D /* DINRoundPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9BD988D1AB473D0001B5A7D /* DINRoundPro.otf */; };
+		C9BD98921AB4A6B9001B5A7D /* WorthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98911AB4A6B9001B5A7D /* WorthLabel.swift */; };
+		C9BD98951AB4ACC0001B5A7D /* Earner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98941AB4ACC0001B5A7D /* Earner.swift */; };
+		C9BD98971AB50252001B5A7D /* TimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98961AB50252001B5A7D /* TimeFrame.swift */; };
+		C9BD989C1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BD98991AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px.png */; };
+		C9BD989D1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BD989A1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@2x.png */; };
+		C9BD989E1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BD989B1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@3x.png */; };
+		C9BD98A41AB61CAC001B5A7D /* EarnerChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98A31AB61CAC001B5A7D /* EarnerChooserViewController.swift */; };
+		C9BD98A61AB61CE0001B5A7D /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98A51AB61CE0001B5A7D /* PeopleTableViewCell.swift */; };
+		C9BD98A81AB653F4001B5A7D /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9BD98A71AB653F4001B5A7D /* iTunesArtwork@2x.png */; };
+		C9BD98AC1AB659A0001B5A7D /* EarnerChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BD98AB1AB659A0001B5A7D /* EarnerChooserDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +41,25 @@
 		C9BD98631AB47047001B5A7D /* worth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BD98671AB47047001B5A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9BD98681AB47047001B5A7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C9BD986A1AB47047001B5A7D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C9BD986D1AB47047001B5A7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9BD986F1AB47047001B5A7D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9BD98721AB47047001B5A7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C9BD98781AB47047001B5A7D /* worthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = worthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9BD987D1AB47047001B5A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9BD987E1AB47047001B5A7D /* worthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = worthTests.swift; sourceTree = "<group>"; };
+		C9BD98891AB4737E001B5A7D /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		C9BD988C1AB473D0001B5A7D /* DINRoundPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Medium.otf"; sourceTree = "<group>"; };
+		C9BD988D1AB473D0001B5A7D /* DINRoundPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINRoundPro.otf; sourceTree = "<group>"; };
+		C9BD98911AB4A6B9001B5A7D /* WorthLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorthLabel.swift; sourceTree = "<group>"; };
+		C9BD98941AB4ACC0001B5A7D /* Earner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Earner.swift; sourceTree = "<group>"; };
+		C9BD98961AB50252001B5A7D /* TimeFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrame.swift; sourceTree = "<group>"; };
+		C9BD98991AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_person_outline_48px + ic_person_outline_48px.png"; sourceTree = "<group>"; };
+		C9BD989A1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_person_outline_48px + ic_person_outline_48px@2x.png"; sourceTree = "<group>"; };
+		C9BD989B1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_person_outline_48px + ic_person_outline_48px@3x.png"; sourceTree = "<group>"; };
+		C9BD98A31AB61CAC001B5A7D /* EarnerChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarnerChooserViewController.swift; sourceTree = "<group>"; };
+		C9BD98A51AB61CE0001B5A7D /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		C9BD98A71AB653F4001B5A7D /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		C9BD98AB1AB659A0001B5A7D /* EarnerChooserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarnerChooserDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +101,12 @@
 		C9BD98651AB47047001B5A7D /* worth */ = {
 			isa = PBXGroup;
 			children = (
+				C9BD98981AB5F9D5001B5A7D /* Images */,
+				C9BD98931AB4ACA8001B5A7D /* Models */,
+				C9BD98901AB4A6A7001B5A7D /* Views */,
+				C9BD988B1AB473D0001B5A7D /* Fonts */,
+				C9BD98881AB47344001B5A7D /* ViewControllers */,
 				C9BD98681AB47047001B5A7D /* AppDelegate.swift */,
-				C9BD986A1AB47047001B5A7D /* ViewController.swift */,
 				C9BD986C1AB47047001B5A7D /* Main.storyboard */,
 				C9BD986F1AB47047001B5A7D /* Images.xcassets */,
 				C9BD98711AB47047001B5A7D /* LaunchScreen.xib */,
@@ -110,6 +138,54 @@
 				C9BD987D1AB47047001B5A7D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9BD98881AB47344001B5A7D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C9BD98891AB4737E001B5A7D /* TimerViewController.swift */,
+				C9BD98A31AB61CAC001B5A7D /* EarnerChooserViewController.swift */,
+				C9BD98AB1AB659A0001B5A7D /* EarnerChooserDelegate.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C9BD988B1AB473D0001B5A7D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C9BD988C1AB473D0001B5A7D /* DINRoundPro-Medium.otf */,
+				C9BD988D1AB473D0001B5A7D /* DINRoundPro.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C9BD98901AB4A6A7001B5A7D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C9BD98911AB4A6B9001B5A7D /* WorthLabel.swift */,
+				C9BD98A51AB61CE0001B5A7D /* PeopleTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C9BD98931AB4ACA8001B5A7D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C9BD98941AB4ACC0001B5A7D /* Earner.swift */,
+				C9BD98961AB50252001B5A7D /* TimeFrame.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C9BD98981AB5F9D5001B5A7D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C9BD98991AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px.png */,
+				C9BD989A1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@2x.png */,
+				C9BD989B1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@3x.png */,
+				C9BD98A71AB653F4001B5A7D /* iTunesArtwork@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,8 +269,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9BD986E1AB47047001B5A7D /* Main.storyboard in Resources */,
+				C9BD989C1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px.png in Resources */,
+				C9BD989D1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@2x.png in Resources */,
 				C9BD98731AB47047001B5A7D /* LaunchScreen.xib in Resources */,
+				C9BD98A81AB653F4001B5A7D /* iTunesArtwork@2x.png in Resources */,
 				C9BD98701AB47047001B5A7D /* Images.xcassets in Resources */,
+				C9BD988E1AB473D0001B5A7D /* DINRoundPro-Medium.otf in Resources */,
+				C9BD988F1AB473D0001B5A7D /* DINRoundPro.otf in Resources */,
+				C9BD989E1AB5F9D5001B5A7D /* ic_person_outline_48px + ic_person_outline_48px@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +294,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9BD986B1AB47047001B5A7D /* ViewController.swift in Sources */,
+				C9BD98971AB50252001B5A7D /* TimeFrame.swift in Sources */,
+				C9BD98AC1AB659A0001B5A7D /* EarnerChooserDelegate.swift in Sources */,
+				C9BD98951AB4ACC0001B5A7D /* Earner.swift in Sources */,
+				C9BD988A1AB4737E001B5A7D /* TimerViewController.swift in Sources */,
 				C9BD98691AB47047001B5A7D /* AppDelegate.swift in Sources */,
+				C9BD98921AB4A6B9001B5A7D /* WorthLabel.swift in Sources */,
+				C9BD98A41AB61CAC001B5A7D /* EarnerChooserViewController.swift in Sources */,
+				C9BD98A61AB61CE0001B5A7D /* PeopleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +493,7 @@
 				C9BD98841AB47047001B5A7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9BD98851AB47047001B5A7D /* Build configuration list for PBXNativeTarget "worthTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +502,7 @@
 				C9BD98871AB47047001B5A7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
