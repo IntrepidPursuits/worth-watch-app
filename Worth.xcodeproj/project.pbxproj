@@ -14,7 +14,6 @@
 		CD28710F1AB4D343005CED9A /* WorthUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD28710E1AB4D343005CED9A /* WorthUserHomeViewController.m */; };
 		CD2871131AB4DFF8005CED9A /* UIColor+WorthStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2871121AB4DFF8005CED9A /* UIColor+WorthStyle.m */; };
 		CD2871161AB4E446005CED9A /* UIFont+WorthStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2871151AB4E446005CED9A /* UIFont+WorthStyle.m */; };
-		CD2871191AB4EE0F005CED9A /* WorthCompareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2871181AB4EE0F005CED9A /* WorthCompareTableViewController.m */; };
 		CD28711E1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD28711C1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m */; };
 		CD28711F1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28711D1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib */; };
 		CD5946981AB36A2D00527F76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5946971AB36A2D00527F76 /* main.m */; };
@@ -32,7 +31,6 @@
 		CD5946D91AB36F1300527F76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD5946D81AB36F1300527F76 /* Images.xcassets */; };
 		CD5946DC1AB36F1300527F76 /* Worth WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CD5946BF1AB36F1300527F76 /* Worth WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CD5946E61AB3786700527F76 /* TimerInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5946E51AB3786700527F76 /* TimerInterfaceController.m */; };
-		CDB3F0C11AB51619002E0D31 /* WorthAddUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0C01AB51619002E0D31 /* WorthAddUserTableViewController.m */; };
 		CDB3F0C91AB5F5A1002E0D31 /* DINRoundPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C41AB5F5A1002E0D31 /* DINRoundPro-Black.otf */; };
 		CDB3F0CA1AB5F5A1002E0D31 /* DINRoundPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C51AB5F5A1002E0D31 /* DINRoundPro-Bold.otf */; };
 		CDB3F0CB1AB5F5A1002E0D31 /* DINRoundPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C61AB5F5A1002E0D31 /* DINRoundPro-Light.otf */; };
@@ -40,6 +38,17 @@
 		CDB3F0CD1AB5F5A1002E0D31 /* DINRoundPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C81AB5F5A1002E0D31 /* DINRoundPro.otf */; };
 		CDB3F0D01AB60352002E0D31 /* WorthRoundAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */; };
 		CDB3F0D31AB6036F002E0D31 /* UIImage+WorthStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */; };
+		CDB3F0D61AB60BDC002E0D31 /* WorthFavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0D51AB60BDC002E0D31 /* WorthFavoritesTableViewController.m */; };
+		CDB3F0D91AB60BEC002E0D31 /* WorthCompareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0D81AB60BEC002E0D31 /* WorthCompareViewController.m */; };
+		CDB3F0E01AB614B1002E0D31 /* WorthUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0DF1AB614B1002E0D31 /* WorthUserView.m */; };
+		CDB3F0E21AB614BF002E0D31 /* WorthUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0E11AB614BF002E0D31 /* WorthUserView.xib */; };
+		CDB3F0E51AB61E5B002E0D31 /* NSString+TimeString.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0E41AB61E5B002E0D31 /* NSString+TimeString.m */; };
+		CDB3F0E81AB62696002E0D31 /* WorthObjectModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0E61AB62696002E0D31 /* WorthObjectModel.xcdatamodeld */; };
+		CDB3F0F11AB626E6002E0D31 /* WorthUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0F01AB626E6002E0D31 /* WorthUser.m */; };
+		CDB3F0F51AB6270E002E0D31 /* WorthUser+UserGenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0F41AB6270E002E0D31 /* WorthUser+UserGenerated.m */; };
+		CDB3F0FC1AB62E06002E0D31 /* WorthObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0FB1AB62E06002E0D31 /* WorthObjectModel.m */; };
+		CDB3F0FE1AB62E5A002E0D31 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB3F0FD1AB62E5A002E0D31 /* CoreData.framework */; };
+		CDB3F1011AB635C3002E0D31 /* WorthUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F1001AB635C3002E0D31 /* WorthUserManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +104,6 @@
 		CD2871121AB4DFF8005CED9A /* UIColor+WorthStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WorthStyle.m"; sourceTree = "<group>"; };
 		CD2871141AB4E446005CED9A /* UIFont+WorthStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+WorthStyle.h"; sourceTree = "<group>"; };
 		CD2871151AB4E446005CED9A /* UIFont+WorthStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+WorthStyle.m"; sourceTree = "<group>"; };
-		CD2871171AB4EE0F005CED9A /* WorthCompareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthCompareTableViewController.h; sourceTree = "<group>"; };
-		CD2871181AB4EE0F005CED9A /* WorthCompareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthCompareTableViewController.m; sourceTree = "<group>"; };
 		CD28711B1AB4EF67005CED9A /* WorthCompareUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthCompareUserTableViewCell.h; sourceTree = "<group>"; };
 		CD28711C1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthCompareUserTableViewCell.m; sourceTree = "<group>"; };
 		CD28711D1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthCompareUserTableViewCell.xib; sourceTree = "<group>"; };
@@ -127,8 +134,6 @@
 		CD5946D81AB36F1300527F76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD5946E41AB3786700527F76 /* TimerInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerInterfaceController.h; sourceTree = "<group>"; };
 		CD5946E51AB3786700527F76 /* TimerInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerInterfaceController.m; sourceTree = "<group>"; };
-		CDB3F0BF1AB51619002E0D31 /* WorthAddUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthAddUserTableViewController.h; sourceTree = "<group>"; };
-		CDB3F0C01AB51619002E0D31 /* WorthAddUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthAddUserTableViewController.m; sourceTree = "<group>"; };
 		CDB3F0C41AB5F5A1002E0D31 /* DINRoundPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.otf"; sourceTree = "<group>"; };
 		CDB3F0C51AB5F5A1002E0D31 /* DINRoundPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Bold.otf"; sourceTree = "<group>"; };
 		CDB3F0C61AB5F5A1002E0D31 /* DINRoundPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Light.otf"; sourceTree = "<group>"; };
@@ -138,6 +143,25 @@
 		CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthRoundAvatarImageView.m; sourceTree = "<group>"; };
 		CDB3F0D11AB6036F002E0D31 /* UIImage+WorthStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WorthStyle.h"; sourceTree = "<group>"; };
 		CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WorthStyle.m"; sourceTree = "<group>"; };
+		CDB3F0D41AB60BDC002E0D31 /* WorthFavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthFavoritesTableViewController.h; sourceTree = "<group>"; };
+		CDB3F0D51AB60BDC002E0D31 /* WorthFavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthFavoritesTableViewController.m; sourceTree = "<group>"; };
+		CDB3F0D71AB60BEC002E0D31 /* WorthCompareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthCompareViewController.h; sourceTree = "<group>"; };
+		CDB3F0D81AB60BEC002E0D31 /* WorthCompareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthCompareViewController.m; sourceTree = "<group>"; };
+		CDB3F0DE1AB614B1002E0D31 /* WorthUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthUserView.h; sourceTree = "<group>"; };
+		CDB3F0DF1AB614B1002E0D31 /* WorthUserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthUserView.m; sourceTree = "<group>"; };
+		CDB3F0E11AB614BF002E0D31 /* WorthUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthUserView.xib; sourceTree = "<group>"; };
+		CDB3F0E31AB61E5B002E0D31 /* NSString+TimeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TimeString.h"; sourceTree = "<group>"; };
+		CDB3F0E41AB61E5B002E0D31 /* NSString+TimeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TimeString.m"; sourceTree = "<group>"; };
+		CDB3F0E71AB62696002E0D31 /* WorthObjectModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorthObjectModel.xcdatamodel; sourceTree = "<group>"; };
+		CDB3F0EF1AB626E6002E0D31 /* WorthUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthUser.h; sourceTree = "<group>"; };
+		CDB3F0F01AB626E6002E0D31 /* WorthUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthUser.m; sourceTree = "<group>"; };
+		CDB3F0F31AB6270E002E0D31 /* WorthUser+UserGenerated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WorthUser+UserGenerated.h"; sourceTree = "<group>"; };
+		CDB3F0F41AB6270E002E0D31 /* WorthUser+UserGenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WorthUser+UserGenerated.m"; sourceTree = "<group>"; };
+		CDB3F0FA1AB62E06002E0D31 /* WorthObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthObjectModel.h; sourceTree = "<group>"; };
+		CDB3F0FB1AB62E06002E0D31 /* WorthObjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthObjectModel.m; sourceTree = "<group>"; };
+		CDB3F0FD1AB62E5A002E0D31 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CDB3F0FF1AB635C3002E0D31 /* WorthUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthUserManager.h; sourceTree = "<group>"; };
+		CDB3F1001AB635C3002E0D31 /* WorthUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthUserManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB3F0FE1AB62E5A002E0D31 /* CoreData.framework in Frameworks */,
 				6CC65B04AD70EF59F7BAC2E3 /* libPods-Worth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,6 +199,9 @@
 				CD2871011AB4BECF005CED9A /* WorthMoneyTextView.xib */,
 				CDB3F0CE1AB60352002E0D31 /* WorthRoundAvatarImageView.h */,
 				CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */,
+				CDB3F0DE1AB614B1002E0D31 /* WorthUserView.h */,
+				CDB3F0DF1AB614B1002E0D31 /* WorthUserView.m */,
+				CDB3F0E11AB614BF002E0D31 /* WorthUserView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,10 +214,10 @@
 				CD28710B1AB4D1EE005CED9A /* WorthRootTabBarViewController.m */,
 				CD28710D1AB4D343005CED9A /* WorthUserHomeViewController.h */,
 				CD28710E1AB4D343005CED9A /* WorthUserHomeViewController.m */,
-				CD2871171AB4EE0F005CED9A /* WorthCompareTableViewController.h */,
-				CD2871181AB4EE0F005CED9A /* WorthCompareTableViewController.m */,
-				CDB3F0BF1AB51619002E0D31 /* WorthAddUserTableViewController.h */,
-				CDB3F0C01AB51619002E0D31 /* WorthAddUserTableViewController.m */,
+				CDB3F0D41AB60BDC002E0D31 /* WorthFavoritesTableViewController.h */,
+				CDB3F0D51AB60BDC002E0D31 /* WorthFavoritesTableViewController.m */,
+				CDB3F0D71AB60BEC002E0D31 /* WorthCompareViewController.h */,
+				CDB3F0D81AB60BEC002E0D31 /* WorthCompareViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -203,6 +231,8 @@
 				CD2871151AB4E446005CED9A /* UIFont+WorthStyle.m */,
 				CDB3F0D11AB6036F002E0D31 /* UIImage+WorthStyle.h */,
 				CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */,
+				CDB3F0E31AB61E5B002E0D31 /* NSString+TimeString.h */,
+				CDB3F0E41AB61E5B002E0D31 /* NSString+TimeString.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -244,6 +274,7 @@
 		CD5946941AB36A2D00527F76 /* Worth */ = {
 			isa = PBXGroup;
 			children = (
+				CDB3F0DA1AB612C0002E0D31 /* Models */,
 				CDB3F0C21AB5F577002E0D31 /* Resources */,
 				CD2871101AB4DFD9005CED9A /* Categories */,
 				CD2871031AB4D0DD005CED9A /* Controllers */,
@@ -256,6 +287,8 @@
 				CD5946A21AB36A2D00527F76 /* Images.xcassets */,
 				CD5946A41AB36A2D00527F76 /* LaunchScreen.xib */,
 				CD5946951AB36A2D00527F76 /* Supporting Files */,
+				CDB3F0FF1AB635C3002E0D31 /* WorthUserManager.h */,
+				CDB3F1001AB635C3002E0D31 /* WorthUserManager.m */,
 			);
 			path = Worth;
 			sourceTree = "<group>";
@@ -348,9 +381,40 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		CDB3F0DA1AB612C0002E0D31 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3F0F91AB62DEE002E0D31 /* CoreData */,
+				CDB3F0F21AB626F2002E0D31 /* UserGenerated */,
+				CDB3F0EF1AB626E6002E0D31 /* WorthUser.h */,
+				CDB3F0F01AB626E6002E0D31 /* WorthUser.m */,
+				CDB3F0E61AB62696002E0D31 /* WorthObjectModel.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CDB3F0F21AB626F2002E0D31 /* UserGenerated */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3F0F31AB6270E002E0D31 /* WorthUser+UserGenerated.h */,
+				CDB3F0F41AB6270E002E0D31 /* WorthUser+UserGenerated.m */,
+			);
+			path = UserGenerated;
+			sourceTree = "<group>";
+		};
+		CDB3F0F91AB62DEE002E0D31 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3F0FA1AB62E06002E0D31 /* WorthObjectModel.h */,
+				CDB3F0FB1AB62E06002E0D31 /* WorthObjectModel.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		D8CF3DFEA2F1D342DBB76158 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDB3F0FD1AB62E5A002E0D31 /* CoreData.framework */,
 				54346F1126EA562A4F56D3BE /* libPods-Worth.a */,
 			);
 			name = Frameworks;
@@ -492,6 +556,7 @@
 			files = (
 				CDB3F0CA1AB5F5A1002E0D31 /* DINRoundPro-Bold.otf in Resources */,
 				CDB3F0C91AB5F5A1002E0D31 /* DINRoundPro-Black.otf in Resources */,
+				CDB3F0E21AB614BF002E0D31 /* WorthUserView.xib in Resources */,
 				CD5946A11AB36A2D00527F76 /* Main.storyboard in Resources */,
 				CD28711F1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib in Resources */,
 				CDB3F0CD1AB5F5A1002E0D31 /* DINRoundPro.otf in Resources */,
@@ -568,15 +633,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB3F0E01AB614B1002E0D31 /* WorthUserView.m in Sources */,
+				CDB3F0D61AB60BDC002E0D31 /* WorthFavoritesTableViewController.m in Sources */,
+				CDB3F1011AB635C3002E0D31 /* WorthUserManager.m in Sources */,
+				CDB3F0D91AB60BEC002E0D31 /* WorthCompareViewController.m in Sources */,
 				CD59469E1AB36A2D00527F76 /* ViewController.m in Sources */,
+				CDB3F0F11AB626E6002E0D31 /* WorthUser.m in Sources */,
+				CDB3F0FC1AB62E06002E0D31 /* WorthObjectModel.m in Sources */,
 				CD2871131AB4DFF8005CED9A /* UIColor+WorthStyle.m in Sources */,
+				CDB3F0F51AB6270E002E0D31 /* WorthUser+UserGenerated.m in Sources */,
 				CD28710C1AB4D1EE005CED9A /* WorthRootTabBarViewController.m in Sources */,
 				CD28711E1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m in Sources */,
-				CDB3F0C11AB51619002E0D31 /* WorthAddUserTableViewController.m in Sources */,
 				CDB3F0D31AB6036F002E0D31 /* UIImage+WorthStyle.m in Sources */,
 				CD2871161AB4E446005CED9A /* UIFont+WorthStyle.m in Sources */,
-				CD2871191AB4EE0F005CED9A /* WorthCompareTableViewController.m in Sources */,
+				CDB3F0E51AB61E5B002E0D31 /* NSString+TimeString.m in Sources */,
 				CDB3F0D01AB60352002E0D31 /* WorthRoundAvatarImageView.m in Sources */,
+				CDB3F0E81AB62696002E0D31 /* WorthObjectModel.xcdatamodeld in Sources */,
 				CD59469B1AB36A2D00527F76 /* AppDelegate.m in Sources */,
 				CD5946981AB36A2D00527F76 /* main.m in Sources */,
 				CD2871001AB4BEC4005CED9A /* WorthMoneyTextView.m in Sources */,
@@ -885,6 +957,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CDB3F0E61AB62696002E0D31 /* WorthObjectModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CDB3F0E71AB62696002E0D31 /* WorthObjectModel.xcdatamodel */,
+			);
+			currentVersion = CDB3F0E71AB62696002E0D31 /* WorthObjectModel.xcdatamodel */;
+			path = WorthObjectModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CD59468A1AB36A2D00527F76 /* Project object */;
 }

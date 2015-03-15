@@ -8,7 +8,10 @@
 
 #import "WorthUserHomeViewController.h"
 #import "WorthMoneyTextView.h"
+#import "WorthUserManager.h"
+#import "WorthUser+UserGenerated.h"
 #import "UIColor+WorthStyle.h"
+#import "NSString+TimeString.h"
 #import <NSDate-Escort/NSDate+Escort.h>
 
 typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
@@ -35,13 +38,13 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *salaryContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *perHourContainerHeightConstraint;
 
-@property (strong, nonatomic) NSNumber *amount;
 @property (strong, nonatomic) NSNumber *hourlyAmount;
 
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSDate *startDate;
 @property (strong, nonatomic) NSDate *beginningOfDayDate;
 @property (strong, nonatomic) NSDate *beginningOfYearDate;
+@property (strong, nonatomic) WorthUser *user;
 
 @end
 
@@ -50,7 +53,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.amount = @(1000000);
+    self.user = [[WorthUserManager sharedManager] currentUser];
     self.hourlyAmount = @(45.54);
     
     [self configureInputs];
@@ -118,23 +121,22 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 
 - (void)updateLayout {
     self.userContainerView.hidden = (self.contentMode == WorthUserHomeControllerContentModeNone);
-    [self.salaryInput setAmount:self.amount];
+    [self.salaryInput setAmount:self.user.salary];
     
     NSDate *date = [NSDate date];
-    CGFloat amountPerSecond = (((([self.amount floatValue] / 365) / 24) / 60) / 60);
     NSUInteger secondsSinceTimer = [date timeIntervalSinceDate:self.startDate];
     NSUInteger secondsSinceDay = [date timeIntervalSinceDate:self.beginningOfDayDate];
     NSUInteger secondsSinceYear = [date timeIntervalSinceDate:self.beginningOfYearDate];
     
-    CGFloat timerAmount = (amountPerSecond * secondsSinceTimer);
-    CGFloat dayAmount = (amountPerSecond * secondsSinceDay);
-    CGFloat yearAmount = (amountPerSecond * secondsSinceYear);
+    CGFloat timerAmount = (self.user.salaryPerSecond * secondsSinceTimer);
+    CGFloat dayAmount = (self.user.salaryPerSecond * secondsSinceDay);
+    CGFloat yearAmount = (self.user.salaryPerSecond * secondsSinceYear);
     
     [self.yearToDateEarningsField setAmount:@(yearAmount)];
     [self.dailyEarningsField setAmount:@(dayAmount)];
     [self.earnedTimerField setAmount:@(timerAmount)];
     
-    NSString *earnedTimerString = [NSString stringWithFormat:@"Earned in %@", [self timeFormatted:secondsSinceTimer]];
+    NSString *earnedTimerString = [NSString stringWithFormat:@"Earned in %@", [NSString timeStringFromSecond:secondsSinceTimer]];
     [self.earnedTimerField setSubtitleText:earnedTimerString];
     [self.perHourEarnedTimerField setSubtitleText:earnedTimerString];
     
@@ -213,16 +215,6 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     static CGFloat padding = 8.0f;
     CGFloat height = (padding * 2.0f) + view.bounds.size.height;
     return height;
-}
-
-#pragma mark - Helpers
-
-- (NSString *)timeFormatted:(NSInteger)totalSeconds {
-    NSInteger seconds = totalSeconds % 60;
-    NSInteger minutes = (totalSeconds / 60) % 60;
-    NSInteger hours = totalSeconds / 3600;
-    
-    return [NSString stringWithFormat:@"%02d:%02d:%02d",hours, minutes, seconds];
 }
 
 @end
