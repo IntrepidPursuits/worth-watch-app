@@ -36,6 +36,16 @@
     UIBarButtonItem *barButtonItemAppearance = [UIBarButtonItem appearance];
     [barButtonItemAppearance setTitleTextAttributes:@{NSFontAttributeName: [UIFont worth_lightFontWithSize:16.0f]} forState:UIControlStateNormal];
     
+    UITabBar *tabBarAppearance = [UITabBar appearance];
+    [tabBarAppearance setBackgroundColor:[UIColor worth_darkestGreenColor]];
+    [tabBarAppearance setBarTintColor:[UIColor worth_darkestGreenColor]];
+    [tabBarAppearance setTintColor:[UIColor whiteColor]];
+    [tabBarAppearance setShadowImage:nil];
+    
+    UITabBarItem *tabBarItemAppearance = [UITabBarItem appearance];
+    [tabBarItemAppearance setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
+    [tabBarItemAppearance setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    
 //    UIImage *backButtonImage = [UIImage imageNamed:@"icon_back_arrow"];
 //    [barButtonItemAppearance setBackButtonBackgroundImage:[backButtonImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backButtonImage.size.width, 0, 0)]
 //                                                 forState:UIControlStateNormal
