@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "WorthObjectModel.h"
+#import "WorthUserManager.h"
 #import "UIColor+WorthStyle.h"
 #import "UIFont+WorthStyle.h"
 
@@ -19,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearance];
+    [self setupSimpleDatabase];
     return YES;
 }
 
@@ -50,6 +53,16 @@
 //    [barButtonItemAppearance setBackButtonBackgroundImage:[backButtonImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backButtonImage.size.width, 0, 0)]
 //                                                 forState:UIControlStateNormal
 //                                               barMetrics:UIBarMetricsDefault];
+}
+
+- (void)setupSimpleDatabase {
+    static NSString * kUserDefaultsHasSetupDatabaseKey = @"kUserDefaultsHasSetupDatabaseKey";
+    NSNumber *hasSetupDatabase = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsHasSetupDatabaseKey];
+    if ([hasSetupDatabase boolValue] == NO) {
+        [[WorthUserManager sharedManager] setupSimpleDatabase];
+        [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:kUserDefaultsHasSetupDatabaseKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 @end
