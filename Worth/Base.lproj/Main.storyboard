@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Worth Compare Table View Controller-->
         <scene sceneID="hSf-Ak-aAy">
             <objects>
                 <tableViewController id="l84-tZ-YXx" customClass="WorthCompareTableViewController" sceneMemberID="viewController">
@@ -27,44 +27,15 @@
                             <outlet property="delegate" destination="l84-tZ-YXx" id="eNG-FY-5X5"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="7XF-St-FjK"/>
+                    <tabBarItem key="tabBarItem" title="" image="Compare" selectedImage="Compare" id="7XF-St-FjK"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="TS4-Je-XBM" kind="show" identifier="kAddUserSegueIdentifier" id="Ifw-FC-ZlD"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lX7-Xd-PUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="532"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="NTv-ZT-QYd">
-            <objects>
-                <tableViewController id="TS4-Je-XBM" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Hko-gF-1cO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2L1-ZL-vzr">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2L1-ZL-vzr" id="CLo-y3-tay">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="TS4-Je-XBM" id="ZUv-kY-KZt"/>
-                            <outlet property="delegate" destination="TS4-Je-XBM" id="w3x-Zl-Yej"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U44-oT-PS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1891" y="532"/>
-        </scene>
-        <!--Item 1-->
+        <!--Worth User Home View Controller-->
         <scene sceneID="IOc-HK-zUz">
             <objects>
                 <viewController id="gEs-5E-SR9" customClass="WorthUserHomeViewController" sceneMemberID="viewController">
@@ -73,7 +44,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2Zf-vj-Uye"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hYq-6V-1Tv" userLabel="Root">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UcO-J3-ADz" userLabel="Salary Container View">
@@ -191,7 +162,7 @@
                             <constraint firstItem="qxW-vz-gp3" firstAttribute="top" secondItem="PrB-eU-ET9" secondAttribute="bottom" id="sib-3S-tQL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="uQP-Ag-GJL"/>
+                    <tabBarItem key="tabBarItem" title="" image="Timer" selectedImage="Timer" id="uQP-Ag-GJL"/>
                     <connections>
                         <outlet property="dailyEarningsField" destination="sO4-ay-tp2" id="zQB-kA-3UP"/>
                         <outlet property="earnedTimerField" destination="qtU-rz-woR" id="tHr-94-iKU"/>
@@ -234,10 +205,11 @@
                 <tabBarController id="gp7-Le-f4a" customClass="WorthRootTabBarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="nGa-eW-JqG"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="oKf-uL-PfX">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="oKf-uL-PfX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="gEs-5E-SR9" kind="relationship" relationship="viewControllers" id="mXC-sk-Qw2"/>
@@ -249,4 +221,8 @@
             <point key="canvasLocation" x="275" y="173"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Compare" width="42" height="30"/>
+        <image name="Timer" width="29" height="30"/>
+    </resources>
 </document>

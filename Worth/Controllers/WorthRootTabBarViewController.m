@@ -19,13 +19,19 @@ static NSString *kWorthNavigationBarTitleCompare = @"ADD";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"WORTH";
+    self.title = kWorthNavigationBarTitleHome;
     [self configureTabBar];
 }
 
 - (void)configureTabBar {
-//    [self.tabBar setItems:@[@"Self", @"Compare"]];
+    UITabBarItem *homeItem = [self.tabBar.items objectAtIndex:0];
+    UITabBarItem *compareItem = [self.tabBar.items objectAtIndex:1];
+    
+    [homeItem setSelectedImage:[[UIImage imageNamed:@"Timer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [compareItem setSelectedImage:[[UIImage imageNamed:@"Compare"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 }
+
+#pragma mark - TabBarDelegate Methods
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     self.title = ([self.tabBar.items indexOfObject:item] == 0) ? kWorthNavigationBarTitleHome : kWorthNavigationBarTitleCompare;

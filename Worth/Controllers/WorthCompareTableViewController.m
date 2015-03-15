@@ -26,7 +26,6 @@ static NSString * const kWorthCompareUserTableViewCellIdentifier = @"WorthCompar
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.title = @"Compare";
     [self configureNavigationItems];
 }
 
@@ -57,7 +56,7 @@ static NSString * const kWorthCompareUserTableViewCellIdentifier = @"WorthCompar
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 66.0f;
+    return 72.0f;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -65,7 +64,7 @@ static NSString * const kWorthCompareUserTableViewCellIdentifier = @"WorthCompar
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,6 +72,10 @@ static NSString * const kWorthCompareUserTableViewCellIdentifier = @"WorthCompar
                                                             forIndexPath:indexPath];
     WorthCompareUserTableCellContentMode contentMode = (indexPath.row == 0) ? WorthCompareUserTableCellContentModeSelf : WorthCompareUserTableCellContentModeOtherUser;
     [cell setContentMode:contentMode];
+    
+    CGFloat randomSalary = ((arc4random() % 3000000) + 250000);
+    [cell setSalary:@(randomSalary)];
+    
     return cell;
 }
 
