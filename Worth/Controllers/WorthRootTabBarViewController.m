@@ -8,6 +8,9 @@
 
 #import "WorthRootTabBarViewController.h"
 
+static NSString *kWorthNavigationBarTitleHome = @"WORTH";
+static NSString *kWorthNavigationBarTitleCompare = @"ADD";
+
 @interface WorthRootTabBarViewController ()
 
 @end
@@ -16,12 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Worth";
+    self.title = @"WORTH";
     [self configureTabBar];
 }
 
 - (void)configureTabBar {
 //    [self.tabBar setItems:@[@"Self", @"Compare"]];
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    self.title = ([self.tabBar.items indexOfObject:item] == 0) ? kWorthNavigationBarTitleHome : kWorthNavigationBarTitleCompare;
 }
 
 @end
