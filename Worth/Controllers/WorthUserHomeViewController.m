@@ -14,6 +14,9 @@
 #import "NSString+TimeString.h"
 #import <NSDate-Escort/NSDate+Escort.h>
 
+static NSInteger kSecondsPerYear = (365 * 24 * 60 * 60);
+static NSInteger kSecondsPerHour = (60 * 60);
+
 typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     WorthUserHomeControllerContentModeNone,
     WorthUserHomeControllerContentModeEditing,
@@ -85,6 +88,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [self.salaryInput setInputAlignment:WorthMoneyTextViewAlignmentLeft];
     [self.salaryInput setInputAccessoryText:@"/ year"];
     [self.salaryInput setSubtitleText:@"Salary"];
+    [self.salaryInput setDecimalPlaces:2];
 
     [self.yearToDateEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.yearToDateEarningsField setSubtitleText:@"Earned so far this year"];
@@ -97,6 +101,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     
     [self.perHourField setInputAlignment:WorthMoneyTextViewAlignmentLeft];
     [self.perHourField setInputAccessoryText:@"/ hour"];
+    [self.perHourField setDecimalPlaces:2];
     
     [self.perHourEarnedTimerField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.perHourEarnedTimerField setSubtitleText:@"Earned in 00:00:00:00"];
@@ -148,7 +153,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [self.earnedTimerField setSubtitleText:earnedTimerString];
     [self.perHourEarnedTimerField setSubtitleText:earnedTimerString];
     
-    CGFloat perHourAmountPerSecond = (([self.hourlyAmount floatValue] / 60) / 60);
+    CGFloat perHourAmountPerSecond = ([self.hourlyAmount floatValue] / kSecondsPerHour);
     CGFloat perHourTimerAmount = (perHourAmountPerSecond * secondsSinceTimer);
     [self.perHourField setAmount:self.hourlyAmount];
     [self.perHourEarnedTimerField setAmount:@(perHourTimerAmount)];

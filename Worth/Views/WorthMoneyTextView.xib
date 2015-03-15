@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WorthMoneyTextView">
             <connections>
+                <outlet property="inputLabel" destination="LMp-bh-wY7" id="C93-S1-FQV"/>
                 <outlet property="inputTextField" destination="BWc-4X-wz4" id="XM1-4r-zq7"/>
                 <outlet property="inputTextFieldLeadingConstraint" destination="Hcv-Wt-qzb" id="mpC-r8-jpk"/>
                 <outlet property="inputTextFieldTrailingConstraint" destination="XMQ-2H-mBr" id="e6s-Qg-n3e"/>
@@ -54,17 +55,27 @@
                     <color key="textColor" red="0.16862745098039217" green="0.36470588235294116" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMp-bh-wY7" userLabel="Amount Label" customClass="UICountingLabel">
+                    <rect key="frame" x="8" y="8" width="451" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="7iK-IF-SJG" firstAttribute="top" secondItem="sqT-zf-qNm" secondAttribute="bottom" constant="4" id="0fG-Z6-m1G"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="leading" secondItem="BWc-4X-wz4" secondAttribute="leading" id="1k6-sZ-GLP"/>
                 <constraint firstAttribute="bottom" secondItem="7iK-IF-SJG" secondAttribute="bottom" constant="4" id="1uQ-4I-McX"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="trailing" secondItem="BWc-4X-wz4" secondAttribute="trailing" id="D3w-CD-0hy"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="leading" secondItem="sqT-zf-qNm" secondAttribute="leading" id="Hcv-Wt-qzb"/>
                 <constraint firstItem="7iK-IF-SJG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="KT3-Du-NRF"/>
                 <constraint firstItem="sqT-zf-qNm" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="bottom" constant="4" id="Lx5-Nl-P8k"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="T5h-hA-HvS"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="trailing" secondItem="sqT-zf-qNm" secondAttribute="trailing" id="XMQ-2H-mBr"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="Za1-Tq-Uds"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="height" secondItem="BWc-4X-wz4" secondAttribute="height" id="fDM-Zw-gtc"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="top" constant="4" id="gW8-Jy-A7q"/>
                 <constraint firstAttribute="trailing" secondItem="7iK-IF-SJG" secondAttribute="trailing" constant="8" id="iLo-6F-Bwj"/>
                 <constraint firstAttribute="trailing" secondItem="BWc-4X-wz4" secondAttribute="trailing" constant="8" id="teH-eN-ohg"/>
             </constraints>

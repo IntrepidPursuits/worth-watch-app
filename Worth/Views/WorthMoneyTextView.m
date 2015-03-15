@@ -8,19 +8,23 @@
 
 #import "WorthMoneyTextView.h"
 #import "UIFont+WorthStyle.h"
+#import <UICountingLabel/UICountingLabel.h>
 
 static CGFloat kMoneyTextViewAlignmentIndentation = 0.25f;
 static CGFloat kMoneyTextViewDefaultIndentation = 0.0f;
 static CGFloat kMoneyTextViewSubTextFontSize = 14.0f;
 static CGFloat kMoneyTextViewTextFontSize = 24.0f;
+static CGFloat kMoneyTextViewCountAnimationDefaultLength = 1.0f;
+static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
 @interface WorthMoneyTextView()
 
 @property (strong, nonatomic) UIView *nibView;
+@property (weak, nonatomic) IBOutlet UICountingLabel *inputLabel;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextFieldLeadingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextFieldTrailingConstraint;
-
+@property (strong, nonatomic) NSNumberFormatter *inputFormatter;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
 @end
@@ -49,45 +53,35 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
 
 - (void)configure {
     [self.inputTextField setUserInteractionEnabled:NO];
+    [self.inputTextField setHidden:YES];
+    
+    [self configureInputLabelWithDecimalPlaces:self.decimalPlaces accessoryText:self.inputAccessoryText];
+    [self setDecimalPlaces:kMoneyTextViewDefaultDecimalPlaces];
     [self updateLayout];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.backgroundColor = [UIColor clearColor];
+- (void)configureInputLabelWithDecimalPlaces:(NSUInteger)decimals accessoryText:(NSString *)accessoryText {
+    NSString *formatString = [NSString stringWithFormat:@"$%%.0%luf %@", (unsigned long)decimals, (accessoryText.length) ? accessoryText : @""];
+    [self.inputLabel setFormat:formatString];
+    [self.inputLabel setMethod:UILabelCountingMethodLinear];
 }
 
 #pragma mark - Layout
 
 - (void)updateLayout {
     [self updateFieldAlignmentToAlignment:self.inputAlignment];
-    NSString *formattedAmountString = [self.inputFormatter stringFromNumber:self.amount];
-    [self updateAmountText:formattedAmountString inputAccessoryText:self.inputAccessoryText subText:self.subtitleText];
+    [self updateAmountText:self.amount inputAccessoryText:self.inputAccessoryText subText:self.subtitleText];
 }
 
 - (void)updateFieldAlignmentToAlignment:(WorthMoneyTextViewAlignment)alignment {
     NSTextAlignment textAlignment = (alignment == WorthMoneyTextViewAlignmentLeft || WorthMoneyTextViewAlignmentNone) ? NSTextAlignmentLeft : NSTextAlignmentRight;
     self.subTitleLabel.textAlignment = textAlignment;
     self.inputTextField.textAlignment = textAlignment;
+    self.inputLabel.textAlignment = textAlignment;
 }
 
-- (void)updateAmountText:(NSString *)amount inputAccessoryText:(NSString *)accessoryText subText:(NSString *)subText {
-    NSMutableAttributedString *attributedLabelString = [NSMutableAttributedString new];
-    NSAttributedString *attributedAmountString = [[NSAttributedString alloc] initWithString:amount
-                                                                                 attributes:@{
-                                                                                              NSFontAttributeName : [UIFont worth_lightFontWithSize:kMoneyTextViewTextFontSize]
-                                                                                              }];
-    [attributedLabelString appendAttributedString:attributedAmountString];
-    
-    if (accessoryText) {
-        NSAttributedString *attributedAccessoryString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@", accessoryText]
-                                                                                        attributes:@{
-                                                                                                     NSFontAttributeName : [UIFont worth_regularFontWithSize:kMoneyTextViewSubTextFontSize]
-                                                                                                     }];
-        [attributedLabelString appendAttributedString:attributedAccessoryString];
-    }
-    
-    [self.inputTextField setAttributedText:attributedLabelString];
+- (void)updateAmountText:(NSNumber *)amount inputAccessoryText:(NSString *)accessoryText subText:(NSString *)subText {
+    [self.inputLabel countFromCurrentValueTo:[amount floatValue] withDuration:kMoneyTextViewCountAnimationDefaultLength];
     [self.subTitleLabel setText:subText];
 }
 
@@ -96,7 +90,7 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
 - (void)setInputAlignment:(WorthMoneyTextViewAlignment)inputAlignment {
     if (_inputAlignment != inputAlignment) {
         _inputAlignment = inputAlignment;
-        [self updateLayout];
+        [self updateFieldAlignmentToAlignment:self.inputAlignment];
     }
 }
 
@@ -110,13 +104,21 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
 - (void)setInputAccessoryText:(NSString *)inputAccessoryText {
     if ([_inputAccessoryText isEqualToString:inputAccessoryText] == NO) {
         _inputAccessoryText = inputAccessoryText;
-        [self updateLayout];
+        [self configureInputLabelWithDecimalPlaces:self.decimalPlaces accessoryText:_inputAccessoryText];
     }
 }
 
 - (void)setSubtitleText:(NSString *)subtitleText {
     if ([_subtitleText isEqualToString:subtitleText] == NO) {
         _subtitleText = subtitleText;
+        [self updateLayout];
+    }
+}
+
+- (void)setDecimalPlaces:(NSUInteger)decimalPlaces {
+    if (_decimalPlaces != decimalPlaces) {
+        _decimalPlaces = decimalPlaces;
+        [self configureInputLabelWithDecimalPlaces:_decimalPlaces accessoryText:self.inputAccessoryText];
         [self updateLayout];
     }
 }
@@ -138,23 +140,6 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
         self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : rightIndent;
         [self layoutIfNeeded];
     }];
-}
-
-#pragma mark - Lazy
-
-- (NSNumberFormatter *)inputFormatter {
-    if (_inputFormatter == nil) {
-        _inputFormatter = [NSNumberFormatter new];
-        [_inputFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    }
-    return _inputFormatter;
-}
-
-- (NSNumber *)amount {
-    if (_amount == nil) {
-        _amount = @(0);
-    }
-    return _amount;
 }
 
 @end

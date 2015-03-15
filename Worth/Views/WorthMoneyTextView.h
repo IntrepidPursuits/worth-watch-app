@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, WorthMoneyTextViewAlignment) {
 @property (nonatomic, strong) NSNumber *amount;
 @property (nonatomic, strong) NSString *inputAccessoryText;
 @property (nonatomic, assign) WorthMoneyTextViewAlignment inputAlignment;
-@property (nonatomic, strong) NSNumberFormatter *inputFormatter;
+@property (nonatomic, assign) NSUInteger decimalPlaces;
 @property (nonatomic, strong) NSString *subtitleText;
 
 - (void)animateIntoView:(BOOL)animated;
