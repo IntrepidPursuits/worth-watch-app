@@ -33,6 +33,11 @@
 		CD5946DC1AB36F1300527F76 /* Worth WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CD5946BF1AB36F1300527F76 /* Worth WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CD5946E61AB3786700527F76 /* TimerInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5946E51AB3786700527F76 /* TimerInterfaceController.m */; };
 		CDB3F0C11AB51619002E0D31 /* WorthAddUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0C01AB51619002E0D31 /* WorthAddUserTableViewController.m */; };
+		CDB3F0C91AB5F5A1002E0D31 /* DINRoundPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C41AB5F5A1002E0D31 /* DINRoundPro-Black.otf */; };
+		CDB3F0CA1AB5F5A1002E0D31 /* DINRoundPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C51AB5F5A1002E0D31 /* DINRoundPro-Bold.otf */; };
+		CDB3F0CB1AB5F5A1002E0D31 /* DINRoundPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C61AB5F5A1002E0D31 /* DINRoundPro-Light.otf */; };
+		CDB3F0CC1AB5F5A1002E0D31 /* DINRoundPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C71AB5F5A1002E0D31 /* DINRoundPro-Medium.otf */; };
+		CDB3F0CD1AB5F5A1002E0D31 /* DINRoundPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C81AB5F5A1002E0D31 /* DINRoundPro.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +127,11 @@
 		CD5946E51AB3786700527F76 /* TimerInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerInterfaceController.m; sourceTree = "<group>"; };
 		CDB3F0BF1AB51619002E0D31 /* WorthAddUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthAddUserTableViewController.h; sourceTree = "<group>"; };
 		CDB3F0C01AB51619002E0D31 /* WorthAddUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthAddUserTableViewController.m; sourceTree = "<group>"; };
+		CDB3F0C41AB5F5A1002E0D31 /* DINRoundPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Black.otf"; sourceTree = "<group>"; };
+		CDB3F0C51AB5F5A1002E0D31 /* DINRoundPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Bold.otf"; sourceTree = "<group>"; };
+		CDB3F0C61AB5F5A1002E0D31 /* DINRoundPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Light.otf"; sourceTree = "<group>"; };
+		CDB3F0C71AB5F5A1002E0D31 /* DINRoundPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Medium.otf"; sourceTree = "<group>"; };
+		CDB3F0C81AB5F5A1002E0D31 /* DINRoundPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINRoundPro.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +234,7 @@
 		CD5946941AB36A2D00527F76 /* Worth */ = {
 			isa = PBXGroup;
 			children = (
+				CDB3F0C21AB5F577002E0D31 /* Resources */,
 				CD2871101AB4DFD9005CED9A /* Categories */,
 				CD2871031AB4D0DD005CED9A /* Controllers */,
 				CD2870FD1AB4BE24005CED9A /* Views */,
@@ -305,6 +316,26 @@
 				CD5946D41AB36F1300527F76 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDB3F0C21AB5F577002E0D31 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3F0C31AB5F589002E0D31 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CDB3F0C31AB5F589002E0D31 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3F0C41AB5F5A1002E0D31 /* DINRoundPro-Black.otf */,
+				CDB3F0C51AB5F5A1002E0D31 /* DINRoundPro-Bold.otf */,
+				CDB3F0C61AB5F5A1002E0D31 /* DINRoundPro-Light.otf */,
+				CDB3F0C71AB5F5A1002E0D31 /* DINRoundPro-Medium.otf */,
+				CDB3F0C81AB5F5A1002E0D31 /* DINRoundPro.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		D8CF3DFEA2F1D342DBB76158 /* Frameworks */ = {
@@ -449,9 +480,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB3F0CA1AB5F5A1002E0D31 /* DINRoundPro-Bold.otf in Resources */,
+				CDB3F0C91AB5F5A1002E0D31 /* DINRoundPro-Black.otf in Resources */,
 				CD5946A11AB36A2D00527F76 /* Main.storyboard in Resources */,
 				CD28711F1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib in Resources */,
+				CDB3F0CD1AB5F5A1002E0D31 /* DINRoundPro.otf in Resources */,
 				CD5946A61AB36A2D00527F76 /* LaunchScreen.xib in Resources */,
+				CDB3F0CC1AB5F5A1002E0D31 /* DINRoundPro-Medium.otf in Resources */,
+				CDB3F0CB1AB5F5A1002E0D31 /* DINRoundPro-Light.otf in Resources */,
 				CD5946A31AB36A2D00527F76 /* Images.xcassets in Resources */,
 				CD2871021AB4BECF005CED9A /* WorthMoneyTextView.xib in Resources */,
 			);
