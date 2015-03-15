@@ -78,14 +78,14 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
     NSMutableAttributedString *attributedLabelString = [NSMutableAttributedString new];
     NSAttributedString *attributedAmountString = [[NSAttributedString alloc] initWithString:amount
                                                                                  attributes:@{
-                                                                                              NSFontAttributeName : [UIFont worth_bodyTextFontWithSize:kMoneyTextViewTextFontSize]
+                                                                                              NSFontAttributeName : [UIFont worth_lightFontWithSize:kMoneyTextViewTextFontSize]
                                                                                               }];
     [attributedLabelString appendAttributedString:attributedAmountString];
     
     if (accessoryText) {
         NSAttributedString *attributedAccessoryString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@", accessoryText]
                                                                                         attributes:@{
-                                                                                                     NSFontAttributeName : [UIFont worth_subTextFontWithSize:kMoneyTextViewSubTextFontSize]
+                                                                                                     NSFontAttributeName : [UIFont worth_regularFontWithSize:kMoneyTextViewSubTextFontSize]
                                                                                                      }];
         [attributedLabelString appendAttributedString:attributedAccessoryString];
     }

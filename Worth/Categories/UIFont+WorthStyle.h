@@ -10,8 +10,10 @@
 
 @interface UIFont (WorthStyle)
 
-+ (UIFont *)worth_boldBodyTextFontWithSize:(CGFloat)textSize;
-+ (UIFont *)worth_bodyTextFontWithSize:(CGFloat)textSize;
-+ (UIFont *)worth_subTextFontWithSize:(CGFloat)textSize;
++ (UIFont *)worth_mediumFontWithSize:(CGFloat)textSize;
++ (UIFont *)worth_blackFontWithSize:(CGFloat)textSize;
++ (UIFont *)worth_boldFontWithSize:(CGFloat)textSize;
++ (UIFont *)worth_lightFontWithSize:(CGFloat)textSize;
++ (UIFont *)worth_regularFontWithSize:(CGFloat)textSize;
 
 @end

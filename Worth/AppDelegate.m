@@ -31,10 +31,10 @@
     [navigationBarAppearance setShadowImage:[UIImage new]];
     [navigationBarAppearance setTintColor:[UIColor whiteColor]];
     [navigationBarAppearance setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                                      NSFontAttributeName: [UIFont worth_boldBodyTextFontWithSize:18.0f]}];
+                                                      NSFontAttributeName: [UIFont worth_boldFontWithSize:18.0f]}];
     
     UIBarButtonItem *barButtonItemAppearance = [UIBarButtonItem appearance];
-    [barButtonItemAppearance setTitleTextAttributes:@{NSFontAttributeName: [UIFont worth_bodyTextFontWithSize:16.0f]} forState:UIControlStateNormal];
+    [barButtonItemAppearance setTitleTextAttributes:@{NSFontAttributeName: [UIFont worth_lightFontWithSize:16.0f]} forState:UIControlStateNormal];
     
 //    UIImage *backButtonImage = [UIImage imageNamed:@"icon_back_arrow"];
 //    [barButtonItemAppearance setBackButtonBackgroundImage:[backButtonImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backButtonImage.size.width, 0, 0)]
