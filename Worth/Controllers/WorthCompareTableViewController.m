@@ -8,6 +8,7 @@
 
 #import "WorthCompareTableViewController.h"
 #import "WorthCompareUserTableViewCell.h"
+#import "WorthAddUserTableViewController.h"
 #import "UIColor+WorthStyle.h"
 
 static NSString * const kWorthCompareUserTableViewCellIdentifier = @"WorthCompareUserTableViewCell";
@@ -25,6 +26,7 @@ static NSString * const kWorthCompareUserTableViewCellIdentifier = @"WorthCompar
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.title = @"Compare";
     [self configureNavigationItems];
 }
 
@@ -48,7 +50,8 @@ static NSString * const kWorthCompareUserTableViewCellIdentifier = @"WorthCompar
 #pragma mark - Button Event Methods
 
 - (void)didTapAddButton:(id)sender {
-    NSLog(@"Add Button Tapped");
+    WorthAddUserTableViewController *addUserVC = [WorthAddUserTableViewController new];
+    [self.navigationController pushViewController:addUserVC animated:YES];
 }
 
 #pragma mark - Table view data source

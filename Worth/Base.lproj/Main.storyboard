@@ -28,10 +28,41 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="7XF-St-FjK"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="TS4-Je-XBM" kind="show" identifier="kAddUserSegueIdentifier" id="Ifw-FC-ZlD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lX7-Xd-PUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="532"/>
+            <point key="canvasLocation" x="1204" y="532"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="NTv-ZT-QYd">
+            <objects>
+                <tableViewController id="TS4-Je-XBM" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Hko-gF-1cO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2L1-ZL-vzr">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2L1-ZL-vzr" id="CLo-y3-tay">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TS4-Je-XBM" id="ZUv-kY-KZt"/>
+                            <outlet property="delegate" destination="TS4-Je-XBM" id="w3x-Zl-Yej"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U44-oT-PS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1891" y="532"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="IOc-HK-zUz">
@@ -52,15 +83,15 @@
                                         <rect key="frame" x="8" y="8" width="584" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="RWH-4r-qKa" userLabel="YTD - Worth Money Text View" customClass="WorthMoneyTextView">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="RWH-4r-qKa" userLabel="YTD - Worth Money Text View" customClass="WorthMoneyTextView">
                                         <rect key="frame" x="8" y="57" width="584" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="sO4-ay-tp2" userLabel="Earned Today - Worth Money Text View" customClass="WorthMoneyTextView">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="sO4-ay-tp2" userLabel="Earned Today - Worth Money Text View" customClass="WorthMoneyTextView">
                                         <rect key="frame" x="8" y="106" width="584" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="qtU-rz-woR" userLabel="Earned Timer - Worth Money Text View" customClass="WorthMoneyTextView">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="qtU-rz-woR" userLabel="Earned Timer - Worth Money Text View" customClass="WorthMoneyTextView">
                                         <rect key="frame" x="8" y="155" width="584" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -90,7 +121,7 @@
                                         <rect key="frame" x="8" y="8" width="584" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="Fgc-6W-kEc" userLabel="Earned Timer - Worth Money Text View" customClass="WorthMoneyTextView">
+                                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="Fgc-6W-kEc" userLabel="Earned Timer - Worth Money Text View" customClass="WorthMoneyTextView">
                                         <rect key="frame" x="8" y="57" width="584" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -107,7 +138,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="1" id="uaP-zG-ueP"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxW-vz-gp3" userLabel="User Container View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qxW-vz-gp3" userLabel="User Container View">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4B-b6-GR4">
                                         <rect key="frame" x="8" y="16" width="50" height="50"/>
@@ -131,7 +162,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="backgroundColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="x7W-y0-Val" firstAttribute="centerY" secondItem="g4B-b6-GR4" secondAttribute="centerY" id="58q-Zy-KmJ"/>
                                     <constraint firstItem="g4B-b6-GR4" firstAttribute="top" secondItem="qxW-vz-gp3" secondAttribute="top" constant="16" id="6Du-Zr-0Z8"/>
