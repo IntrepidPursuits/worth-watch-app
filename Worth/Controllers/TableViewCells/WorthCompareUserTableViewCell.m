@@ -1,0 +1,55 @@
+//
+//  WorthCompareUserTableViewCell.m
+//  Worth
+//
+//  Created by Patrick Butkiewicz on 3/14/15.
+//  Copyright (c) 2015 Intrepid Pursuits. All rights reserved.
+//
+
+#import "WorthCompareUserTableViewCell.h"
+#import "UIColor+WorthStyle.h"
+#import "UIFont+WorthStyle.h"
+
+@interface WorthCompareUserTableViewCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *salaryLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+
+@end
+
+@implementation WorthCompareUserTableViewCell
+
+- (void)awakeFromNib {
+    [self updateLayout];
+}
+
+- (void)updateLayout {
+    [self.nameLabel setTextColor:[UIColor whiteColor]];
+    [self.salaryLabel setTextColor:[UIColor worth_darkGreenColor]];
+    
+    BOOL isSelfContent = (self.contentMode == WorthCompareUserTableCellContentModeSelf);
+    self.favoriteButton.hidden = isSelfContent;
+    
+    UIColor *backgroundColor = (isSelfContent) ? [UIColor worth_lightGreenColor] : [UIColor worth_greenColor];
+    [self setBackgroundColor:backgroundColor];
+}
+
+#pragma mark - Public
+
+- (void)setContentMode:(WorthCompareUserTableCellContentMode)contentMode {
+    if (_contentMode != contentMode) {
+        _contentMode = contentMode;
+        [self updateLayout];
+    }
+}
+
+#pragma mark - Button Event Methods
+
+- (IBAction)favoriteButtonTapped:(id)sender {
+    NSLog(@"Favorite Tapped");
+}
+
+
+@end

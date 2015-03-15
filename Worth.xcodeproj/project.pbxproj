@@ -13,6 +13,9 @@
 		CD28710F1AB4D343005CED9A /* WorthUserHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD28710E1AB4D343005CED9A /* WorthUserHomeViewController.m */; };
 		CD2871131AB4DFF8005CED9A /* UIColor+WorthStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2871121AB4DFF8005CED9A /* UIColor+WorthStyle.m */; };
 		CD2871161AB4E446005CED9A /* UIFont+WorthStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2871151AB4E446005CED9A /* UIFont+WorthStyle.m */; };
+		CD2871191AB4EE0F005CED9A /* WorthCompareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2871181AB4EE0F005CED9A /* WorthCompareTableViewController.m */; };
+		CD28711E1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD28711C1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m */; };
+		CD28711F1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD28711D1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib */; };
 		CD5946981AB36A2D00527F76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5946971AB36A2D00527F76 /* main.m */; };
 		CD59469B1AB36A2D00527F76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD59469A1AB36A2D00527F76 /* AppDelegate.m */; };
 		CD59469E1AB36A2D00527F76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD59469D1AB36A2D00527F76 /* ViewController.m */; };
@@ -80,6 +83,11 @@
 		CD2871121AB4DFF8005CED9A /* UIColor+WorthStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WorthStyle.m"; sourceTree = "<group>"; };
 		CD2871141AB4E446005CED9A /* UIFont+WorthStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+WorthStyle.h"; sourceTree = "<group>"; };
 		CD2871151AB4E446005CED9A /* UIFont+WorthStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+WorthStyle.m"; sourceTree = "<group>"; };
+		CD2871171AB4EE0F005CED9A /* WorthCompareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthCompareTableViewController.h; sourceTree = "<group>"; };
+		CD2871181AB4EE0F005CED9A /* WorthCompareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthCompareTableViewController.m; sourceTree = "<group>"; };
+		CD28711B1AB4EF67005CED9A /* WorthCompareUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthCompareUserTableViewCell.h; sourceTree = "<group>"; };
+		CD28711C1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthCompareUserTableViewCell.m; sourceTree = "<group>"; };
+		CD28711D1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthCompareUserTableViewCell.xib; sourceTree = "<group>"; };
 		CD5946921AB36A2D00527F76 /* Worth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Worth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD5946961AB36A2D00527F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD5946971AB36A2D00527F76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,10 +155,13 @@
 		CD2871031AB4D0DD005CED9A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CD28711A1AB4EF49005CED9A /* TableViewCells */,
 				CD28710A1AB4D1EE005CED9A /* WorthRootTabBarViewController.h */,
 				CD28710B1AB4D1EE005CED9A /* WorthRootTabBarViewController.m */,
 				CD28710D1AB4D343005CED9A /* WorthUserHomeViewController.h */,
 				CD28710E1AB4D343005CED9A /* WorthUserHomeViewController.m */,
+				CD2871171AB4EE0F005CED9A /* WorthCompareTableViewController.h */,
+				CD2871181AB4EE0F005CED9A /* WorthCompareTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +175,16 @@
 				CD2871151AB4E446005CED9A /* UIFont+WorthStyle.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		CD28711A1AB4EF49005CED9A /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CD28711B1AB4EF67005CED9A /* WorthCompareUserTableViewCell.h */,
+				CD28711C1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m */,
+				CD28711D1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		CD5946891AB36A2D00527F76 = {
@@ -398,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD5946A11AB36A2D00527F76 /* Main.storyboard in Resources */,
+				CD28711F1AB4EF67005CED9A /* WorthCompareUserTableViewCell.xib in Resources */,
 				CD5946A61AB36A2D00527F76 /* LaunchScreen.xib in Resources */,
 				CD5946A31AB36A2D00527F76 /* Images.xcassets in Resources */,
 				CD2871021AB4BECF005CED9A /* WorthMoneyTextView.xib in Resources */,
@@ -439,7 +461,9 @@
 				CD59469E1AB36A2D00527F76 /* ViewController.m in Sources */,
 				CD2871131AB4DFF8005CED9A /* UIColor+WorthStyle.m in Sources */,
 				CD28710C1AB4D1EE005CED9A /* WorthRootTabBarViewController.m in Sources */,
+				CD28711E1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m in Sources */,
 				CD2871161AB4E446005CED9A /* UIFont+WorthStyle.m in Sources */,
+				CD2871191AB4EE0F005CED9A /* WorthCompareTableViewController.m in Sources */,
 				CD59469B1AB36A2D00527F76 /* AppDelegate.m in Sources */,
 				CD5946981AB36A2D00527F76 /* main.m in Sources */,
 				CD2871001AB4BEC4005CED9A /* WorthMoneyTextView.m in Sources */,

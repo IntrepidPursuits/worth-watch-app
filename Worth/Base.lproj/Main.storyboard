@@ -5,24 +5,33 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
-        <scene sceneID="AgU-X4-veA">
+        <!--Item-->
+        <scene sceneID="hSf-Ak-aAy">
             <objects>
-                <viewController id="4dg-No-WAd" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tbo-5V-yCh"/>
-                        <viewControllerLayoutGuide type="bottom" id="Q90-1V-6jt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vZP-mt-As4">
+                <tableViewController id="l84-tZ-YXx" customClass="WorthCompareTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="auJ-dK-blj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="BIo-SW-Uqw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P8D-sq-GeN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="separatorColor" red="0.27450980392156865" green="0.6588235294117647" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="101" id="OuL-4o-pVm">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OuL-4o-pVm" id="bHy-EA-iy0">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="l84-tZ-YXx" id="HYM-eH-XLq"/>
+                            <outlet property="delegate" destination="l84-tZ-YXx" id="eNG-FY-5X5"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="7XF-St-FjK"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lX7-Xd-PUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="503"/>
+            <point key="canvasLocation" x="1095" y="532"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="IOc-HK-zUz">
@@ -70,6 +79,7 @@
                                     <constraint firstItem="sO4-ay-tp2" firstAttribute="top" secondItem="RWH-4r-qKa" secondAttribute="bottom" constant="8" id="d7S-Ag-AyC"/>
                                     <constraint firstItem="qtU-rz-woR" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" constant="8" id="iyi-Ki-FZd"/>
                                     <constraint firstItem="qtU-rz-woR" firstAttribute="top" secondItem="sO4-ay-tp2" secondAttribute="bottom" constant="8" id="qVC-uj-069"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="1" id="up7-uQ-F8z"/>
                                     <constraint firstItem="sO4-ay-tp2" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" constant="8" id="ytM-4P-BYe"/>
                                 </constraints>
                             </view>
@@ -94,6 +104,7 @@
                                     <constraint firstItem="3AA-PZ-8Ne" firstAttribute="leading" secondItem="PrB-eU-ET9" secondAttribute="leading" constant="8" id="kdH-ms-LEt"/>
                                     <constraint firstAttribute="trailing" secondItem="3AA-PZ-8Ne" secondAttribute="trailing" constant="8" id="q0e-hm-86n"/>
                                     <constraint firstItem="Fgc-6W-kEc" firstAttribute="leading" secondItem="PrB-eU-ET9" secondAttribute="leading" constant="8" id="qJ0-eV-p93"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="1" id="uaP-zG-ueP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxW-vz-gp3" userLabel="User Container View">
@@ -154,8 +165,10 @@
                         <outlet property="dailyEarningsField" destination="sO4-ay-tp2" id="zQB-kA-3UP"/>
                         <outlet property="earnedTimerField" destination="qtU-rz-woR" id="tHr-94-iKU"/>
                         <outlet property="hourlyContainerView" destination="PrB-eU-ET9" id="H9o-Cb-KRV"/>
+                        <outlet property="perHourContainerHeightConstraint" destination="uaP-zG-ueP" id="doG-6p-cVk"/>
                         <outlet property="perHourEarnedTimerField" destination="Fgc-6W-kEc" id="mjg-K5-v27"/>
                         <outlet property="perHourField" destination="3AA-PZ-8Ne" id="dTO-Yp-Czf"/>
+                        <outlet property="salaryContainerHeightConstraint" destination="up7-uQ-F8z" id="fPg-RB-FGl"/>
                         <outlet property="salaryContainerView" destination="UcO-J3-ADz" id="fzv-MG-ecf"/>
                         <outlet property="salaryInput" destination="nbt-QE-ya9" id="O4m-Nq-fDF"/>
                         <outlet property="userContainerHeightConstraint" destination="KoE-EN-Fjt" id="Qb9-L1-72u"/>
@@ -197,7 +210,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="gEs-5E-SR9" kind="relationship" relationship="viewControllers" id="mXC-sk-Qw2"/>
-                        <segue destination="4dg-No-WAd" kind="relationship" relationship="viewControllers" id="puq-9b-M6V"/>
+                        <segue destination="l84-tZ-YXx" kind="relationship" relationship="viewControllers" id="Xqc-Gf-Aoh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7h-yA-0J7" userLabel="First Responder" sceneMemberID="firstResponder"/>
