@@ -41,6 +41,7 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bar]-0-|" options:0 metrics:nil views:@{@"bar" : self.nibView}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bar]-0-|" options:0 metrics:nil views:@{@"bar" : self.nibView}]];
         self.nibView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
         [self configure];
     }
     return self;
