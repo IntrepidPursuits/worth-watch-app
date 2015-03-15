@@ -13,5 +13,7 @@
 + (UIColor *)worth_lightGreenColor;
 + (UIColor *)worth_greenColor;
 + (UIColor *)worth_darkGreenColor;
++ (UIColor *)worth_darkerGreenColor;
++ (UIColor *)worth_darkestGreenColor;
 
 @end

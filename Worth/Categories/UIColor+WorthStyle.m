@@ -19,7 +19,15 @@
 }
 
 + (UIColor *)worth_darkGreenColor {
+    return [UIColor colorWithRed:(40.0f/255.0f) green:(85.0f/255.0f) blue:(86.0f/255.0f) alpha:1.0f];
+}
+
++ (UIColor *)worth_darkerGreenColor {
     return [UIColor colorWithRed:(19.0f/255.0f) green:(62.0f/255.0f) blue:(69.0f/255.0f) alpha:1.0f];
+}
+
++ (UIColor *)worth_darkestGreenColor {
+    return [UIColor colorWithRed:(15.0f/255.0f) green:(43.0f/255.0f) blue:(47.0f/255.0f) alpha:1.0f];
 }
 
 @end

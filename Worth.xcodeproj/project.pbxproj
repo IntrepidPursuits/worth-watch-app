@@ -38,6 +38,8 @@
 		CDB3F0CB1AB5F5A1002E0D31 /* DINRoundPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C61AB5F5A1002E0D31 /* DINRoundPro-Light.otf */; };
 		CDB3F0CC1AB5F5A1002E0D31 /* DINRoundPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C71AB5F5A1002E0D31 /* DINRoundPro-Medium.otf */; };
 		CDB3F0CD1AB5F5A1002E0D31 /* DINRoundPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C81AB5F5A1002E0D31 /* DINRoundPro.otf */; };
+		CDB3F0D01AB60352002E0D31 /* WorthRoundAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */; };
+		CDB3F0D31AB6036F002E0D31 /* UIImage+WorthStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,10 @@
 		CDB3F0C61AB5F5A1002E0D31 /* DINRoundPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Light.otf"; sourceTree = "<group>"; };
 		CDB3F0C71AB5F5A1002E0D31 /* DINRoundPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINRoundPro-Medium.otf"; sourceTree = "<group>"; };
 		CDB3F0C81AB5F5A1002E0D31 /* DINRoundPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DINRoundPro.otf; sourceTree = "<group>"; };
+		CDB3F0CE1AB60352002E0D31 /* WorthRoundAvatarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthRoundAvatarImageView.h; sourceTree = "<group>"; };
+		CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthRoundAvatarImageView.m; sourceTree = "<group>"; };
+		CDB3F0D11AB6036F002E0D31 /* UIImage+WorthStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WorthStyle.h"; sourceTree = "<group>"; };
+		CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WorthStyle.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,8 @@
 				CD2870FE1AB4BEC4005CED9A /* WorthMoneyTextView.h */,
 				CD2870FF1AB4BEC4005CED9A /* WorthMoneyTextView.m */,
 				CD2871011AB4BECF005CED9A /* WorthMoneyTextView.xib */,
+				CDB3F0CE1AB60352002E0D31 /* WorthRoundAvatarImageView.h */,
+				CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,6 +201,8 @@
 				CD2871121AB4DFF8005CED9A /* UIColor+WorthStyle.m */,
 				CD2871141AB4E446005CED9A /* UIFont+WorthStyle.h */,
 				CD2871151AB4E446005CED9A /* UIFont+WorthStyle.m */,
+				CDB3F0D11AB6036F002E0D31 /* UIImage+WorthStyle.h */,
+				CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -563,8 +573,10 @@
 				CD28710C1AB4D1EE005CED9A /* WorthRootTabBarViewController.m in Sources */,
 				CD28711E1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m in Sources */,
 				CDB3F0C11AB51619002E0D31 /* WorthAddUserTableViewController.m in Sources */,
+				CDB3F0D31AB6036F002E0D31 /* UIImage+WorthStyle.m in Sources */,
 				CD2871161AB4E446005CED9A /* UIFont+WorthStyle.m in Sources */,
 				CD2871191AB4EE0F005CED9A /* WorthCompareTableViewController.m in Sources */,
+				CDB3F0D01AB60352002E0D31 /* WorthRoundAvatarImageView.m in Sources */,
 				CD59469B1AB36A2D00527F76 /* AppDelegate.m in Sources */,
 				CD5946981AB36A2D00527F76 /* main.m in Sources */,
 				CD2871001AB4BEC4005CED9A /* WorthMoneyTextView.m in Sources */,
