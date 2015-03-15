@@ -5,11 +5,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Worth Compare Table View Controller-->
+        <!--Worth Favorites Table View Controller-->
         <scene sceneID="hSf-Ak-aAy">
             <objects>
-                <tableViewController id="l84-tZ-YXx" customClass="WorthCompareTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="auJ-dK-blj">
+                <tableViewController id="l84-tZ-YXx" customClass="WorthFavoritesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="auJ-dK-blj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -20,6 +20,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OuL-4o-pVm" id="bHy-EA-iy0">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="LqX-8Y-w9x" kind="show" identifier="kCompareSegue" id="N2a-hP-AFL"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -34,6 +37,111 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lX7-Xd-PUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="532"/>
+        </scene>
+        <!--Worth Compare View Controller-->
+        <scene sceneID="73C-l5-64F">
+            <objects>
+                <viewController id="LqX-8Y-w9x" customClass="WorthCompareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KeB-Jw-rLu"/>
+                        <viewControllerLayoutGuide type="bottom" id="nbi-Xu-h4I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2dO-Hu-l8d" userLabel="Content View">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YC5-9b-Z7m" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="255"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="U1M-b5-hHk" customClass="WorthUserView">
+                                        <rect key="frame" x="8" y="8" width="584" height="72"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="72" id="6l8-cr-Gdi"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="9aU-2n-EtZ" customClass="WorthMoneyTextView">
+                                        <rect key="frame" x="8" y="88" width="584" height="66"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="Wpq-2d-HIm" customClass="WorthMoneyTextView">
+                                        <rect key="frame" x="8" y="162" width="584" height="66"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="9aU-2n-EtZ" firstAttribute="leading" secondItem="YC5-9b-Z7m" secondAttribute="leading" constant="8" id="1st-ti-HkP"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Wpq-2d-HIm" secondAttribute="bottom" constant="8" id="8ZE-rp-6Ab"/>
+                                    <constraint firstAttribute="trailing" secondItem="U1M-b5-hHk" secondAttribute="trailing" constant="8" id="DwU-VF-fxz"/>
+                                    <constraint firstItem="Wpq-2d-HIm" firstAttribute="top" secondItem="9aU-2n-EtZ" secondAttribute="bottom" constant="8" id="EEz-1h-JvC"/>
+                                    <constraint firstItem="9aU-2n-EtZ" firstAttribute="top" secondItem="U1M-b5-hHk" secondAttribute="bottom" constant="8" id="HKF-bJ-SdW"/>
+                                    <constraint firstItem="U1M-b5-hHk" firstAttribute="leading" secondItem="YC5-9b-Z7m" secondAttribute="leading" constant="8" id="No0-CM-9yC"/>
+                                    <constraint firstItem="U1M-b5-hHk" firstAttribute="top" secondItem="YC5-9b-Z7m" secondAttribute="top" constant="8" id="P8k-t5-cKX"/>
+                                    <constraint firstAttribute="trailing" secondItem="9aU-2n-EtZ" secondAttribute="trailing" constant="8" id="Rcs-2h-Xdv"/>
+                                    <constraint firstItem="Wpq-2d-HIm" firstAttribute="leading" secondItem="YC5-9b-Z7m" secondAttribute="leading" constant="8" id="c6E-hA-1px"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wpq-2d-HIm" secondAttribute="trailing" constant="8" id="hwI-5a-7Xh"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gcP-5A-aPS" userLabel="Bottom View">
+                                <rect key="frame" x="0.0" y="263" width="600" height="229"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="5hE-Uy-PrB" customClass="WorthUserView">
+                                        <rect key="frame" x="8" y="8" width="584" height="66"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="72" id="LCA-sR-kcJ"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="aS3-Ls-SAx" customClass="WorthMoneyTextView">
+                                        <rect key="frame" x="8" y="82" width="584" height="66"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g31-d1-IFT" customClass="WorthMoneyTextView">
+                                        <rect key="frame" x="8" y="156" width="584" height="65"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5hE-Uy-PrB" firstAttribute="leading" secondItem="gcP-5A-aPS" secondAttribute="leading" constant="8" id="5hN-R1-1HV"/>
+                                    <constraint firstItem="g31-d1-IFT" firstAttribute="top" secondItem="aS3-Ls-SAx" secondAttribute="bottom" constant="8" id="NeA-Ub-ocT"/>
+                                    <constraint firstAttribute="trailing" secondItem="aS3-Ls-SAx" secondAttribute="trailing" constant="8" id="Rcp-qv-U9z"/>
+                                    <constraint firstItem="aS3-Ls-SAx" firstAttribute="leading" secondItem="gcP-5A-aPS" secondAttribute="leading" constant="8" id="UP2-ZT-2r7"/>
+                                    <constraint firstItem="5hE-Uy-PrB" firstAttribute="top" secondItem="gcP-5A-aPS" secondAttribute="top" constant="8" id="ZMh-xG-au8"/>
+                                    <constraint firstAttribute="trailing" secondItem="5hE-Uy-PrB" secondAttribute="trailing" constant="8" id="eJd-Gw-OFt"/>
+                                    <constraint firstAttribute="bottom" secondItem="g31-d1-IFT" secondAttribute="bottom" constant="8" id="eLu-ha-1Zc"/>
+                                    <constraint firstItem="aS3-Ls-SAx" firstAttribute="top" secondItem="5hE-Uy-PrB" secondAttribute="bottom" constant="8" id="iHk-W0-pc7"/>
+                                    <constraint firstAttribute="trailing" secondItem="g31-d1-IFT" secondAttribute="trailing" constant="8" id="ksg-r6-WHZ"/>
+                                    <constraint firstItem="g31-d1-IFT" firstAttribute="leading" secondItem="gcP-5A-aPS" secondAttribute="leading" constant="8" id="pWW-BJ-MbW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="YC5-9b-Z7m" secondAttribute="trailing" constant="-16" id="Fjn-ZZ-st9"/>
+                            <constraint firstItem="nbi-Xu-h4I" firstAttribute="top" secondItem="gcP-5A-aPS" secondAttribute="bottom" id="ULQ-Sk-Vy9"/>
+                            <constraint firstItem="YC5-9b-Z7m" firstAttribute="top" secondItem="KeB-Jw-rLu" secondAttribute="bottom" id="UgB-OX-OY8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gcP-5A-aPS" secondAttribute="trailing" constant="-16" id="lsz-sf-xdf"/>
+                            <constraint firstItem="gcP-5A-aPS" firstAttribute="leading" secondItem="2dO-Hu-l8d" secondAttribute="leadingMargin" constant="-16" id="mfh-gz-2FX"/>
+                            <constraint firstItem="YC5-9b-Z7m" firstAttribute="leading" secondItem="2dO-Hu-l8d" secondAttribute="leadingMargin" constant="-16" id="oyD-Kl-nqe"/>
+                            <constraint firstItem="gcP-5A-aPS" firstAttribute="top" secondItem="YC5-9b-Z7m" secondAttribute="bottom" id="xo9-EB-KC3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomContainerView" destination="gcP-5A-aPS" id="G3G-Ok-Hzz"/>
+                        <outlet property="compareTimerEarningsField" destination="g31-d1-IFT" id="HeF-Mn-wYz"/>
+                        <outlet property="compareUserView" destination="5hE-Uy-PrB" id="Omq-vA-fT2"/>
+                        <outlet property="compareYearlyEarningsField" destination="aS3-Ls-SAx" id="JmW-4e-R89"/>
+                        <outlet property="selfTimerEarningsField" destination="Wpq-2d-HIm" id="dOj-0f-m7k"/>
+                        <outlet property="selfUserView" destination="U1M-b5-hHk" id="OoN-8o-xpx"/>
+                        <outlet property="selfYearlyEarningsField" destination="9aU-2n-EtZ" id="pqr-oM-KKV"/>
+                        <outlet property="topContainerView" destination="YC5-9b-Z7m" id="7Oz-yj-6Zi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmU-yv-fJL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1915" y="532"/>
         </scene>
         <!--Worth User Home View Controller-->
         <scene sceneID="IOc-HK-zUz">

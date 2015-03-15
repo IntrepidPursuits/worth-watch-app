@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WorthUser.h"
 
 @interface WorthCompareViewController : UIViewController
+
+@property (strong, nonatomic) WorthUser *user;
+@property (strong, nonatomic) WorthUser *comparedToUser;
 
 @end

@@ -52,6 +52,11 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
     [self updateLayout];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.backgroundColor = [UIColor clearColor];
+}
+
 #pragma mark - Layout
 
 - (void)updateLayout {
