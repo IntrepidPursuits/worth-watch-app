@@ -24,7 +24,6 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextFieldLeadingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextFieldTrailingConstraint;
-@property (strong, nonatomic) NSNumberFormatter *inputFormatter;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
 @end
@@ -55,7 +54,11 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     [self.inputTextField setUserInteractionEnabled:NO];
     [self.inputTextField setHidden:YES];
     
+    [self.inputLabel setFont:[UIFont worth_mediumFontWithSize:17.0f]];
+    [self.inputLabel setTextColor:[UIColor whiteColor]];
+    
     [self configureInputLabelWithDecimalPlaces:self.decimalPlaces accessoryText:self.inputAccessoryText];
+
     [self setDecimalPlaces:kMoneyTextViewDefaultDecimalPlaces];
     [self updateLayout];
 }
@@ -64,6 +67,11 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     NSString *formatString = [NSString stringWithFormat:@"$%%.0%luf %@", (unsigned long)decimals, (accessoryText.length) ? accessoryText : @""];
     [self.inputLabel setFormat:formatString];
     [self.inputLabel setMethod:UILabelCountingMethodLinear];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Layout
