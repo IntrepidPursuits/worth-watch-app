@@ -49,6 +49,7 @@
     [self.compareUserView configureWithUser:self.comparedToUser];
     [self resetTimer];
     [self updateLayout];
+    [self showFieldsAnimated:animated];
 }
 
 - (void)configureAppearance {
@@ -74,6 +75,15 @@
     
     [self.compareTimerEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.compareTimerEarningsField setSubtitleText:@"Earned in 00:00:00"];
+}
+
+#pragma mark - Animations
+
+- (void)showFieldsAnimated:(BOOL)animated {
+    [self.selfYearlyEarningsField animateIntoView:animated];
+    [self.selfTimerEarningsField animateIntoView:animated];
+    [self.compareYearlyEarningsField animateIntoView:animated];
+    [self.compareTimerEarningsField animateIntoView:animated];
 }
 
 #pragma mark - Timer Handling

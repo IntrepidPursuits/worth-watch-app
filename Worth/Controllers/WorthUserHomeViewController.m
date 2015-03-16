@@ -64,8 +64,16 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self configureNavigationItemsForContentMode:self.contentMode];
     [self configureLayoutWithContentMode:self.contentMode animated:NO];
+
+    [self.salaryInput animateIntoView:YES];
+    [self.yearToDateEarningsField animateIntoView:YES];
+    [self.dailyEarningsField animateIntoView:YES];
+    [self.earnedTimerField animateIntoView:YES];
+    [self.perHourField animateIntoView:YES];
+    [self.perHourEarnedTimerField animateIntoView:YES];
 }
 
 - (void)configureContainerViews {

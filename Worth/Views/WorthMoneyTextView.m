@@ -61,22 +61,14 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
 
 - (void)updateLayout {
     [self updateFieldAlignmentToAlignment:self.inputAlignment];
-    
     NSString *formattedAmountString = [self.inputFormatter stringFromNumber:self.amount];
     [self updateAmountText:formattedAmountString inputAccessoryText:self.inputAccessoryText subText:self.subtitleText];
 }
 
 - (void)updateFieldAlignmentToAlignment:(WorthMoneyTextViewAlignment)alignment {
-    CGFloat indentation = (self.bounds.size.width * kMoneyTextViewAlignmentIndentation);
-    CGFloat leftIndent = (alignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : -indentation;
-    CGFloat rightIndent = (alignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : indentation;
-    
     NSTextAlignment textAlignment = (alignment == WorthMoneyTextViewAlignmentLeft || WorthMoneyTextViewAlignmentNone) ? NSTextAlignmentLeft : NSTextAlignmentRight;
-    
     self.subTitleLabel.textAlignment = textAlignment;
     self.inputTextField.textAlignment = textAlignment;
-    self.inputTextFieldLeadingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentNone) ? kMoneyTextViewDefaultIndentation : leftIndent;
-    self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentNone) ? kMoneyTextViewDefaultIndentation : rightIndent;
 }
 
 - (void)updateAmountText:(NSString *)amount inputAccessoryText:(NSString *)accessoryText subText:(NSString *)subText {
@@ -127,6 +119,25 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
         _subtitleText = subtitleText;
         [self updateLayout];
     }
+}
+
+#pragma mark - Animations
+
+- (void)animateIntoView:(BOOL)animated {
+    CGFloat indentation = (self.bounds.size.width * kMoneyTextViewAlignmentIndentation);
+    CGFloat width = self.bounds.size.width;
+    CGFloat leftIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : -indentation;
+    CGFloat rightIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : indentation;
+    
+    self.inputTextFieldLeadingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? 0 : -width;
+    self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? 0 : width;
+    [self layoutIfNeeded];
+    
+    [UIView animateWithDuration:(animated) ? 0.4f : 0 animations:^{
+        self.inputTextFieldLeadingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : leftIndent;
+        self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : rightIndent;
+        [self layoutIfNeeded];
+    }];
 }
 
 #pragma mark - Lazy
