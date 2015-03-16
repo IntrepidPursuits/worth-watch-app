@@ -194,6 +194,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
         self.user.name = self.userNameTextField.text;
         self.user.salary = self.salaryInput.amount;
         [self.user.managedObjectContext save:nil];
+        [self.view endEditing:YES];
     }
     
     [self updateLayout];
