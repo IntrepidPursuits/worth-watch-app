@@ -14,6 +14,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.27450980392156865" green="0.6588235294117647" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableHeaderView" autoresizesSubviews="NO" contentMode="scaleToFill" id="PhY-cx-iXz" customClass="WorthUserView">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="78"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="101" id="OuL-4o-pVm">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -33,6 +38,9 @@
                     <tabBarItem key="tabBarItem" title="" image="Compare" selectedImage="Compare" id="7XF-St-FjK"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="userView" destination="PhY-cx-iXz" id="5TA-Wa-hdC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lX7-Xd-PUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

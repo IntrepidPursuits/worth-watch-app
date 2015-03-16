@@ -8,6 +8,7 @@
 
 #import "WorthCompareUserTableViewCell.h"
 #import "WorthRoundAvatarImageView.h"
+#import "WorthUser+UserGenerated.h"
 #import "UIColor+WorthStyle.h"
 #import "UIFont+WorthStyle.h"
 
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *salaryLabel;
 @property (weak, nonatomic) IBOutlet WorthRoundAvatarImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (strong, nonatomic) WorthUser *user;
 
 @end
 
@@ -46,7 +48,8 @@
         formatter = [NSNumberFormatter new];
         [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     }
-    self.salaryLabel.text = [NSString stringWithFormat:@"%@ /year", [formatter stringFromNumber:self.salary]];
+    self.nameLabel.text = self.user.name;
+    self.salaryLabel.text = [NSString stringWithFormat:@"%@ /year", [formatter stringFromNumber:self.user.salary]];
 }
 
 #pragma mark - Public
@@ -58,11 +61,9 @@
     }
 }
 
-- (void)setSalary:(NSNumber *)salary {
-    if ([_salary doubleValue] != [salary doubleValue]) {
-        _salary = salary;
-        [self updateLayout];
-    }
+- (void)configureWithUser:(WorthUser *)user {
+    self.user = user;
+    [self updateLayout];
 }
 
 #pragma mark - Button Event Methods
@@ -71,6 +72,5 @@
     UIButton *button = (UIButton *)sender;
     [button setSelected:!button.selected];
 }
-
 
 @end

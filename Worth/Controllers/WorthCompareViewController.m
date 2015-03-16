@@ -38,16 +38,17 @@
     [super viewDidLoad];
     self.title = @"Compare";
     self.user = [[WorthUserManager sharedManager] currentUser];
-    
-    WorthUser *compareUser = [WorthUser new];
-    compareUser.salary = @(421433);
-    compareUser.name = @"Aaron Tenbuuren";
-    self.comparedToUser = compareUser;
-
     [self configureAppearance];
     [self configureFields];
     [self configureNavigationItems];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.selfUserView configureWithUser:self.user];
+    [self.compareUserView configureWithUser:self.comparedToUser];
     [self resetTimer];
+    [self updateLayout];
 }
 
 - (void)configureAppearance {
@@ -55,8 +56,6 @@
     [self.bottomContainerView setBackgroundColor:[UIColor worth_greenColor]];
     [self.selfUserView setContentMode:WorthUserViewContentModeSelf];
     [self.compareUserView setContentMode:WorthUserViewContentModeSelf];
-    [self.selfUserView configureWithUser:self.user];
-    [self.compareUserView configureWithUser:self.comparedToUser];
 }
 
 - (void)configureNavigationItems {
@@ -79,7 +78,7 @@
 
 #pragma mark - Timer Handling
 
-- (void)timerDidFire {
+- (void)updateLayout {
     NSDate *date = [NSDate date];
     NSUInteger secondsSinceTimer = [date timeIntervalSinceDate:self.startDate];
     NSUInteger secondsSinceYear = [date timeIntervalSinceDate:self.beginningOfYearDate];
@@ -100,9 +99,8 @@
     self.startDate = [NSDate date];
     self.beginningOfDayDate = [[NSDate date] dateAtStartOfDay];
     self.beginningOfYearDate = [[NSDate date] dateAtStartOfYear];
-
     [self.timer invalidate];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerDidFire) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
 }
 
 #pragma mark - Button Event Methods

@@ -65,7 +65,7 @@
         formatter = [NSNumberFormatter new];
         [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     }
-    self.nameLabel.text = self.user.name;
+    self.nameLabel.text = [self.user name];
     self.salaryLabel.text = [NSString stringWithFormat:@"%@ /year", [formatter stringFromNumber:self.user.salary]];
 }
 

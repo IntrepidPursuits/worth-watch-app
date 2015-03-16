@@ -13,9 +13,11 @@ typedef NS_ENUM(NSUInteger, WorthCompareUserTableCellContentMode) {
     WorthCompareUserTableCellContentModeOtherUser,
 };
 
+@class WorthUser;
+
 @interface WorthCompareUserTableViewCell : UITableViewCell
 
 @property (nonatomic) WorthCompareUserTableCellContentMode contentMode;
-@property (nonatomic, strong) NSNumber *salary;
+- (void)configureWithUser:(WorthUser *)user;
 
 @end
