@@ -14,10 +14,19 @@ typedef NS_ENUM(NSUInteger, WorthCompareUserTableCellContentMode) {
 };
 
 @class WorthUser;
+@protocol WorthCompareUserTableViewDelegate;
 
 @interface WorthCompareUserTableViewCell : UITableViewCell
 
 @property (nonatomic) WorthCompareUserTableCellContentMode contentMode;
+@property (nonatomic, weak) id<WorthCompareUserTableViewDelegate> delegate;
 - (void)configureWithUser:(WorthUser *)user;
++ (CGFloat)preferredHeight;
+
+@end
+
+@protocol WorthCompareUserTableViewDelegate <NSObject>
+
+- (void)compareUserTableViewCell:(WorthCompareUserTableViewCell *)cell didTapFavoriteButton:(id)button;
 
 @end

@@ -50,6 +50,7 @@
     }
     self.nameLabel.text = self.user.name;
     self.salaryLabel.text = [NSString stringWithFormat:@"%@ /year", [formatter stringFromNumber:self.user.salary]];
+    [self.favoriteButton setSelected:[self.user.favorited boolValue]];
 }
 
 #pragma mark - Public
@@ -66,11 +67,16 @@
     [self updateLayout];
 }
 
++ (CGFloat)preferredHeight {
+    return 78.0f;
+}
+
 #pragma mark - Button Event Methods
 
 - (IBAction)favoriteButtonTapped:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    [button setSelected:!button.selected];
+    if ([self.delegate respondsToSelector:@selector(compareUserTableViewCell:didTapFavoriteButton:)]) {
+        [self.delegate compareUserTableViewCell:self didTapFavoriteButton:sender];
+    }
 }
 
 @end

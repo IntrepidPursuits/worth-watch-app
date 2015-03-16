@@ -38,7 +38,6 @@
 		CDB3F0CD1AB5F5A1002E0D31 /* DINRoundPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0C81AB5F5A1002E0D31 /* DINRoundPro.otf */; };
 		CDB3F0D01AB60352002E0D31 /* WorthRoundAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */; };
 		CDB3F0D31AB6036F002E0D31 /* UIImage+WorthStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */; };
-		CDB3F0D61AB60BDC002E0D31 /* WorthFavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0D51AB60BDC002E0D31 /* WorthFavoritesTableViewController.m */; };
 		CDB3F0D91AB60BEC002E0D31 /* WorthCompareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0D81AB60BEC002E0D31 /* WorthCompareViewController.m */; };
 		CDB3F0E01AB614B1002E0D31 /* WorthUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0DF1AB614B1002E0D31 /* WorthUserView.m */; };
 		CDB3F0E21AB614BF002E0D31 /* WorthUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB3F0E11AB614BF002E0D31 /* WorthUserView.xib */; };
@@ -49,6 +48,7 @@
 		CDB3F0FC1AB62E06002E0D31 /* WorthObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F0FB1AB62E06002E0D31 /* WorthObjectModel.m */; };
 		CDB3F0FE1AB62E5A002E0D31 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB3F0FD1AB62E5A002E0D31 /* CoreData.framework */; };
 		CDB3F1011AB635C3002E0D31 /* WorthUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F1001AB635C3002E0D31 /* WorthUserManager.m */; };
+		CDB3F1071AB662B5002E0D31 /* WorthFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F1061AB662B5002E0D31 /* WorthFavoritesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,8 +143,6 @@
 		CDB3F0CF1AB60352002E0D31 /* WorthRoundAvatarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthRoundAvatarImageView.m; sourceTree = "<group>"; };
 		CDB3F0D11AB6036F002E0D31 /* UIImage+WorthStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WorthStyle.h"; sourceTree = "<group>"; };
 		CDB3F0D21AB6036F002E0D31 /* UIImage+WorthStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WorthStyle.m"; sourceTree = "<group>"; };
-		CDB3F0D41AB60BDC002E0D31 /* WorthFavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthFavoritesTableViewController.h; sourceTree = "<group>"; };
-		CDB3F0D51AB60BDC002E0D31 /* WorthFavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthFavoritesTableViewController.m; sourceTree = "<group>"; };
 		CDB3F0D71AB60BEC002E0D31 /* WorthCompareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthCompareViewController.h; sourceTree = "<group>"; };
 		CDB3F0D81AB60BEC002E0D31 /* WorthCompareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthCompareViewController.m; sourceTree = "<group>"; };
 		CDB3F0DE1AB614B1002E0D31 /* WorthUserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthUserView.h; sourceTree = "<group>"; };
@@ -162,6 +160,8 @@
 		CDB3F0FD1AB62E5A002E0D31 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CDB3F0FF1AB635C3002E0D31 /* WorthUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthUserManager.h; sourceTree = "<group>"; };
 		CDB3F1001AB635C3002E0D31 /* WorthUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthUserManager.m; sourceTree = "<group>"; };
+		CDB3F1051AB662B5002E0D31 /* WorthFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthFavoritesViewController.h; sourceTree = "<group>"; };
+		CDB3F1061AB662B5002E0D31 /* WorthFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthFavoritesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,10 +214,10 @@
 				CD28710B1AB4D1EE005CED9A /* WorthRootTabBarViewController.m */,
 				CD28710D1AB4D343005CED9A /* WorthUserHomeViewController.h */,
 				CD28710E1AB4D343005CED9A /* WorthUserHomeViewController.m */,
-				CDB3F0D41AB60BDC002E0D31 /* WorthFavoritesTableViewController.h */,
-				CDB3F0D51AB60BDC002E0D31 /* WorthFavoritesTableViewController.m */,
 				CDB3F0D71AB60BEC002E0D31 /* WorthCompareViewController.h */,
 				CDB3F0D81AB60BEC002E0D31 /* WorthCompareViewController.m */,
+				CDB3F1051AB662B5002E0D31 /* WorthFavoritesViewController.h */,
+				CDB3F1061AB662B5002E0D31 /* WorthFavoritesViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -634,7 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB3F0E01AB614B1002E0D31 /* WorthUserView.m in Sources */,
-				CDB3F0D61AB60BDC002E0D31 /* WorthFavoritesTableViewController.m in Sources */,
+				CDB3F1071AB662B5002E0D31 /* WorthFavoritesViewController.m in Sources */,
 				CDB3F1011AB635C3002E0D31 /* WorthUserManager.m in Sources */,
 				CDB3F0D91AB60BEC002E0D31 /* WorthCompareViewController.m in Sources */,
 				CD59469E1AB36A2D00527F76 /* ViewController.m in Sources */,
