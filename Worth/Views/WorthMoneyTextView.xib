@@ -24,18 +24,10 @@
                         <constraint firstAttribute="height" constant="38" id="pcr-gy-ZPm"/>
                     </constraints>
                     <attributedString key="attributedText">
-                        <fragment content="$100,000,000 ">
+                        <fragment content="$100,000,000">
                             <attributes>
                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="24" name="HelveticaNeue-Light"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content="/ per year">
-                            <attributes>
-                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                <font key="NSOriginalFont" size="14" name="HelveticaNeue"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -43,20 +35,20 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-zf-qNm" userLabel="Underline View">
-                    <rect key="frame" x="8" y="46" width="451" height="3"/>
+                    <rect key="frame" x="8" y="42" width="451" height="3"/>
                     <color key="backgroundColor" red="0.15686274509803921" green="0.32941176470588235" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="dH7-lP-CsG"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Earned so far this year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iK-IF-SJG">
-                    <rect key="frame" x="8" y="53" width="451" height="51.5"/>
+                    <rect key="frame" x="8" y="49" width="451" height="55.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.16862745098039217" green="0.36470588235294116" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMp-bh-wY7" userLabel="Amount Label" customClass="UICountingLabel">
-                    <rect key="frame" x="8" y="8" width="451" height="38"/>
+                    <rect key="frame" x="8" y="4" width="451" height="38"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -70,12 +62,12 @@
                 <constraint firstItem="LMp-bh-wY7" firstAttribute="trailing" secondItem="BWc-4X-wz4" secondAttribute="trailing" id="D3w-CD-0hy"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="leading" secondItem="sqT-zf-qNm" secondAttribute="leading" id="Hcv-Wt-qzb"/>
                 <constraint firstItem="7iK-IF-SJG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="KT3-Du-NRF"/>
-                <constraint firstItem="sqT-zf-qNm" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="bottom" constant="4" id="Lx5-Nl-P8k"/>
+                <constraint firstItem="sqT-zf-qNm" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="bottom" id="Lx5-Nl-P8k"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="T5h-hA-HvS"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="trailing" secondItem="sqT-zf-qNm" secondAttribute="trailing" id="XMQ-2H-mBr"/>
                 <constraint firstItem="BWc-4X-wz4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="Za1-Tq-Uds"/>
                 <constraint firstItem="LMp-bh-wY7" firstAttribute="height" secondItem="BWc-4X-wz4" secondAttribute="height" id="fDM-Zw-gtc"/>
-                <constraint firstItem="LMp-bh-wY7" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="top" constant="4" id="gW8-Jy-A7q"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="top" id="gW8-Jy-A7q"/>
                 <constraint firstAttribute="trailing" secondItem="7iK-IF-SJG" secondAttribute="trailing" constant="8" id="iLo-6F-Bwj"/>
                 <constraint firstAttribute="trailing" secondItem="BWc-4X-wz4" secondAttribute="trailing" constant="8" id="teH-eN-ohg"/>
             </constraints>

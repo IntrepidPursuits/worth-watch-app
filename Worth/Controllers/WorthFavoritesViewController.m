@@ -58,6 +58,7 @@ static NSString * const kSegueCompareIdentifier = @"kCompareSegue";
                                                                                          target:self
                                                                                          action:@selector(didTapSearchButton:)];
     self.navigationController.topViewController.navigationItem.rightBarButtonItem = searchBarButtonItem;
+    self.navigationController.topViewController.navigationItem.leftBarButtonItem = nil;
 }
 
 #pragma mark - Navigation

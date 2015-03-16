@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$450,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVd-MF-vIF">
-                        <rect key="frame" x="64" y="36" width="218" height="19.5"/>
+                        <rect key="frame" x="72" y="36" width="210" height="19.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" red="0.15686274509803921" green="0.33333333333333331" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_img" translatesAutoresizingMaskIntoConstraints="NO" id="ljK-mZ-2vi" customClass="WorthRoundAvatarImageView">
-                        <rect key="frame" x="8" y="14" width="40" height="40"/>
+                        <rect key="frame" x="16" y="14" width="40" height="40"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="pTF-u6-sFH"/>
@@ -44,7 +44,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Barack Obama" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEP-Xb-nXr">
-                        <rect key="frame" x="64" y="12" width="218" height="21"/>
+                        <rect key="frame" x="72" y="12" width="210" height="21"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                     <constraint firstItem="gEP-Xb-nXr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="NGA-ry-0KA"/>
                     <constraint firstItem="DVd-MF-vIF" firstAttribute="leading" secondItem="ljK-mZ-2vi" secondAttribute="trailing" constant="16" id="TDS-fQ-vLR"/>
                     <constraint firstAttribute="bottomMargin" secondItem="DVd-MF-vIF" secondAttribute="bottom" constant="8" id="b7F-WD-zBd"/>
-                    <constraint firstItem="ljK-mZ-2vi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="du6-Co-R8A"/>
+                    <constraint firstItem="ljK-mZ-2vi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="du6-Co-R8A"/>
                     <constraint firstItem="vuc-na-TZl" firstAttribute="leading" secondItem="gEP-Xb-nXr" secondAttribute="trailing" constant="8" id="lBC-Dy-f5D"/>
                     <constraint firstItem="gEP-Xb-nXr" firstAttribute="leading" secondItem="ljK-mZ-2vi" secondAttribute="trailing" constant="16" id="mTY-eX-h0m"/>
                     <constraint firstItem="DVd-MF-vIF" firstAttribute="top" secondItem="gEP-Xb-nXr" secondAttribute="bottom" constant="3" id="mWV-8l-Kv9"/>

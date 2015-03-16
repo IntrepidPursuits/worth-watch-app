@@ -7,6 +7,7 @@
 //
 
 #import "WorthMoneyTextView.h"
+#import "NSString+StripCurrencySymbols.h"
 #import "UIFont+WorthStyle.h"
 #import <UICountingLabel/UICountingLabel.h>
 
@@ -17,7 +18,7 @@ static CGFloat kMoneyTextViewTextFontSize = 24.0f;
 static CGFloat kMoneyTextViewCountAnimationDefaultLength = 1.0f;
 static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
-@interface WorthMoneyTextView()
+@interface WorthMoneyTextView() <UITextFieldDelegate>
 
 @property (strong, nonatomic) UIView *nibView;
 @property (weak, nonatomic) IBOutlet UICountingLabel *inputLabel;
@@ -29,7 +30,6 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 @end
 
 @implementation WorthMoneyTextView
-@synthesize amount = _amount;
 @synthesize inputAccessoryText = _inputAccessoryText;
 @synthesize subtitleText = _subtitleText;
 
@@ -51,22 +51,29 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 }
 
 - (void)configure {
-    [self.inputTextField setUserInteractionEnabled:NO];
+    [self.inputTextField setDelegate:self];
+    [self.inputTextField setFont:[UIFont worth_regularFontWithSize:kMoneyTextViewTextFontSize]];
     [self.inputTextField setHidden:YES];
+    [self.inputTextField setKeyboardType:UIKeyboardTypeDecimalPad];
+    [self.inputTextField setUserInteractionEnabled:NO];
+    [self.inputLabel setMethod:UILabelCountingMethodLinear];
     
-    [self.inputLabel setFont:[UIFont worth_mediumFontWithSize:17.0f]];
-    [self.inputLabel setTextColor:[UIColor whiteColor]];
-    
-    [self configureInputLabelWithDecimalPlaces:self.decimalPlaces accessoryText:self.inputAccessoryText];
-
-    [self setDecimalPlaces:kMoneyTextViewDefaultDecimalPlaces];
+    [self configureInputLabelWithAccessoryText:self.inputAccessoryText];
     [self updateLayout];
 }
 
-- (void)configureInputLabelWithDecimalPlaces:(NSUInteger)decimals accessoryText:(NSString *)accessoryText {
-    NSString *formatString = [NSString stringWithFormat:@"$%%.0%luf %@", (unsigned long)decimals, (accessoryText.length) ? accessoryText : @""];
-    [self.inputLabel setFormat:formatString];
-    [self.inputLabel setMethod:UILabelCountingMethodLinear];
+- (void)configureInputLabelWithAccessoryText:(NSString *)accessoryText {
+    [self.inputLabel setAttributedFormatBlock:^NSAttributedString * (float value) {
+        NSString *amountString = [NSString stringWithFormat:@"$%@ ", [self.numberFormatter stringFromNumber:@(value)]];
+        NSDictionary *amountAttributes = @{ NSFontAttributeName: [UIFont worth_regularFontWithSize:kMoneyTextViewTextFontSize] };
+        NSDictionary *accessoryAttributes = @{ NSFontAttributeName: [UIFont worth_lightFontWithSize:kMoneyTextViewSubTextFontSize] };
+        NSMutableAttributedString *attributedAmountString = [[NSMutableAttributedString alloc] initWithString:amountString attributes:amountAttributes];
+        if (accessoryText.length > 0) {
+            NSAttributedString *attributedAccessoryString = [[NSAttributedString alloc] initWithString:accessoryText attributes:accessoryAttributes];
+            [attributedAmountString appendAttributedString:attributedAccessoryString];
+        }
+        return attributedAmountString;
+    }];
 }
 
 - (void)layoutSubviews {
@@ -95,6 +102,14 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
 #pragma mark - Public
 
+- (void)setEditing:(BOOL)editing {
+    self.inputTextField.enabled = editing;
+    self.inputTextField.userInteractionEnabled = editing;
+    self.inputTextField.hidden = !editing;
+    self.inputTextField.text = [self.numberFormatter stringFromNumber:self.amount];
+    self.inputLabel.hidden = editing;
+}
+
 - (void)setInputAlignment:(WorthMoneyTextViewAlignment)inputAlignment {
     if (_inputAlignment != inputAlignment) {
         _inputAlignment = inputAlignment;
@@ -112,7 +127,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 - (void)setInputAccessoryText:(NSString *)inputAccessoryText {
     if ([_inputAccessoryText isEqualToString:inputAccessoryText] == NO) {
         _inputAccessoryText = inputAccessoryText;
-        [self configureInputLabelWithDecimalPlaces:self.decimalPlaces accessoryText:_inputAccessoryText];
+        [self configureInputLabelWithAccessoryText:_inputAccessoryText];
     }
 }
 
@@ -123,31 +138,63 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     }
 }
 
-- (void)setDecimalPlaces:(NSUInteger)decimalPlaces {
-    if (_decimalPlaces != decimalPlaces) {
-        _decimalPlaces = decimalPlaces;
-        [self configureInputLabelWithDecimalPlaces:_decimalPlaces accessoryText:self.inputAccessoryText];
-        [self updateLayout];
-    }
-}
-
 #pragma mark - Animations
 
 - (void)animateIntoView:(BOOL)animated {
-    CGFloat indentation = (self.bounds.size.width * kMoneyTextViewAlignmentIndentation);
+    CGFloat indentation = floorf(self.bounds.size.width * kMoneyTextViewAlignmentIndentation);
     CGFloat width = self.bounds.size.width;
-    CGFloat leftIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : -indentation;
-    CGFloat rightIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : indentation;
+    CGFloat leftFinalIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : -indentation;
+    CGFloat leftStartIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : -width;
+    CGFloat rightFinalIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : indentation;
+    CGFloat rightStartIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : width;
     
-    self.inputTextFieldLeadingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? 0 : -width;
-    self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? 0 : width;
+    self.inputTextFieldLeadingConstraint.constant = leftStartIndent;
+    self.inputTextFieldTrailingConstraint.constant = rightStartIndent;
     [self layoutIfNeeded];
     
-    [UIView animateWithDuration:(animated) ? 0.4f : 0 animations:^{
-        self.inputTextFieldLeadingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : leftIndent;
-        self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : rightIndent;
+    [UIView animateWithDuration:(animated) ? 0.5f : 0 animations:^{
+        self.inputTextFieldLeadingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : leftFinalIndent;
+        self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : rightFinalIndent;
         [self layoutIfNeeded];
     }];
+}
+
+#pragma mark - UITextFieldDelegate Methods
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *tempNewString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    tempNewString = [tempNewString stringByStrippingCurrencySymbols];
+    NSInteger newValue = [tempNewString integerValue];
+    
+    if ([tempNewString length] == 0 || newValue == 0) {
+        textField.text = @"$0.00";
+    } else if ([tempNewString length] > self.numberFormatter.maximumIntegerDigits) {
+        textField.text = textField.text;
+    } else {
+        NSNumber *newAmount = @((newValue / 100.0f));
+        NSString *numberString = [self.numberFormatter stringFromNumber:newAmount];
+        textField.text = [NSString stringWithFormat:@"$%@", numberString];
+        [self setAmount:newAmount];
+    }
+    return NO;
+}
+
+#pragma mark - Helpers
+
+- (NSNumberFormatter *)numberFormatter {
+    if (_numberFormatter == nil) {
+        _numberFormatter = [NSNumberFormatter new];
+        [_numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [_numberFormatter setMaximumFractionDigits:kMoneyTextViewDefaultDecimalPlaces];
+        [_numberFormatter setMinimumFractionDigits:kMoneyTextViewDefaultDecimalPlaces];
+    }
+    return _numberFormatter;
+}
+
+#pragma mark - UIView
+
+- (BOOL)becomeFirstResponder {
+    return [self.inputTextField becomeFirstResponder];
 }
 
 @end

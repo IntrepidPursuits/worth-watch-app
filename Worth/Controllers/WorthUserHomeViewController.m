@@ -9,13 +9,17 @@
 #import "WorthUserHomeViewController.h"
 #import "WorthMoneyTextView.h"
 #import "WorthUserManager.h"
+#import "WorthRoundAvatarImageView.h"
 #import "WorthUser+UserGenerated.h"
 #import "UIColor+WorthStyle.h"
+#import "NSString+StripCurrencySymbols.h"
 #import "NSString+TimeString.h"
 #import <NSDate-Escort/NSDate+Escort.h>
 
-static NSInteger kSecondsPerYear = (365 * 24 * 60 * 60);
 static NSInteger kSecondsPerHour = (60 * 60);
+static CGFloat kVerticalSpacingDefault = 8.0f;
+static NSString * kNavigationBarEditButtonTitle = @"Edit";
+static NSString * kNavigationBarSaveButtonTitle = @"Save";
 
 typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     WorthUserHomeControllerContentModeNone,
@@ -37,6 +41,10 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 @property (weak, nonatomic) IBOutlet UIView *hourlyContainerView;
 @property (weak, nonatomic) IBOutlet UIView *userContainerView;
 
+@property (weak, nonatomic) IBOutlet WorthRoundAvatarImageView *userAvatarImageView;
+@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
+
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *userContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *salaryContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *perHourContainerHeightConstraint;
@@ -46,8 +54,14 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSDate *startDate;
 @property (strong, nonatomic) NSDate *beginningOfDayDate;
+@property (nonatomic, assign) NSUInteger secondsSinceBeginningOfDayStart;
 @property (strong, nonatomic) NSDate *beginningOfYearDate;
+@property (nonatomic, assign) NSUInteger secondsSinceBeginningOfYearStart;
 @property (strong, nonatomic) WorthUser *user;
+
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *verticalSpacingCollection;
+
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *hideableFieldHeightConstraints;
 
 @end
 
@@ -61,15 +75,17 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     
     [self configureInputs];
     [self configureContainerViews];
-    [self configureTimer];
+    [self resetTimer];
     [self updateLayout];
-    [self.view layoutIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self configureNavigationItemsForContentMode:self.contentMode];
     [self configureLayoutWithContentMode:self.contentMode animated:NO];
+    
+    [self.salaryInput setAmount:self.user.salary];
+    [self.perHourField setAmount:self.hourlyAmount];
 
     [self.salaryInput animateIntoView:YES];
     [self.yearToDateEarningsField animateIntoView:YES];
@@ -77,18 +93,23 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [self.earnedTimerField animateIntoView:YES];
     [self.perHourField animateIntoView:YES];
     [self.perHourEarnedTimerField animateIntoView:YES];
+    
+    self.userNameTextField.text = [[[WorthUserManager sharedManager] currentUser] name];
+    self.userAvatarImageView.image = [UIImage imageNamed:@"profile_img"];
 }
 
 - (void)configureContainerViews {
+    [self.view setBackgroundColor:[UIColor worth_greenColor]];
     [self.salaryContainerView setBackgroundColor:[UIColor worth_lightGreenColor]];
     [self.hourlyContainerView setBackgroundColor:[UIColor worth_greenColor]];
+    [self.userContainerView setBackgroundColor:[UIColor worth_darkGreenColor]];
 }
 
 - (void)configureInputs {
     [self.salaryInput setInputAlignment:WorthMoneyTextViewAlignmentLeft];
     [self.salaryInput setInputAccessoryText:@"/ year"];
-    [self.salaryInput setSubtitleText:@"Salary"];
-    [self.salaryInput setDecimalPlaces:2];
+    [self.salaryInput.numberFormatter setMaximumFractionDigits:2];
+    [self.salaryInput.numberFormatter setMinimumFractionDigits:2];
 
     [self.yearToDateEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.yearToDateEarningsField setSubtitleText:@"Earned so far this year"];
@@ -101,49 +122,52 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     
     [self.perHourField setInputAlignment:WorthMoneyTextViewAlignmentLeft];
     [self.perHourField setInputAccessoryText:@"/ hour"];
-    [self.perHourField setDecimalPlaces:2];
+    [self.perHourField.numberFormatter setMaximumFractionDigits:2];
+    [self.perHourField.numberFormatter setMinimumFractionDigits:2];
     
     [self.perHourEarnedTimerField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.perHourEarnedTimerField setSubtitleText:@"Earned in 00:00:00:00"];
-    
-    [self.salaryInput setBackgroundColor:[UIColor clearColor]];
-    [self.dailyEarningsField setBackgroundColor:[UIColor clearColor]];
-    [self.yearToDateEarningsField setBackgroundColor:[UIColor clearColor]];
-    [self.earnedTimerField setBackgroundColor:[UIColor clearColor]];
-    [self.perHourField setBackgroundColor:[UIColor clearColor]];
-    [self.perHourEarnedTimerField setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)configureNavigationItemsForContentMode:(WorthUserHomeControllerContentMode)contentMode {
-    NSString *buttonString = (contentMode == WorthUserHomeControllerContentModeEditing) ? @"Save" : @"Edit";
+    NSString *buttonString = (contentMode == WorthUserHomeControllerContentModeEditing) ? kNavigationBarSaveButtonTitle : kNavigationBarEditButtonTitle;
     UIBarButtonItem *editBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:buttonString
                                                                           style:UIBarButtonItemStylePlain
                                                                          target:self
                                                                          action:@selector(didTapEditButton:)];
-    self.navigationController.topViewController.navigationItem.rightBarButtonItem = editBarButtonItem;
+    UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                                          target:self
+                                                                                          action:@selector(didTapRefreshButton:)];
+    self.navigationController.topViewController.navigationItem.rightBarButtonItem = refreshBarButtonItem;
+    self.navigationController.topViewController.navigationItem.leftBarButtonItem = editBarButtonItem;
 }
 
-- (void)configureTimer {
+- (void)resetTimer {
     self.startDate = [NSDate date];
     self.beginningOfDayDate = [[NSDate date] dateAtStartOfDay];
+    self.secondsSinceBeginningOfDayStart = [self.startDate timeIntervalSinceDate:self.beginningOfDayDate];
     self.beginningOfYearDate = [[NSDate date] dateAtStartOfYear];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
+    self.secondsSinceBeginningOfYearStart = [self.startDate timeIntervalSinceDate:self.beginningOfYearDate];
+    [self.timer invalidate];
+    self.timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
+    [self.timer setTolerance:0.3f];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 #pragma mark - Layout
 
 - (void)updateLayout {
     self.userContainerView.hidden = (self.contentMode == WorthUserHomeControllerContentModeNone);
-    [self.salaryInput setAmount:self.user.salary];
     
     NSDate *date = [NSDate date];
     NSUInteger secondsSinceTimer = [date timeIntervalSinceDate:self.startDate];
-    NSUInteger secondsSinceDay = [date timeIntervalSinceDate:self.beginningOfDayDate];
-    NSUInteger secondsSinceYear = [date timeIntervalSinceDate:self.beginningOfYearDate];
+    NSUInteger secondsSinceDay = (self.secondsSinceBeginningOfDayStart + secondsSinceTimer);
+    NSUInteger secondsSinceYear = (self.secondsSinceBeginningOfYearStart + secondsSinceTimer);
     
-    CGFloat timerAmount = (self.user.salaryPerSecond * secondsSinceTimer);
-    CGFloat dayAmount = (self.user.salaryPerSecond * secondsSinceDay);
-    CGFloat yearAmount = (self.user.salaryPerSecond * secondsSinceYear);
+    CGFloat salaryPerSecond = [self.user salaryPerSecond];
+    CGFloat timerAmount = (salaryPerSecond * secondsSinceTimer);
+    CGFloat dayAmount = (salaryPerSecond * secondsSinceDay);
+    CGFloat yearAmount = (salaryPerSecond * secondsSinceYear);
     
     [self.yearToDateEarningsField setAmount:@(yearAmount)];
     [self.dailyEarningsField setAmount:@(dayAmount)];
@@ -155,17 +179,31 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     
     CGFloat perHourAmountPerSecond = ([self.hourlyAmount floatValue] / kSecondsPerHour);
     CGFloat perHourTimerAmount = (perHourAmountPerSecond * secondsSinceTimer);
-    [self.perHourField setAmount:self.hourlyAmount];
     [self.perHourEarnedTimerField setAmount:@(perHourTimerAmount)];
 }
 
 #pragma mark - Button Event Methods
 
 - (void)didTapEditButton:(id)sender {
-    self.contentMode = ([[(UIBarButtonItem *)sender title] isEqual:@"Edit"]) ? WorthUserHomeControllerContentModeEditing : WorthUserHomeControllerContentModeNone;
+    self.contentMode = ([[(UIBarButtonItem *)sender title] isEqualToString:kNavigationBarEditButtonTitle]) ? WorthUserHomeControllerContentModeEditing : WorthUserHomeControllerContentModeNone;
+    self.view.backgroundColor = (self.contentMode == WorthUserHomeControllerContentModeEditing) ? [UIColor worth_darkGreenColor] : [UIColor worth_greenColor];
+
+    BOOL didSave = (self.contentMode == WorthUserHomeControllerContentModeNone);
+    if (didSave) {
+        self.hourlyAmount = self.perHourField.amount;
+        self.user.name = self.userNameTextField.text;
+        self.user.salary = self.salaryInput.amount;
+        [self.user.managedObjectContext save:nil];
+    }
+    
     [self updateLayout];
     [self configureNavigationItemsForContentMode:self.contentMode];
     [self configureLayoutWithContentMode:self.contentMode animated:YES];
+}
+
+- (void)didTapRefreshButton:(id)sender {
+    [self resetTimer];
+    [self updateLayout];
 }
 
 #pragma mark - Animations
@@ -173,61 +211,25 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 - (void)configureLayoutWithContentMode:(WorthUserHomeControllerContentMode)contentMode animated:(BOOL)animated{
     BOOL editing = (contentMode == WorthUserHomeControllerContentModeEditing);
     [self.view layoutIfNeeded];
+
+    [self.salaryInput setEditing:editing];
+    [self.perHourField setEditing:editing];
     
     [UIView animateWithDuration:(animated) ? 0.3f : 0
                      animations:^{
-                         NSLayoutConstraint *salaryConstraint = (editing) ? [self heightConstraintForView:self.salaryContainerView height:[self heightForInputView:self.salaryInput]] : [self softHeightConstraintForView:self.salaryContainerView];
-                         [salaryConstraint setPriority:UILayoutPriorityRequired];
-                         NSLayoutConstraint *perHourConstraint = (editing) ? [self heightConstraintForView:self.hourlyContainerView height:[self heightForInputView:self.perHourField]] : [self softHeightConstraintForView:self.hourlyContainerView];
-                         [perHourConstraint setPriority:UILayoutPriorityRequired];
+                         for (NSLayoutConstraint *constraint in self.verticalSpacingCollection) {
+                             [constraint setConstant:(editing) ? 0 : kVerticalSpacingDefault];
+                         }
                          
-                         [self.salaryContainerView removeConstraint:self.salaryContainerHeightConstraint];
-                         [self.salaryContainerView layoutIfNeeded];
-                         [self.salaryContainerView addConstraint:salaryConstraint];
-                         [self.salaryContainerView layoutIfNeeded];
-                         
-                         [self.hourlyContainerView removeConstraint:self.perHourContainerHeightConstraint];
-                         [self.hourlyContainerView layoutIfNeeded];
-                         [self.hourlyContainerView addConstraint:perHourConstraint];
-                         [self.hourlyContainerView layoutIfNeeded];
-                         
-                         self.salaryContainerHeightConstraint = salaryConstraint;
-                         self.perHourContainerHeightConstraint = perHourConstraint;
-                         
-                         self.salaryInput.userInteractionEnabled = editing;
+                         for (NSLayoutConstraint *constraint in self.hideableFieldHeightConstraints) {
+                             [constraint setConstant:(editing) ? 0 : 600];
+                         }
                          
                          self.userContainerHeightConstraint.constant = (contentMode == WorthUserHomeControllerContentModeEditing) ? 98.0f : 0;
                          [self.view layoutIfNeeded];
                      }];
-}
-
-- (NSLayoutConstraint *)heightConstraintForView:(UIView *)view height:(CGFloat)height {
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:view
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                 multiplier:1.0
-                                                                   constant:height];
-    return constraint;
-}
-
-- (NSLayoutConstraint *)softHeightConstraintForView:(UIView *)view {
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                  relatedBy:NSLayoutRelationGreaterThanOrEqual
-                                                                     toItem:view
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                 multiplier:1.0
-                                                                   constant:1.0];
-    return constraint;
-}
-
-
-- (CGFloat)heightForInputView:(UIView *)view {
-    static CGFloat padding = 8.0f;
-    CGFloat height = (padding * 2.0f) + view.bounds.size.height;
-    return height;
+    
+    [self.salaryInput becomeFirstResponder];
 }
 
 @end

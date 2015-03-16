@@ -40,7 +40,6 @@
     self.user = [[WorthUserManager sharedManager] currentUser];
     [self configureAppearance];
     [self configureFields];
-    [self configureNavigationItems];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,9 +49,11 @@
     [self resetTimer];
     [self updateLayout];
     [self showFieldsAnimated:animated];
+    [self configureNavigationItems];
 }
 
 - (void)configureAppearance {
+    [self.view setBackgroundColor:[UIColor worth_greenColor]];
     [self.topContainerView setBackgroundColor:[UIColor worth_lightGreenColor]];
     [self.bottomContainerView setBackgroundColor:[UIColor worth_greenColor]];
     [self.selfUserView setContentMode:WorthUserViewContentModeSelf];
@@ -110,13 +111,15 @@
     self.beginningOfDayDate = [[NSDate date] dateAtStartOfDay];
     self.beginningOfYearDate = [[NSDate date] dateAtStartOfYear];
     [self.timer invalidate];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
+    self.timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 #pragma mark - Button Event Methods
 
 - (void)refreshButtonTapped:(id)sender {
     [self resetTimer];
+    [self updateLayout];
 }
 
 @end
