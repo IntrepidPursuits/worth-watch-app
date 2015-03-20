@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="acc-bk-gBT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="acc-bk-gBT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -246,7 +246,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="1" id="uaP-zG-ueP"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxW-vz-gp3" userLabel="User Container View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qxW-vz-gp3" userLabel="User Container View">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g4B-b6-GR4" customClass="WorthRoundAvatarImageView">
                                         <rect key="frame" x="8" y="16" width="50" height="50"/>
@@ -327,6 +327,10 @@
                         <outletCollection property="hideableFieldHeightConstraints" destination="b1k-Em-JfR" id="gPX-PG-7TS"/>
                         <outletCollection property="hideableFieldHeightConstraints" destination="U18-Rg-PjS" id="Pd5-6l-E7X"/>
                         <outletCollection property="verticalSpacingCollection" destination="4nQ-gj-Puh" id="O7f-52-3A3"/>
+                        <outletCollection property="editableFieldSpacingConstraints" destination="GHm-QF-J2d" id="HxY-DJ-o0G"/>
+                        <outletCollection property="editableFieldSpacingConstraints" destination="8hY-Sl-wa2" id="SSK-JR-nPp"/>
+                        <outletCollection property="editableFieldSpacingConstraints" destination="WmK-35-iWt" id="ynx-5y-wbh"/>
+                        <outletCollection property="editableFieldSpacingConstraints" destination="TVA-9M-Rvo" id="ftB-Wx-Vka"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLj-UR-QQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>

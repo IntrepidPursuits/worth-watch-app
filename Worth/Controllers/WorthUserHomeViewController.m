@@ -18,6 +18,7 @@
 
 static NSInteger kSecondsPerHour = (60 * 60);
 static CGFloat kVerticalSpacingDefault = 8.0f;
+static CGFloat kUserContainerHeight = 98.0f;
 static NSString * kNavigationBarEditButtonTitle = @"Edit";
 static NSString * kNavigationBarSaveButtonTitle = @"Save";
 
@@ -60,8 +61,9 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 @property (strong, nonatomic) WorthUser *user;
 
 @property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *verticalSpacingCollection;
-
 @property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *hideableFieldHeightConstraints;
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *editableFieldSpacingConstraints;
+@property (nonatomic) CGSize keyboardSize;
 
 @end
 
@@ -96,6 +98,11 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     
     self.userNameTextField.text = [[[WorthUserManager sharedManager] currentUser] name];
     self.userAvatarImageView.image = [UIImage imageNamed:@"profile_img"];
+    [self enableNotificationsForListening:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self enableNotificationsForListening:NO];
 }
 
 - (void)configureContainerViews {
@@ -142,6 +149,28 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     self.navigationController.topViewController.navigationItem.leftBarButtonItem = editBarButtonItem;
 }
 
+- (void)enableNotificationsForListening:(BOOL)enabled {
+    if (enabled) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillBeHidden:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+    } else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardDidHideNotification
+                                                      object:nil];
+
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardWillHideNotification
+                                                      object:nil];
+    }
+}
+
 - (void)resetTimer {
     self.startDate = [NSDate date];
     self.beginningOfDayDate = [[NSDate date] dateAtStartOfDay];
@@ -152,6 +181,18 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     self.timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
     [self.timer setTolerance:0.3f];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+#pragma mark - Keyboard Notifications
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    self.keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    [self configureLayoutWithContentMode:self.contentMode animated:YES];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification {
+    self.keyboardSize = CGRectZero.size;
+    [self configureLayoutWithContentMode:self.contentMode animated:YES];
 }
 
 #pragma mark - Layout
@@ -187,9 +228,9 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 - (void)didTapEditButton:(id)sender {
     self.contentMode = ([[(UIBarButtonItem *)sender title] isEqualToString:kNavigationBarEditButtonTitle]) ? WorthUserHomeControllerContentModeEditing : WorthUserHomeControllerContentModeNone;
     self.view.backgroundColor = (self.contentMode == WorthUserHomeControllerContentModeEditing) ? [UIColor worth_darkGreenColor] : [UIColor worth_greenColor];
+    BOOL editing = (self.contentMode == WorthUserHomeControllerContentModeEditing);
 
-    BOOL didSave = (self.contentMode == WorthUserHomeControllerContentModeNone);
-    if (didSave) {
+    if (editing == NO) {
         self.hourlyAmount = self.perHourField.amount;
         self.user.name = self.userNameTextField.text;
         self.user.salary = self.salaryInput.amount;
@@ -199,7 +240,12 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     
     [self updateLayout];
     [self configureNavigationItemsForContentMode:self.contentMode];
-    [self configureLayoutWithContentMode:self.contentMode animated:YES];
+    [self.salaryInput setEditing:editing];
+    [self.perHourField setEditing:editing];
+    
+    if (editing) {
+        [self.salaryInput becomeFirstResponder];
+    }
 }
 
 - (void)didTapRefreshButton:(id)sender {
@@ -212,10 +258,16 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 - (void)configureLayoutWithContentMode:(WorthUserHomeControllerContentMode)contentMode animated:(BOOL)animated{
     BOOL editing = (contentMode == WorthUserHomeControllerContentModeEditing);
     [self.view layoutIfNeeded];
-
-    [self.salaryInput setEditing:editing];
-    [self.perHourField setEditing:editing];
     
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat bottomPadding = 10.0f;
+    CGFloat windowHeight = screenRect.size.height;
+    CGFloat navBarHeight = self.navigationController.navigationBar.bounds.size.height;
+    CGFloat keyboardHeight = self.keyboardSize.height;
+    CGFloat inputHeights = (self.salaryInput.bounds.size.height + self.perHourField.bounds.size.height);
+    CGFloat remainingHeight = (windowHeight - keyboardHeight - navBarHeight - kUserContainerHeight - inputHeights);
+    CGFloat inputFieldPadding = (remainingHeight / self.editableFieldSpacingConstraints.count) - bottomPadding;
+
     [UIView animateWithDuration:(animated) ? 0.3f : 0
                      animations:^{
                          for (NSLayoutConstraint *constraint in self.verticalSpacingCollection) {
@@ -223,14 +275,16 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
                          }
                          
                          for (NSLayoutConstraint *constraint in self.hideableFieldHeightConstraints) {
-                             [constraint setConstant:(editing) ? 0 : 600];
+                             [constraint setConstant:(editing) ? 0 : FLT_MAX];
                          }
                          
-                         self.userContainerHeightConstraint.constant = (contentMode == WorthUserHomeControllerContentModeEditing) ? 98.0f : 0;
+                         for (NSLayoutConstraint *constraint in self.editableFieldSpacingConstraints) {
+                             [constraint setConstant:(editing) ? inputFieldPadding : kVerticalSpacingDefault];
+                         }
+                         
+                         self.userContainerHeightConstraint.constant = (contentMode == WorthUserHomeControllerContentModeEditing) ? kUserContainerHeight : 0;
                          [self.view layoutIfNeeded];
                      }];
-    
-    [self.salaryInput becomeFirstResponder];
 }
 
 @end

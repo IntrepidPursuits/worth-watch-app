@@ -64,15 +64,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
 - (void)configureInputLabelWithAccessoryText:(NSString *)accessoryText {
     [self.inputLabel setAttributedFormatBlock:^NSAttributedString * (float value) {
-        NSString *amountString = [NSString stringWithFormat:@"$%@ ", [self.numberFormatter stringFromNumber:@(value)]];
-        NSDictionary *amountAttributes = @{ NSFontAttributeName: [UIFont worth_regularFontWithSize:kMoneyTextViewTextFontSize] };
-        NSDictionary *accessoryAttributes = @{ NSFontAttributeName: [UIFont worth_lightFontWithSize:kMoneyTextViewSubTextFontSize] };
-        NSMutableAttributedString *attributedAmountString = [[NSMutableAttributedString alloc] initWithString:amountString attributes:amountAttributes];
-        if (accessoryText.length > 0) {
-            NSAttributedString *attributedAccessoryString = [[NSAttributedString alloc] initWithString:accessoryText attributes:accessoryAttributes];
-            [attributedAmountString appendAttributedString:attributedAccessoryString];
-        }
-        return attributedAmountString;
+        return [self attributedStringForSalaryAmount:value accessoryText:accessoryText];
     }];
 }
 
@@ -100,13 +92,26 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     [self.subTitleLabel setText:subText];
 }
 
+- (NSAttributedString *)attributedStringForSalaryAmount:(CGFloat)value accessoryText:(NSString *)accessoryText{
+    NSString *amountString = [NSString stringWithFormat:@"$%@", [self.numberFormatter stringFromNumber:@(value)]];
+    NSDictionary *amountAttributes = @{ NSFontAttributeName: [UIFont worth_regularFontWithSize:kMoneyTextViewTextFontSize] };
+    NSDictionary *accessoryAttributes = @{ NSFontAttributeName: [UIFont worth_lightFontWithSize:kMoneyTextViewSubTextFontSize] };
+    NSMutableAttributedString *attributedAmountString = [[NSMutableAttributedString alloc] initWithString:amountString attributes:amountAttributes];
+    if (accessoryText.length > 0) {
+        accessoryText = [NSString stringWithFormat:@" %@", accessoryText];
+        NSAttributedString *attributedAccessoryString = [[NSAttributedString alloc] initWithString:accessoryText attributes:accessoryAttributes];
+        [attributedAmountString appendAttributedString:attributedAccessoryString];
+    }
+    return attributedAmountString;
+}
+
 #pragma mark - Public
 
 - (void)setEditing:(BOOL)editing {
     self.inputTextField.enabled = editing;
     self.inputTextField.userInteractionEnabled = editing;
     self.inputTextField.hidden = !editing;
-    self.inputTextField.text = [self.numberFormatter stringFromNumber:self.amount];
+    self.inputTextField.attributedText = [self attributedStringForSalaryAmount:[self.amount floatValue] accessoryText:nil];
     self.inputLabel.hidden = editing;
 }
 
@@ -162,18 +167,19 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 #pragma mark - UITextFieldDelegate Methods
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *tempNewString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *unattributedString = [textField.attributedText string];
+    NSString *tempNewString = [unattributedString stringByReplacingCharactersInRange:range withString:string];
     tempNewString = [tempNewString stringByStrippingCurrencySymbols];
+    tempNewString = [tempNewString stringByReplacingOccurrencesOfString:self.inputAccessoryText withString:@""];
     NSInteger newValue = [tempNewString integerValue];
     
     if ([tempNewString length] == 0 || newValue == 0) {
-        textField.text = @"$0.00";
+        textField.attributedText = [self attributedStringForSalaryAmount:0 accessoryText:nil];
     } else if ([tempNewString length] > self.numberFormatter.maximumIntegerDigits) {
-        textField.text = textField.text;
+        textField.attributedText = textField.attributedText;
     } else {
         NSNumber *newAmount = @((newValue / 100.0f));
-        NSString *numberString = [self.numberFormatter stringFromNumber:newAmount];
-        textField.text = [NSString stringWithFormat:@"$%@", numberString];
+        textField.attributedText = [self attributedStringForSalaryAmount:[newAmount floatValue] accessoryText:nil];
         [self setAmount:newAmount];
     }
     return NO;
