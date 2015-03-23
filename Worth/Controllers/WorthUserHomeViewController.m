@@ -45,19 +45,11 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 @property (weak, nonatomic) IBOutlet WorthRoundAvatarImageView *userAvatarImageView;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *userContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *salaryContainerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *perHourContainerHeightConstraint;
 
 @property (strong, nonatomic) NSNumber *hourlyAmount;
-
-@property (strong, nonatomic) NSTimer *timer;
-@property (strong, nonatomic) NSDate *startDate;
-@property (strong, nonatomic) NSDate *beginningOfDayDate;
-@property (nonatomic, assign) NSUInteger secondsSinceBeginningOfDayStart;
-@property (strong, nonatomic) NSDate *beginningOfYearDate;
-@property (nonatomic, assign) NSUInteger secondsSinceBeginningOfYearStart;
 @property (strong, nonatomic) WorthUser *user;
 
 @property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *verticalSpacingCollection;
@@ -75,29 +67,18 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     self.user = [[WorthUserManager sharedManager] currentUser];
     self.hourlyAmount = @(45.54);
     
-    [self configureInputs];
     [self configureContainerViews];
-    [self resetTimer];
+    [self configureInputs];
+    [self resetInputs];
     [self updateLayout];
+    [self startInputTimers];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    [super viewWillAppear:animated];    
     [self configureNavigationItemsForContentMode:self.contentMode];
     [self configureLayoutWithContentMode:self.contentMode animated:NO];
-    
-    [self.salaryInput setAmount:self.user.salary];
-    [self.perHourField setAmount:self.hourlyAmount];
-
-    [self.salaryInput animateIntoView:YES];
-    [self.yearToDateEarningsField animateIntoView:YES];
-    [self.dailyEarningsField animateIntoView:YES];
-    [self.earnedTimerField animateIntoView:YES];
-    [self.perHourField animateIntoView:YES];
-    [self.perHourEarnedTimerField animateIntoView:YES];
-    
-    self.userNameTextField.text = [[[WorthUserManager sharedManager] currentUser] name];
-    self.userAvatarImageView.image = [UIImage imageNamed:@"profile_img"];
+    [self showInputFieldsAnimated:YES];
     [self enableNotificationsForListening:YES];
 }
 
@@ -117,7 +98,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [self.salaryInput setInputAccessoryText:@"/ year"];
     [self.salaryInput.numberFormatter setMaximumFractionDigits:2];
     [self.salaryInput.numberFormatter setMinimumFractionDigits:2];
-
+    
     [self.yearToDateEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.yearToDateEarningsField setSubtitleText:@"Earned so far this year"];
     
@@ -125,7 +106,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [self.dailyEarningsField setSubtitleText:@"Earned so far today"];
     
     [self.earnedTimerField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.earnedTimerField setSubtitleText:@"Earned in 00:00:00:00"];
+    [self.earnedTimerField setDisplaysTimer:YES];
     
     [self.perHourField setInputAlignment:WorthMoneyTextViewAlignmentLeft];
     [self.perHourField setInputAccessoryText:@"/ hour"];
@@ -133,7 +114,10 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [self.perHourField.numberFormatter setMinimumFractionDigits:2];
     
     [self.perHourEarnedTimerField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.perHourEarnedTimerField setSubtitleText:@"Earned in 00:00:00:00"];
+    [self.perHourEarnedTimerField setDisplaysTimer:YES];
+    
+    self.userNameTextField.text = [[[WorthUserManager sharedManager] currentUser] name];
+    self.userAvatarImageView.image = [UIImage imageNamed:@"profile_img"];
 }
 
 - (void)configureNavigationItemsForContentMode:(WorthUserHomeControllerContentMode)contentMode {
@@ -171,16 +155,37 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     }
 }
 
-- (void)resetTimer {
-    self.startDate = [NSDate date];
-    self.beginningOfDayDate = [[NSDate date] dateAtStartOfDay];
-    self.secondsSinceBeginningOfDayStart = [self.startDate timeIntervalSinceDate:self.beginningOfDayDate];
-    self.beginningOfYearDate = [[NSDate date] dateAtStartOfYear];
-    self.secondsSinceBeginningOfYearStart = [self.startDate timeIntervalSinceDate:self.beginningOfYearDate];
-    [self.timer invalidate];
-    self.timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
-    [self.timer setTolerance:0.3f];
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+- (void)resetInputs {
+    NSDate *startDate = [NSDate date];
+    NSDate *beginningOfDayDate = [startDate dateAtStartOfDay];
+    NSDate *beginningOfYearDate = [startDate dateAtStartOfYear];
+    double secondsSinceBeginningOfDayStart = [startDate timeIntervalSinceDate:beginningOfDayDate];
+    double secondsSinceBeginningOfYearStart = [startDate timeIntervalSinceDate:beginningOfYearDate];
+    
+    CGFloat salaryPerSecond = [self.user salaryPerSecond];
+    CGFloat dayAmount = (salaryPerSecond * secondsSinceBeginningOfDayStart);
+    CGFloat yearAmount = (salaryPerSecond * secondsSinceBeginningOfYearStart);
+    
+    [self.salaryInput setStartAmount:self.user.salary];
+    [self.yearToDateEarningsField setStartAmount:@(yearAmount)];
+    [self.yearToDateEarningsField setDollarsPerSecond:salaryPerSecond];
+    [self.dailyEarningsField setStartAmount:@(dayAmount)];
+    [self.dailyEarningsField setDollarsPerSecond:salaryPerSecond];
+    [self.earnedTimerField setStartAmount:@(0)];
+    [self.earnedTimerField setDollarsPerSecond:salaryPerSecond];
+    
+    CGFloat hourlyPerSecond = ([self.hourlyAmount floatValue] / kSecondsPerHour);
+    
+    [self.perHourField setStartAmount:self.hourlyAmount];
+    [self.perHourEarnedTimerField setStartAmount:@(0)];
+    [self.perHourEarnedTimerField setDollarsPerSecond:hourlyPerSecond];
+}
+
+- (void)startInputTimers {
+    [self.yearToDateEarningsField start];
+    [self.dailyEarningsField start];
+    [self.earnedTimerField start];
+    [self.perHourEarnedTimerField start];
 }
 
 #pragma mark - Keyboard Notifications
@@ -199,28 +204,15 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 
 - (void)updateLayout {
     self.userContainerView.hidden = (self.contentMode == WorthUserHomeControllerContentModeNone);
-    
-    NSDate *date = [NSDate date];
-    NSUInteger secondsSinceTimer = [date timeIntervalSinceDate:self.startDate];
-    NSUInteger secondsSinceDay = (self.secondsSinceBeginningOfDayStart + secondsSinceTimer);
-    NSUInteger secondsSinceYear = (self.secondsSinceBeginningOfYearStart + secondsSinceTimer);
-    
-    CGFloat salaryPerSecond = [self.user salaryPerSecond];
-    CGFloat timerAmount = (salaryPerSecond * secondsSinceTimer);
-    CGFloat dayAmount = (salaryPerSecond * secondsSinceDay);
-    CGFloat yearAmount = (salaryPerSecond * secondsSinceYear);
-    
-    [self.yearToDateEarningsField setAmount:@(yearAmount)];
-    [self.dailyEarningsField setAmount:@(dayAmount)];
-    [self.earnedTimerField setAmount:@(timerAmount)];
-    
-    NSString *earnedTimerString = [NSString stringWithFormat:@"Earned in %@", [NSString timeStringFromSecond:secondsSinceTimer]];
-    [self.earnedTimerField setSubtitleText:earnedTimerString];
-    [self.perHourEarnedTimerField setSubtitleText:earnedTimerString];
-    
-    CGFloat perHourAmountPerSecond = ([self.hourlyAmount floatValue] / kSecondsPerHour);
-    CGFloat perHourTimerAmount = (perHourAmountPerSecond * secondsSinceTimer);
-    [self.perHourEarnedTimerField setAmount:@(perHourTimerAmount)];
+}
+
+- (void)showInputFieldsAnimated:(BOOL)animated {
+    [self.salaryInput animateIntoView:animated];
+    [self.yearToDateEarningsField animateIntoView:animated];
+    [self.dailyEarningsField animateIntoView:animated];
+    [self.earnedTimerField animateIntoView:animated];
+    [self.perHourField animateIntoView:animated];
+    [self.perHourEarnedTimerField animateIntoView:animated];
 }
 
 #pragma mark - Button Event Methods
@@ -231,9 +223,9 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     BOOL editing = (self.contentMode == WorthUserHomeControllerContentModeEditing);
 
     if (editing == NO) {
-        self.hourlyAmount = self.perHourField.amount;
+        self.hourlyAmount = self.perHourField.startAmount;
         self.user.name = self.userNameTextField.text;
-        self.user.salary = self.salaryInput.amount;
+        self.user.salary = self.salaryInput.startAmount;
         [self.user.managedObjectContext save:nil];
         [self.view endEditing:YES];
     }
@@ -245,11 +237,15 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     
     if (editing) {
         [self.salaryInput becomeFirstResponder];
+    } else {
+        [self resetInputs];
+        [self startInputTimers];
     }
 }
 
 - (void)didTapRefreshButton:(id)sender {
-    [self resetTimer];
+    [self resetInputs];
+    [self startInputTimers];
     [self updateLayout];
 }
 

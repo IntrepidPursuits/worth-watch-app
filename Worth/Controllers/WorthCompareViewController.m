@@ -47,7 +47,6 @@
     [self.selfUserView configureWithUser:self.user];
     [self.compareUserView configureWithUser:self.comparedToUser];
     [self resetTimer];
-    [self updateLayout];
     [self showFieldsAnimated:animated];
     [self configureNavigationItems];
 }
@@ -69,13 +68,13 @@
     [self.selfYearlyEarningsField setSubtitleText:@"Earned so far this year"];
     
     [self.selfTimerEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.selfTimerEarningsField setSubtitleText:@"Earned in 00:00:00"];
+    [self.selfTimerEarningsField setDisplaysTimer:YES];
     
     [self.compareYearlyEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.compareYearlyEarningsField setSubtitleText:@"Earned so far this year"];
     
     [self.compareTimerEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.compareTimerEarningsField setSubtitleText:@"Earned in 00:00:00"];
+    [self.compareTimerEarningsField setDisplaysTimer:YES];
 }
 
 #pragma mark - Animations
@@ -87,39 +86,33 @@
     [self.compareTimerEarningsField animateIntoView:animated];
 }
 
-#pragma mark - Timer Handling
-
-- (void)updateLayout {
-    NSDate *date = [NSDate date];
-    NSUInteger secondsSinceTimer = [date timeIntervalSinceDate:self.startDate];
-    NSUInteger secondsSinceYear = [date timeIntervalSinceDate:self.beginningOfYearDate];
-    NSString *timerString = [NSString stringWithFormat:@"Earned in %@", [NSString timeStringFromSecond:secondsSinceTimer]];
-    
-    [self.selfYearlyEarningsField setAmount:@(self.user.salaryPerSecond * secondsSinceYear)];
-    [self.selfTimerEarningsField setAmount:@(self.user.salaryPerSecond * secondsSinceTimer)];
-    [self.selfTimerEarningsField setSubtitleText:timerString];
-    
-    [self.compareYearlyEarningsField setAmount:@(self.comparedToUser.salaryPerSecond * secondsSinceYear)];
-    [self.compareTimerEarningsField setAmount:@(self.comparedToUser.salaryPerSecond * secondsSinceTimer)];
-    [self.compareTimerEarningsField setSubtitleText:timerString];
-}
-
 #pragma mark - Helpers
 
 - (void)resetTimer {
-    self.startDate = [NSDate date];
-    self.beginningOfDayDate = [[NSDate date] dateAtStartOfDay];
-    self.beginningOfYearDate = [[NSDate date] dateAtStartOfYear];
-    [self.timer invalidate];
-    self.timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(updateLayout) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    NSDate *date = [NSDate date];
+    NSDate *beginningOfYearDate = [date dateAtStartOfYear];
+    NSTimeInterval secondsSinceYear = [date timeIntervalSinceDate:beginningOfYearDate];
+    
+    [self.selfYearlyEarningsField setDollarsPerSecond:self.user.salaryPerSecond];
+    [self.selfYearlyEarningsField setStartAmount:@(self.user.salaryPerSecond * secondsSinceYear)];
+    [self.selfTimerEarningsField setDollarsPerSecond:self.user.salaryPerSecond];
+    [self.selfTimerEarningsField setStartAmount:@(0)];
+    
+    [self.compareYearlyEarningsField setDollarsPerSecond:self.comparedToUser.salaryPerSecond];
+    [self.compareYearlyEarningsField setStartAmount:@(self.comparedToUser.salaryPerSecond * secondsSinceYear)];
+    [self.compareTimerEarningsField setDollarsPerSecond:self.comparedToUser.salaryPerSecond];
+    [self.compareTimerEarningsField setStartAmount:@(0)];
+    
+    [self.selfYearlyEarningsField start];
+    [self.selfTimerEarningsField start];
+    [self.compareTimerEarningsField start];
+    [self.compareYearlyEarningsField start];
 }
 
 #pragma mark - Button Event Methods
 
 - (void)refreshButtonTapped:(id)sender {
     [self resetTimer];
-    [self updateLayout];
 }
 
 @end

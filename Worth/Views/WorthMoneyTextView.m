@@ -8,24 +8,28 @@
 
 #import "WorthMoneyTextView.h"
 #import "NSString+StripCurrencySymbols.h"
+#import "NSString+TimeString.h"
 #import "UIFont+WorthStyle.h"
-#import <UICountingLabel/UICountingLabel.h>
 
+static CGFloat kFramesPerSecond = 25.0f;
 static CGFloat kMoneyTextViewAlignmentIndentation = 0.25f;
 static CGFloat kMoneyTextViewDefaultIndentation = 0.0f;
 static CGFloat kMoneyTextViewSubTextFontSize = 14.0f;
 static CGFloat kMoneyTextViewTextFontSize = 24.0f;
-static CGFloat kMoneyTextViewCountAnimationDefaultLength = 1.0f;
 static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
 @interface WorthMoneyTextView() <UITextFieldDelegate>
 
 @property (strong, nonatomic) UIView *nibView;
-@property (weak, nonatomic) IBOutlet UICountingLabel *inputLabel;
+@property (weak, nonatomic) IBOutlet UILabel *inputLabel;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextFieldLeadingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputTextFieldTrailingConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
+
+@property (strong, nonatomic) NSTimer *timer;
+@property (nonatomic) NSTimeInterval startTime;
+@property (nonatomic) NSTimeInterval currentTime;
 
 @end
 
@@ -56,16 +60,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     [self.inputTextField setHidden:YES];
     [self.inputTextField setKeyboardType:UIKeyboardTypeDecimalPad];
     [self.inputTextField setUserInteractionEnabled:NO];
-    [self.inputLabel setMethod:UILabelCountingMethodLinear];
-    
-    [self configureInputLabelWithAccessoryText:self.inputAccessoryText];
     [self updateLayout];
-}
-
-- (void)configureInputLabelWithAccessoryText:(NSString *)accessoryText {
-    [self.inputLabel setAttributedFormatBlock:^NSAttributedString * (float value) {
-        return [self attributedStringForSalaryAmount:value accessoryText:accessoryText];
-    }];
 }
 
 - (void)layoutSubviews {
@@ -77,7 +72,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
 - (void)updateLayout {
     [self updateFieldAlignmentToAlignment:self.inputAlignment];
-    [self updateAmountText:self.amount inputAccessoryText:self.inputAccessoryText subText:self.subtitleText];
+    [self updateAmountText:self.startAmount inputAccessoryText:self.inputAccessoryText subText:self.subtitleText];
 }
 
 - (void)updateFieldAlignmentToAlignment:(WorthMoneyTextViewAlignment)alignment {
@@ -88,7 +83,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 }
 
 - (void)updateAmountText:(NSNumber *)amount inputAccessoryText:(NSString *)accessoryText subText:(NSString *)subText {
-    [self.inputLabel countFromCurrentValueTo:[amount floatValue] withDuration:kMoneyTextViewCountAnimationDefaultLength];
+    [self.inputLabel setAttributedText:[self attributedStringForSalaryAmount:[amount floatValue] accessoryText:accessoryText]];
     [self.subTitleLabel setText:subText];
 }
 
@@ -107,11 +102,40 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
 #pragma mark - Public
 
+- (void)start {
+    self.startTime = CACurrentMediaTime();
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        self.currentTime = CACurrentMediaTime();
+        NSTimeInterval elapsedTime = self.currentTime - self.startTime;
+        CGFloat newAmount = ([self.startAmount floatValue] + (self.dollarsPerSecond * elapsedTime));
+        
+        if (self.inputAccessoryText.length > 0) {
+            [self.inputLabel setAttributedText:[self attributedStringForSalaryAmount:newAmount accessoryText:self.inputAccessoryText]];
+        } else {
+            [self.inputLabel setAttributedText:nil];
+            [self.inputLabel setText:[NSString stringWithFormat:@"$%@", [self.numberFormatter stringFromNumber:@(newAmount)]]];
+        }
+        
+        if (self.displaysTimer) {
+            NSString *timeString = [NSString timeStringFromSecond:elapsedTime];
+            NSString *earnedString = [NSString stringWithFormat:@"Earned in %@", timeString];
+            self.subTitleLabel.text = earnedString;
+        }
+    }];
+    
+    [self.timer invalidate];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:(1.0f / kFramesPerSecond)
+                                                  target:operation
+                                                selector:@selector(main)
+                                                userInfo:nil
+                                                 repeats:YES];
+}
+
 - (void)setEditing:(BOOL)editing {
     self.inputTextField.enabled = editing;
     self.inputTextField.userInteractionEnabled = editing;
     self.inputTextField.hidden = !editing;
-    self.inputTextField.attributedText = [self attributedStringForSalaryAmount:[self.amount floatValue] accessoryText:nil];
+    self.inputTextField.attributedText = [self attributedStringForSalaryAmount:[self.startAmount floatValue] accessoryText:nil];
     self.inputLabel.hidden = editing;
 }
 
@@ -122,17 +146,10 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     }
 }
 
-- (void)setAmount:(NSNumber *)amount {
-    if ([_amount floatValue] != [amount floatValue]) {
-        _amount = amount;
+- (void)setStartAmount:(NSNumber *)startAmount{
+    if ([_startAmount floatValue] != [startAmount floatValue]) {
+        _startAmount = startAmount;
         [self updateLayout];
-    }
-}
-
-- (void)setInputAccessoryText:(NSString *)inputAccessoryText {
-    if ([_inputAccessoryText isEqualToString:inputAccessoryText] == NO) {
-        _inputAccessoryText = inputAccessoryText;
-        [self configureInputLabelWithAccessoryText:_inputAccessoryText];
     }
 }
 
@@ -146,6 +163,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 #pragma mark - Animations
 
 - (void)animateIntoView:(BOOL)animated {
+    CGFloat animationDuration = ((animated) ? 0.5f : 0);
     CGFloat indentation = floorf(self.bounds.size.width * kMoneyTextViewAlignmentIndentation);
     CGFloat width = self.bounds.size.width;
     CGFloat leftFinalIndent = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : -indentation;
@@ -157,7 +175,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     self.inputTextFieldTrailingConstraint.constant = rightStartIndent;
     [self layoutIfNeeded];
     
-    [UIView animateWithDuration:(animated) ? 0.5f : 0 animations:^{
+    [UIView animateWithDuration:animationDuration animations:^{
         self.inputTextFieldLeadingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentLeft) ? kMoneyTextViewDefaultIndentation : leftFinalIndent;
         self.inputTextFieldTrailingConstraint.constant = (self.inputAlignment == WorthMoneyTextViewAlignmentRight) ? kMoneyTextViewDefaultIndentation : rightFinalIndent;
         [self layoutIfNeeded];
@@ -180,7 +198,7 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     } else {
         NSNumber *newAmount = @((newValue / 100.0f));
         textField.attributedText = [self attributedStringForSalaryAmount:[newAmount floatValue] accessoryText:nil];
-        [self setAmount:newAmount];
+        [self setStartAmount:newAmount];
     }
     return NO;
 }

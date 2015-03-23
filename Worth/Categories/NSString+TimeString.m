@@ -11,11 +11,11 @@
 @implementation NSString (TimeString)
 
 + (NSString *)timeStringFromSecond:(NSInteger)totalSeconds {
-    NSInteger seconds = totalSeconds % 60;
-    NSInteger minutes = (totalSeconds / 60) % 60;
-    NSInteger hours = totalSeconds / 3600;
+    NSUInteger seconds = totalSeconds % 60;
+    NSUInteger minutes = (totalSeconds / 60) % 60;
+    NSUInteger hours = totalSeconds / 3600;
     
-    return [NSString stringWithFormat:@"%02d:%02d:%02d",hours, minutes, seconds];
+    return [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)hours, (long)minutes, (long)seconds];
 }
 
 @end

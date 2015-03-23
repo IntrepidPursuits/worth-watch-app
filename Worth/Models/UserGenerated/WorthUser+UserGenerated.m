@@ -8,7 +8,7 @@
 
 #import "WorthUser+UserGenerated.h"
 
-static NSInteger kSecondsPerYear = (364 * 24 * 60 * 60);
+static NSInteger kSecondsPerYear = (365 * 24 * 60 * 60);
 
 @implementation WorthUser (UserGenerated)
 
