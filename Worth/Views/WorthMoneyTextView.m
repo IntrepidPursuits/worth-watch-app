@@ -103,7 +103,11 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 #pragma mark - Public
 
 - (void)start {
-    self.startTime = CACurrentMediaTime();
+    [self startWithTime:CACurrentMediaTime()];
+}
+
+- (void)startWithTime:(CFTimeInterval)time {
+    self.startTime = time;
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         self.currentTime = CACurrentMediaTime();
         NSTimeInterval elapsedTime = self.currentTime - self.startTime;

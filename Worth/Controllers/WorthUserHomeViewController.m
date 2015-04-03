@@ -16,6 +16,7 @@
 #import "NSString+TimeString.h"
 #import <NSDate-Escort/NSDate+Escort.h>
 
+static NSString * startTimeKey = @"kWorthAppHomeStoredTimer";
 static NSInteger kSecondsPerHour = (60 * 60);
 static CGFloat kVerticalSpacingDefault = 8.0f;
 static CGFloat kUserContainerHeight = 98.0f;
@@ -184,8 +185,19 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 - (void)startInputTimers {
     [self.yearToDateEarningsField start];
     [self.dailyEarningsField start];
-    [self.earnedTimerField start];
-    [self.perHourEarnedTimerField start];
+    
+    NSNumber *storedStartTime = [[NSUserDefaults standardUserDefaults] objectForKey:startTimeKey];
+    CFTimeInterval startTime = ([storedStartTime integerValue] > 0) ? [storedStartTime floatValue] : CACurrentMediaTime();
+    [self setTimerStartTime:startTime];
+    
+    [self.earnedTimerField startWithTime:startTime];
+    [self.perHourEarnedTimerField startWithTime:startTime];
+}
+
+- (void)setTimerStartTime:(CFTimeInterval)time {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(time) forKey:startTimeKey];
+    [defaults synchronize];
 }
 
 #pragma mark - Keyboard Notifications
@@ -245,6 +257,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
 
 - (void)didTapRefreshButton:(id)sender {
     [self resetInputs];
+    [self setTimerStartTime:CACurrentMediaTime()];
     [self startInputTimers];
     [self updateLayout];
 }

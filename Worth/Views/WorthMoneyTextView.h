@@ -27,5 +27,6 @@ typedef NS_ENUM(NSUInteger, WorthMoneyTextViewAlignment) {
 - (void)animateIntoView:(BOOL)animated;
 - (void)setEditing:(BOOL)editing;
 - (void)start;
+- (void)startWithTime:(CFTimeInterval)time;
 
 @end
