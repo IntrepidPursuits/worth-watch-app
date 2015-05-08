@@ -11,10 +11,10 @@
 
 @interface WorthUser : NSManagedObject
 
-@property (nonatomic, retain) NSData * avatar;
-@property (nonatomic, retain) NSNumber * currentUser;
-@property (nonatomic, retain) NSNumber * favorited;
-@property (nonatomic, retain) NSNumber * salary;
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSData *avatar;
+@property (nonatomic, retain) NSNumber *currentUser;
+@property (nonatomic, retain) NSNumber *favorited;
+@property (nonatomic, retain) NSNumber *salary;
+@property (nonatomic, retain) NSString *name;
 
 @end

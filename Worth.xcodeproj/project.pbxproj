@@ -50,6 +50,7 @@
 		CDB3F1011AB635C3002E0D31 /* WorthUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F1001AB635C3002E0D31 /* WorthUserManager.m */; };
 		CDB3F1071AB662B5002E0D31 /* WorthFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F1061AB662B5002E0D31 /* WorthFavoritesViewController.m */; };
 		CDB3F10A1AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB3F1091AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.m */; };
+		CDBFBBD81AFCFB9400BF4C3E /* WorthExpense.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBFBBD71AFCFB9400BF4C3E /* WorthExpense.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,8 @@
 		CDB3F1061AB662B5002E0D31 /* WorthFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthFavoritesViewController.m; sourceTree = "<group>"; };
 		CDB3F1081AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StripCurrencySymbols.h"; sourceTree = "<group>"; };
 		CDB3F1091AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StripCurrencySymbols.m"; sourceTree = "<group>"; };
+		CDBFBBD61AFCFB9400BF4C3E /* WorthExpense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthExpense.h; sourceTree = "<group>"; };
+		CDBFBBD71AFCFB9400BF4C3E /* WorthExpense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthExpense.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +394,8 @@
 			children = (
 				CDB3F0F91AB62DEE002E0D31 /* CoreData */,
 				CDB3F0F21AB626F2002E0D31 /* UserGenerated */,
+				CDBFBBD61AFCFB9400BF4C3E /* WorthExpense.h */,
+				CDBFBBD71AFCFB9400BF4C3E /* WorthExpense.m */,
 				CDB3F0EF1AB626E6002E0D31 /* WorthUser.h */,
 				CDB3F0F01AB626E6002E0D31 /* WorthUser.m */,
 				CDB3F0E61AB62696002E0D31 /* WorthObjectModel.xcdatamodeld */,
@@ -643,6 +648,7 @@
 				CDB3F10A1AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.m in Sources */,
 				CDB3F1011AB635C3002E0D31 /* WorthUserManager.m in Sources */,
 				CDB3F0D91AB60BEC002E0D31 /* WorthCompareViewController.m in Sources */,
+				CDBFBBD81AFCFB9400BF4C3E /* WorthExpense.m in Sources */,
 				CD59469E1AB36A2D00527F76 /* ViewController.m in Sources */,
 				CDB3F0F11AB626E6002E0D31 /* WorthUser.m in Sources */,
 				CDB3F0FC1AB62E06002E0D31 /* WorthObjectModel.m in Sources */,
