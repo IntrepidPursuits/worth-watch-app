@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.intrepid.Worth</string>
+	<string>io.intrepid.Worth</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
