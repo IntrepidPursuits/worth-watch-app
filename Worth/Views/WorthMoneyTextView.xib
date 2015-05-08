@@ -1,79 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WorthMoneyTextView">
             <connections>
                 <outlet property="inputLabel" destination="LMp-bh-wY7" id="C93-S1-FQV"/>
-                <outlet property="inputTextField" destination="BWc-4X-wz4" id="XM1-4r-zq7"/>
-                <outlet property="inputTextFieldLeadingConstraint" destination="Hcv-Wt-qzb" id="mpC-r8-jpk"/>
-                <outlet property="inputTextFieldTrailingConstraint" destination="XMQ-2H-mBr" id="e6s-Qg-n3e"/>
+                <outlet property="progressView" destination="zoy-N8-ErW" id="8QN-42-LXg"/>
+                <outlet property="progressViewTrailingConstraint" destination="Ifd-sB-JRP" id="EG9-cO-nR7"/>
                 <outlet property="subTitleLabel" destination="7iK-IF-SJG" id="6wd-Sc-UHr"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="467" height="108.5"/>
+            <rect key="frame" x="0.0" y="0.0" width="467" height="109"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BWc-4X-wz4">
-                    <rect key="frame" x="8" y="4" width="451" height="38"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="38" id="pcr-gy-ZPm"/>
-                    </constraints>
-                    <attributedString key="attributedText">
-                        <fragment content="$100,000,000">
-                            <attributes>
-                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="24" name="HelveticaNeue-Light"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <view contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-zf-qNm" userLabel="Underline View">
-                    <rect key="frame" x="8" y="42" width="451" height="3"/>
-                    <color key="backgroundColor" red="0.15686274509803921" green="0.32941176470588235" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="3" id="dH7-lP-CsG"/>
-                    </constraints>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoy-N8-ErW" userLabel="ProgressView">
+                    <rect key="frame" x="0.0" y="0.0" width="367" height="109"/>
+                    <color key="backgroundColor" red="0.38431372549019605" green="0.69411764705882351" blue="0.69411764705882351" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Earned so far this year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iK-IF-SJG">
-                    <rect key="frame" x="8" y="49" width="451" height="55.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.16862745098039217" green="0.36470588235294116" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMp-bh-wY7" userLabel="Amount Label">
-                    <rect key="frame" x="8" y="4" width="451" height="38"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1,000,000.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMp-bh-wY7" userLabel="Amount Label">
+                    <rect key="frame" x="18" y="24" width="154" height="61"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Earned so far this year" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iK-IF-SJG">
+                    <rect key="frame" x="314" y="0.0" width="141" height="109"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.38431372549019577" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="7iK-IF-SJG" firstAttribute="top" secondItem="sqT-zf-qNm" secondAttribute="bottom" constant="4" id="0fG-Z6-m1G"/>
-                <constraint firstItem="LMp-bh-wY7" firstAttribute="leading" secondItem="BWc-4X-wz4" secondAttribute="leading" id="1k6-sZ-GLP"/>
-                <constraint firstAttribute="bottom" secondItem="7iK-IF-SJG" secondAttribute="bottom" constant="4" id="1uQ-4I-McX"/>
-                <constraint firstItem="LMp-bh-wY7" firstAttribute="trailing" secondItem="BWc-4X-wz4" secondAttribute="trailing" id="D3w-CD-0hy"/>
-                <constraint firstItem="BWc-4X-wz4" firstAttribute="leading" secondItem="sqT-zf-qNm" secondAttribute="leading" id="Hcv-Wt-qzb"/>
-                <constraint firstItem="7iK-IF-SJG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="KT3-Du-NRF"/>
-                <constraint firstItem="sqT-zf-qNm" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="bottom" id="Lx5-Nl-P8k"/>
-                <constraint firstItem="BWc-4X-wz4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="T5h-hA-HvS"/>
-                <constraint firstItem="BWc-4X-wz4" firstAttribute="trailing" secondItem="sqT-zf-qNm" secondAttribute="trailing" id="XMQ-2H-mBr"/>
-                <constraint firstItem="BWc-4X-wz4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="Za1-Tq-Uds"/>
-                <constraint firstItem="LMp-bh-wY7" firstAttribute="height" secondItem="BWc-4X-wz4" secondAttribute="height" id="fDM-Zw-gtc"/>
-                <constraint firstItem="LMp-bh-wY7" firstAttribute="top" secondItem="BWc-4X-wz4" secondAttribute="top" id="gW8-Jy-A7q"/>
-                <constraint firstAttribute="trailing" secondItem="7iK-IF-SJG" secondAttribute="trailing" constant="8" id="iLo-6F-Bwj"/>
-                <constraint firstAttribute="trailing" secondItem="BWc-4X-wz4" secondAttribute="trailing" constant="8" id="teH-eN-ohg"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="3JD-fH-sbf"/>
+                <constraint firstAttribute="bottom" secondItem="7iK-IF-SJG" secondAttribute="bottom" id="4hb-f9-u20"/>
+                <constraint firstItem="zoy-N8-ErW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Btc-zK-KZe"/>
+                <constraint firstAttribute="bottom" secondItem="LMp-bh-wY7" secondAttribute="bottom" constant="24" id="Chb-K3-QHJ"/>
+                <constraint firstAttribute="bottom" secondItem="zoy-N8-ErW" secondAttribute="bottom" id="F2N-Kn-jln"/>
+                <constraint firstAttribute="trailing" secondItem="zoy-N8-ErW" secondAttribute="trailing" constant="100" id="Ifd-sB-JRP"/>
+                <constraint firstAttribute="centerY" secondItem="LMp-bh-wY7" secondAttribute="centerY" id="dOM-s9-OAN"/>
+                <constraint firstItem="7iK-IF-SJG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eSI-cD-bRq"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="ic1-UN-Eto"/>
+                <constraint firstItem="zoy-N8-ErW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qHX-MU-mV7"/>
+                <constraint firstAttribute="trailing" secondItem="7iK-IF-SJG" secondAttribute="trailing" constant="12" id="tdx-Gz-jT4"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="259.5" y="116.25"/>
+            <point key="canvasLocation" x="-154.5" y="-45.5"/>
         </view>
     </objects>
 </document>

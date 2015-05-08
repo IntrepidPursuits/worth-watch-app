@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  WorthHeaderView.h
 //  Worth
 //
-//  Created by Patrick Butkiewicz on 3/13/15.
+//  Created by Patrick Butkiewicz on 5/8/15.
 //  Copyright (c) 2015 Intrepid Pursuits. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface WorthHeaderView : UIView
 
 @end
-

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "WorthObjectModel.h"
 #import "WorthUserManager.h"
+#import "WorthRootTabBarViewController.h"
 #import "UIColor+WorthStyle.h"
 #import "UIFont+WorthStyle.h"
 
@@ -22,6 +23,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearance];
     [self setupSimpleDatabase];
+    
+    self.rootViewController = [[WorthRootTabBarViewController alloc] initWithNibName:nil bundle:nil];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = self.rootViewController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
