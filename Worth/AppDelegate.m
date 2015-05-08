@@ -26,7 +26,9 @@
     
     self.rootViewController = [[WorthRootTabBarViewController alloc] initWithNibName:nil bundle:nil];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.rootViewController;
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
+    self.window.rootViewController = navigationController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
@@ -57,10 +59,6 @@
     [tabBarItemAppearance setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
     [tabBarItemAppearance setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
     
-//    UIImage *backButtonImage = [UIImage imageNamed:@"icon_back_arrow"];
-//    [barButtonItemAppearance setBackButtonBackgroundImage:[backButtonImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backButtonImage.size.width, 0, 0)]
-//                                                 forState:UIControlStateNormal
-//                                               barMetrics:UIBarMetricsDefault];
 }
 
 - (void)setupSimpleDatabase {
