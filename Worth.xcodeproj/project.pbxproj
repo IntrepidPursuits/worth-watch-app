@@ -54,6 +54,7 @@
 		CDBFBBDF1AFD088D00BF4C3E /* WorthUserHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDBFBBDE1AFD088D00BF4C3E /* WorthUserHomeViewController.xib */; };
 		CDBFBBE21AFD0E5D00BF4C3E /* WorthHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBFBBE11AFD0E5D00BF4C3E /* WorthHeaderView.m */; };
 		CDBFBBE41AFD0E6C00BF4C3E /* WorthHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDBFBBE31AFD0E6C00BF4C3E /* WorthHeaderView.xib */; };
+		CDBFBBE71AFD44CB00BF4C3E /* NSDate+Worth.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBFBBE61AFD44CB00BF4C3E /* NSDate+Worth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,8 @@
 		CDBFBBE01AFD0E5D00BF4C3E /* WorthHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthHeaderView.h; sourceTree = "<group>"; };
 		CDBFBBE11AFD0E5D00BF4C3E /* WorthHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthHeaderView.m; sourceTree = "<group>"; };
 		CDBFBBE31AFD0E6C00BF4C3E /* WorthHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthHeaderView.xib; sourceTree = "<group>"; };
+		CDBFBBE51AFD44CB00BF4C3E /* NSDate+Worth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Worth.h"; sourceTree = "<group>"; };
+		CDBFBBE61AFD44CB00BF4C3E /* NSDate+Worth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Worth.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +255,8 @@
 				CDB3F0E41AB61E5B002E0D31 /* NSString+TimeString.m */,
 				CDB3F1081AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.h */,
 				CDB3F1091AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.m */,
+				CDBFBBE51AFD44CB00BF4C3E /* NSDate+Worth.h */,
+				CDBFBBE61AFD44CB00BF4C3E /* NSDate+Worth.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				CDB3F0D91AB60BEC002E0D31 /* WorthCompareViewController.m in Sources */,
 				CDBFBBD81AFCFB9400BF4C3E /* WorthExpense.m in Sources */,
 				CDB3F0F11AB626E6002E0D31 /* WorthUser.m in Sources */,
+				CDBFBBE71AFD44CB00BF4C3E /* NSDate+Worth.m in Sources */,
 				CDB3F0FC1AB62E06002E0D31 /* WorthObjectModel.m in Sources */,
 				CD2871131AB4DFF8005CED9A /* UIColor+WorthStyle.m in Sources */,
 				CDBFBBDC1AFD07F800BF4C3E /* WorthRootTabBarViewController.m in Sources */,
