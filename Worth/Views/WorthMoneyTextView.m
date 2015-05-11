@@ -34,8 +34,9 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
 
 #pragma mark - Init
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if ((self = [super initWithCoder:aDecoder])){
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
         self.nibView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class])
                                                       owner:self
                                                     options:nil] lastObject];
@@ -43,14 +44,8 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bar]-0-|" options:0 metrics:nil views:@{@"bar" : self.nibView}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bar]-0-|" options:0 metrics:nil views:@{@"bar" : self.nibView}]];
         self.nibView.translatesAutoresizingMaskIntoConstraints = NO;
-        self.translatesAutoresizingMaskIntoConstraints = NO;
-        [self configure];
     }
     return self;
-}
-
-- (void)configure {
-    [self updateLayout];
 }
 
 #pragma mark - Layout

@@ -14,21 +14,24 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="467" height="109"/>
+            <rect key="frame" x="0.0" y="0.0" width="467" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoy-N8-ErW" userLabel="ProgressView">
-                    <rect key="frame" x="0.0" y="0.0" width="367" height="109"/>
+                    <rect key="frame" x="0.0" y="0.0" width="367" height="70"/>
                     <color key="backgroundColor" red="0.38431372549019605" green="0.69411764705882351" blue="0.69411764705882351" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="ICO-9i-Edu"/>
+                    </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1,000,000.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMp-bh-wY7" userLabel="Amount Label">
-                    <rect key="frame" x="18" y="24" width="154" height="61"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="$1,000,000.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMp-bh-wY7" userLabel="Amount Label">
+                    <rect key="frame" x="20" y="14" width="154" height="42"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Earned so far this year" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iK-IF-SJG">
-                    <rect key="frame" x="314" y="0.0" width="141" height="109"/>
+                    <rect key="frame" x="182" y="27" width="273" height="17"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -36,21 +39,20 @@
             </subviews>
             <color key="backgroundColor" red="0.38431372549019577" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="LMp-bh-wY7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="3JD-fH-sbf"/>
-                <constraint firstAttribute="bottom" secondItem="7iK-IF-SJG" secondAttribute="bottom" id="4hb-f9-u20"/>
                 <constraint firstItem="zoy-N8-ErW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Btc-zK-KZe"/>
-                <constraint firstAttribute="bottom" secondItem="LMp-bh-wY7" secondAttribute="bottom" constant="24" id="Chb-K3-QHJ"/>
                 <constraint firstAttribute="bottom" secondItem="zoy-N8-ErW" secondAttribute="bottom" id="F2N-Kn-jln"/>
                 <constraint firstAttribute="trailing" secondItem="zoy-N8-ErW" secondAttribute="trailing" constant="100" id="Ifd-sB-JRP"/>
-                <constraint firstAttribute="centerY" secondItem="LMp-bh-wY7" secondAttribute="centerY" id="dOM-s9-OAN"/>
-                <constraint firstItem="7iK-IF-SJG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eSI-cD-bRq"/>
-                <constraint firstItem="LMp-bh-wY7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="ic1-UN-Eto"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Lfh-Ow-jNG"/>
+                <constraint firstAttribute="bottom" secondItem="LMp-bh-wY7" secondAttribute="bottom" constant="14" id="cCS-bR-3dj"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="cMM-Ov-TNw"/>
+                <constraint firstItem="LMp-bh-wY7" firstAttribute="centerY" secondItem="7iK-IF-SJG" secondAttribute="centerY" id="f2I-qY-of7"/>
+                <constraint firstItem="7iK-IF-SJG" firstAttribute="leading" secondItem="LMp-bh-wY7" secondAttribute="trailing" constant="8" id="meU-ap-cpe"/>
                 <constraint firstItem="zoy-N8-ErW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qHX-MU-mV7"/>
                 <constraint firstAttribute="trailing" secondItem="7iK-IF-SJG" secondAttribute="trailing" constant="12" id="tdx-Gz-jT4"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-154.5" y="-45.5"/>
+            <point key="canvasLocation" x="-154.5" y="-67"/>
         </view>
     </objects>
 </document>
