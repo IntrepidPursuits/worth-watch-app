@@ -64,26 +64,20 @@
 }
 
 - (void)configureFields {
-    [self.selfYearlyEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.selfYearlyEarningsField setSubtitleText:@"Earned so far this year"];
-    
-    [self.selfTimerEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.selfTimerEarningsField setDisplaysTimer:YES];
     
-    [self.compareYearlyEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.compareYearlyEarningsField setSubtitleText:@"Earned so far this year"];
-    
-    [self.compareTimerEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
     [self.compareTimerEarningsField setDisplaysTimer:YES];
 }
 
 #pragma mark - Animations
 
 - (void)showFieldsAnimated:(BOOL)animated {
-    [self.selfYearlyEarningsField animateIntoView:animated];
-    [self.selfTimerEarningsField animateIntoView:animated];
-    [self.compareYearlyEarningsField animateIntoView:animated];
-    [self.compareTimerEarningsField animateIntoView:animated];
+    [self.selfYearlyEarningsField animateIntoViewWithProgress:0.5 animated:YES];
+    [self.selfTimerEarningsField animateIntoViewWithProgress:0.5 animated:YES];
+    [self.compareYearlyEarningsField animateIntoViewWithProgress:0.5 animated:YES];
+    [self.compareTimerEarningsField animateIntoViewWithProgress:0.5 animated:YES];
 }
 
 #pragma mark - Helpers
