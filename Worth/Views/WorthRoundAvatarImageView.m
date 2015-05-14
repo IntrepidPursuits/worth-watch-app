@@ -8,6 +8,7 @@
 
 #import "WorthRoundAvatarImageView.h"
 #import "UIImage+WorthStyle.h"
+#import "UIColor+WorthStyle.h"
 
 @implementation WorthRoundAvatarImageView
 
@@ -38,19 +39,13 @@
 - (void)configure {
     self.contentMode = UIViewContentModeScaleAspectFill;
     self.layer.masksToBounds = YES;
-    self.image = [UIImage worth_avatarPlaceholderImage];
+    self.image = nil;
+    self.backgroundColor = [UIColor worth_greenColor];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.layer.cornerRadius = CGRectGetWidth(self.bounds) / 2.0f;
-}
-
-- (void)setImage:(UIImage *)image {
-    if (image == nil) {
-        image = [UIImage worth_avatarPlaceholderImage];
-    }
-    [super setImage:image];
 }
 
 @end
