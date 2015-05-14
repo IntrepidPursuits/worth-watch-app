@@ -8,55 +8,48 @@
 
 #import "WorthUserHomeViewController.h"
 #import "WorthMoneyTextView.h"
+#import "WorthHeaderView.h"
 #import "WorthUserManager.h"
 #import "WorthRoundAvatarImageView.h"
 #import "WorthUser+UserGenerated.h"
 #import "UIColor+WorthStyle.h"
 #import "NSString+StripCurrencySymbols.h"
 #import "NSString+TimeString.h"
+#import "NSDate+Worth.h"
 #import <NSDate-Escort/NSDate+Escort.h>
 
 static NSString * startTimeKey = @"kWorthAppHomeStoredTimer";
-static NSInteger kSecondsPerHour = (60 * 60);
-static CGFloat kVerticalSpacingDefault = 8.0f;
-static CGFloat kUserContainerHeight = 98.0f;
+static NSInteger WorthUserHomeTableViewNumberOfSections = 8;
 static NSString * kNavigationBarEditButtonTitle = @"Edit";
 static NSString * kNavigationBarSaveButtonTitle = @"Save";
 
-typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
-    WorthUserHomeControllerContentModeNone,
-    WorthUserHomeControllerContentModeEditing,
+typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
+    WorthUserHomeInfoSectionUserGeneral,
+    WorthUserHomeInfoSectionSalaryThisYear,
+    WorthUserHomeInfoSectionSalaryToday,
+    WorthUserHomeInfoSectionSalaryTimer,
+    WorthUserHomeInfoSectionExpensesGeneral,
+    WorthUserHomeInfoSectionExpensesThisYear,
+    WorthUserHomeInfoSectionExpensesToday,
+    WorthUserHomeInfoSectionExpensesTimer,
+    WorthUserHomeInfoSectionExpensesDetail,
 };
 
-@interface WorthUserHomeViewController ()
-@property (nonatomic) WorthUserHomeControllerContentMode contentMode;
+@interface WorthUserHomeViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet WorthMoneyTextView *salaryInput;
-@property (weak, nonatomic) IBOutlet WorthMoneyTextView *yearToDateEarningsField;
-@property (weak, nonatomic) IBOutlet WorthMoneyTextView *dailyEarningsField;
-@property (weak, nonatomic) IBOutlet WorthMoneyTextView *earnedTimerField;
-
-@property (weak, nonatomic) IBOutlet WorthMoneyTextView *perHourField;
-@property (weak, nonatomic) IBOutlet WorthMoneyTextView *perHourEarnedTimerField;
-
-@property (weak, nonatomic) IBOutlet UIView *salaryContainerView;
-@property (weak, nonatomic) IBOutlet UIView *hourlyContainerView;
-@property (weak, nonatomic) IBOutlet UIView *userContainerView;
-
-@property (weak, nonatomic) IBOutlet WorthRoundAvatarImageView *userAvatarImageView;
-@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userContainerHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *salaryContainerHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *perHourContainerHeightConstraint;
-
-@property (strong, nonatomic) NSNumber *hourlyAmount;
 @property (strong, nonatomic) WorthUser *user;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *verticalSpacingCollection;
-@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *hideableFieldHeightConstraints;
-@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *editableFieldSpacingConstraints;
-@property (nonatomic) CGSize keyboardSize;
+@property (strong, nonatomic) WorthHeaderView *userHeaderView;
+@property (strong, nonatomic) WorthMoneyTextView *earnedThisYearView;
+@property (strong, nonatomic) WorthMoneyTextView *earnedTodayView;
+@property (strong, nonatomic) WorthMoneyTextView *earnedTimerView;
+@property (strong, nonatomic) WorthHeaderView *expensesHeaderView;
+@property (strong, nonatomic) WorthMoneyTextView *expensesThisYearView;
+@property (strong, nonatomic) WorthMoneyTextView *expensesTodayView;
+@property (strong, nonatomic) WorthMoneyTextView *expensesTimerView;
+
+@property (strong, nonatomic) NSMutableArray *expenseViews;
 
 @end
 
@@ -66,132 +59,41 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [super viewDidLoad];
     
     self.user = [[WorthUserManager sharedManager] currentUser];
-    self.hourlyAmount = @(45.54);
-    
     [self configureContainerViews];
-    [self configureInputs];
     [self resetInputs];
-    [self updateLayout];
-    [self startInputTimers];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];    
-    [self configureNavigationItemsForContentMode:self.contentMode];
-    [self configureLayoutWithContentMode:self.contentMode animated:NO];
-    [self showInputFieldsAnimated:YES];
-    [self enableNotificationsForListening:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self enableNotificationsForListening:NO];
 }
 
 - (void)configureContainerViews {
     [self.view setBackgroundColor:[UIColor worth_greenColor]];
-    [self.salaryContainerView setBackgroundColor:[UIColor worth_lightGreenColor]];
-    [self.hourlyContainerView setBackgroundColor:[UIColor worth_greenColor]];
-    [self.userContainerView setBackgroundColor:[UIColor worth_darkGreenColor]];
-}
-
-- (void)configureInputs {
-    [self.salaryInput setInputAlignment:WorthMoneyTextViewAlignmentLeft];
-    [self.salaryInput setInputAccessoryText:@"/ year"];
-    [self.salaryInput.numberFormatter setMaximumFractionDigits:2];
-    [self.salaryInput.numberFormatter setMinimumFractionDigits:2];
-    
-    [self.yearToDateEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.yearToDateEarningsField setSubtitleText:@"Earned so far this year"];
-    
-    [self.dailyEarningsField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.dailyEarningsField setSubtitleText:@"Earned so far today"];
-    
-    [self.earnedTimerField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.earnedTimerField setDisplaysTimer:YES];
-    
-    [self.perHourField setInputAlignment:WorthMoneyTextViewAlignmentLeft];
-    [self.perHourField setInputAccessoryText:@"/ hour"];
-    [self.perHourField.numberFormatter setMaximumFractionDigits:2];
-    [self.perHourField.numberFormatter setMinimumFractionDigits:2];
-    
-    [self.perHourEarnedTimerField setInputAlignment:WorthMoneyTextViewAlignmentRight];
-    [self.perHourEarnedTimerField setDisplaysTimer:YES];
-    
-    self.userNameTextField.text = [[[WorthUserManager sharedManager] currentUser] name];
-    self.userAvatarImageView.image = [UIImage imageNamed:@"profile_img"];
-}
-
-- (void)configureNavigationItemsForContentMode:(WorthUserHomeControllerContentMode)contentMode {
-    NSString *buttonString = (contentMode == WorthUserHomeControllerContentModeEditing) ? kNavigationBarSaveButtonTitle : kNavigationBarEditButtonTitle;
-    UIBarButtonItem *editBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:buttonString
-                                                                          style:UIBarButtonItemStylePlain
-                                                                         target:self
-                                                                         action:@selector(didTapEditButton:)];
-    UIBarButtonItem *refreshBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                                                                          target:self
-                                                                                          action:@selector(didTapRefreshButton:)];
-    self.navigationController.topViewController.navigationItem.rightBarButtonItem = refreshBarButtonItem;
-    self.navigationController.topViewController.navigationItem.leftBarButtonItem = editBarButtonItem;
-}
-
-- (void)enableNotificationsForListening:(BOOL)enabled {
-    if (enabled) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillShow:)
-                                                     name:UIKeyboardWillShowNotification
-                                                   object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyboardWillBeHidden:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
-    } else {
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:UIKeyboardDidHideNotification
-                                                      object:nil];
-
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:UIKeyboardWillHideNotification
-                                                      object:nil];
-    }
+    [self.tableView setEstimatedRowHeight:UITableViewAutomaticDimension];
 }
 
 - (void)resetInputs {
-    NSDate *startDate = [NSDate date];
-    NSDate *beginningOfDayDate = [startDate dateAtStartOfDay];
-    NSDate *beginningOfYearDate = [startDate dateAtStartOfYear];
-    double secondsSinceBeginningOfDayStart = [startDate timeIntervalSinceDate:beginningOfDayDate];
-    double secondsSinceBeginningOfYearStart = [startDate timeIntervalSinceDate:beginningOfYearDate];
+    NSArray *expenses = @[@"Communibator", @"Spotify", @"Qup", @"Netflix",@"Communibator", @"Spotify", @"Qup", @"Netflix",@"Communibator", @"Spotify", @"Qup", @"Netflix",@"Communibator", @"Spotify", @"Qup", @"Netflix"];
+    self.expenseViews = [NSMutableArray arrayWithCapacity:expenses.count];
+    for (NSString *expense in expenses) {
+        WorthHeaderView *hv = [[WorthHeaderView alloc] initWithFrame:CGRectZero];
+        [hv setTitle:expense subTitle:@"$9.99/month"];
+        [hv setAccessoryType:WorthHeaderViewAccessoryButtonTypeNone];
+        [self.expenseViews addObject:hv];
+    }
     
-    CGFloat salaryPerSecond = [self.user salaryPerSecond];
-    CGFloat dayAmount = (salaryPerSecond * secondsSinceBeginningOfDayStart);
-    CGFloat yearAmount = (salaryPerSecond * secondsSinceBeginningOfYearStart);
-    
-    [self.salaryInput setStartAmount:self.user.salary];
-    [self.yearToDateEarningsField setStartAmount:@(yearAmount)];
-    [self.yearToDateEarningsField setDollarsPerSecond:salaryPerSecond];
-    [self.dailyEarningsField setStartAmount:@(dayAmount)];
-    [self.dailyEarningsField setDollarsPerSecond:salaryPerSecond];
-    [self.earnedTimerField setStartAmount:@(0)];
-    [self.earnedTimerField setDollarsPerSecond:salaryPerSecond];
-    
-    CGFloat hourlyPerSecond = ([self.hourlyAmount floatValue] / kSecondsPerHour);
-    
-    [self.perHourField setStartAmount:self.hourlyAmount];
-    [self.perHourEarnedTimerField setStartAmount:@(0)];
-    [self.perHourEarnedTimerField setDollarsPerSecond:hourlyPerSecond];
+    [self resetEarnings];
+    [self resetExpenses];
+    [self startInputTimers];
 }
 
 - (void)startInputTimers {
-    [self.yearToDateEarningsField start];
-    [self.dailyEarningsField start];
-    
     NSNumber *storedStartTime = [[NSUserDefaults standardUserDefaults] objectForKey:startTimeKey];
     CFTimeInterval startTime = ([storedStartTime integerValue] > 0) ? [storedStartTime floatValue] : CACurrentMediaTime();
     [self setTimerStartTime:startTime];
     
-    [self.earnedTimerField startWithTime:startTime];
-    [self.perHourEarnedTimerField startWithTime:startTime];
+    [self.earnedThisYearView start];
+    [self.earnedTodayView start];
+    [self.earnedTimerView start];
+    [self.expensesThisYearView start];
+    [self.expensesTodayView start];
+    [self.expensesTimerView start];
 }
 
 - (void)setTimerStartTime:(CFTimeInterval)time {
@@ -200,100 +102,178 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeControllerContentMode) {
     [defaults synchronize];
 }
 
-#pragma mark - Keyboard Notifications
+#pragma mark - Reset Helpers
 
-- (void)keyboardWillShow:(NSNotification *)notification {
-    self.keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    [self configureLayoutWithContentMode:self.contentMode animated:YES];
+- (void)resetEarnings {
+    CGFloat salaryPerSecond = [self.user salaryPerSecond];
+    CGFloat dayAmount = (salaryPerSecond * [NSDate secondsSinceBeginningOfDayStart]);
+    CGFloat yearAmount = (salaryPerSecond * [NSDate secondsSinceBeginningOfYearStart]);
+    
+    [self.earnedThisYearView setStartAmount:@(yearAmount)];
+    [self.earnedThisYearView setDollarsPerSecond:salaryPerSecond];
+    [self.earnedTodayView setStartAmount:@(dayAmount)];
+    [self.earnedTodayView setDollarsPerSecond:salaryPerSecond];
+    [self.earnedTimerView setStartAmount:@(0)];
+    [self.earnedTimerView setDollarsPerSecond:salaryPerSecond];
 }
 
-- (void)keyboardWillBeHidden:(NSNotification *)notification {
-    self.keyboardSize = CGRectZero.size;
-    [self configureLayoutWithContentMode:self.contentMode animated:YES];
-}
-
-#pragma mark - Layout
-
-- (void)updateLayout {
-    self.userContainerView.hidden = (self.contentMode == WorthUserHomeControllerContentModeNone);
-}
-
-- (void)showInputFieldsAnimated:(BOOL)animated {
-    [self.salaryInput animateIntoView:animated];
-    [self.yearToDateEarningsField animateIntoView:animated];
-    [self.dailyEarningsField animateIntoView:animated];
-    [self.earnedTimerField animateIntoView:animated];
-    [self.perHourField animateIntoView:animated];
-    [self.perHourEarnedTimerField animateIntoView:animated];
+- (void)resetExpenses {
+    CGFloat expensesPerSecond = 0.0012f;
+    CGFloat dayAmount = (expensesPerSecond * [NSDate secondsSinceBeginningOfDayStart]);
+    CGFloat yearAmount = (expensesPerSecond * [NSDate secondsSinceBeginningOfYearStart]);
+    
+    [self.expensesThisYearView setStartAmount:@(yearAmount)];
+    [self.expensesThisYearView setDollarsPerSecond:expensesPerSecond];
+    [self.expensesTodayView setStartAmount:@(dayAmount)];
+    [self.expensesTodayView setDollarsPerSecond:expensesPerSecond];
+    [self.expensesTimerView setStartAmount:@(0)];
+    [self.expensesTimerView setDollarsPerSecond:expensesPerSecond];
 }
 
 #pragma mark - Button Event Methods
 
-- (void)didTapEditButton:(id)sender {
-    self.contentMode = ([[(UIBarButtonItem *)sender title] isEqualToString:kNavigationBarEditButtonTitle]) ? WorthUserHomeControllerContentModeEditing : WorthUserHomeControllerContentModeNone;
-    self.view.backgroundColor = (self.contentMode == WorthUserHomeControllerContentModeEditing) ? [UIColor worth_darkGreenColor] : [UIColor worth_greenColor];
-    BOOL editing = (self.contentMode == WorthUserHomeControllerContentModeEditing);
-
-    if (editing == NO) {
-        self.hourlyAmount = self.perHourField.startAmount;
-        self.user.name = self.userNameTextField.text;
-        self.user.salary = self.salaryInput.startAmount;
-        [self.user.managedObjectContext save:nil];
-        [self.view endEditing:YES];
-    }
-    
-    [self updateLayout];
-    [self configureNavigationItemsForContentMode:self.contentMode];
-    [self.salaryInput setEditing:editing];
-    [self.perHourField setEditing:editing];
-    
-    if (editing) {
-        [self.salaryInput becomeFirstResponder];
-    } else {
-        [self resetInputs];
-        [self startInputTimers];
-    }
-}
-
 - (void)didTapRefreshButton:(id)sender {
     [self resetInputs];
-    [self setTimerStartTime:CACurrentMediaTime()];
-    [self startInputTimers];
-    [self updateLayout];
 }
 
-#pragma mark - Animations
+#pragma mark - UITableView
 
-- (void)configureLayoutWithContentMode:(WorthUserHomeControllerContentMode)contentMode animated:(BOOL)animated{
-    BOOL editing = (contentMode == WorthUserHomeControllerContentModeEditing);
-    [self.view layoutIfNeeded];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Tapped %@", indexPath);
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return WorthUserHomeTableViewNumberOfSections + self.expenseViews.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 70.0f;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    WorthUserHomeInfoSection worthSection = (section >= WorthUserHomeInfoSectionExpensesDetail) ? WorthUserHomeInfoSectionExpensesDetail : (WorthUserHomeInfoSection)section;
+    switch (worthSection) {
+        case WorthUserHomeInfoSectionUserGeneral:       return self.userHeaderView;
+        case WorthUserHomeInfoSectionSalaryThisYear:    return self.earnedThisYearView;
+        case WorthUserHomeInfoSectionSalaryToday:       return self.earnedTodayView;
+        case WorthUserHomeInfoSectionSalaryTimer:       return self.earnedTimerView;
+        case WorthUserHomeInfoSectionExpensesGeneral:   return self.expensesHeaderView;
+        case WorthUserHomeInfoSectionExpensesThisYear:  return self.expensesThisYearView;
+        case WorthUserHomeInfoSectionExpensesToday:     return self.expensesTodayView;
+        case WorthUserHomeInfoSectionExpensesTimer:     return self.expensesTimerView;
+        case WorthUserHomeInfoSectionExpensesDetail:    return [self viewForExpenseInExpenseDetailSection:section];
+        default:                                        return nil;
+    }
+}
+
+- (UIView *)viewForExpenseInExpenseDetailSection:(NSInteger)section {
+    NSInteger adjustedIndex = (section - WorthUserHomeInfoSectionExpensesDetail);
+    WorthHeaderView *header = [self.expenseViews objectAtIndex:adjustedIndex];
     
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat bottomPadding = 10.0f;
-    CGFloat windowHeight = screenRect.size.height;
-    CGFloat navBarHeight = self.navigationController.navigationBar.bounds.size.height;
-    CGFloat keyboardHeight = self.keyboardSize.height;
-    CGFloat inputHeights = (self.salaryInput.bounds.size.height + self.perHourField.bounds.size.height);
-    CGFloat remainingHeight = (windowHeight - keyboardHeight - navBarHeight - kUserContainerHeight - inputHeights);
-    CGFloat inputFieldPadding = (remainingHeight / self.editableFieldSpacingConstraints.count) - bottomPadding;
+    switch ((adjustedIndex % 3)) {
+        case 0: {
+            [header setImageContainerBackgroundColor:[UIColor worth_Section1PhotoColor]];
+            [header setInformationContainerBackgroundColor:[UIColor worth_Section1TextColor]];
+        }
+            break;
+        case 1: {
+            [header setImageContainerBackgroundColor:[UIColor worth_Section1TextColor]];
+            [header setInformationContainerBackgroundColor:[UIColor worth_Section2TextColor]];
+        }
+            break;
+        case 2: {
+            [header setImageContainerBackgroundColor:[UIColor worth_Section2TextColor]];
+            [header setInformationContainerBackgroundColor:[UIColor worth_Section1PhotoColor]];
+        }
+        default:
+            break;
+    }
+    
+    return header;
+}
 
-    [UIView animateWithDuration:(animated) ? 0.3f : 0
-                     animations:^{
-                         for (NSLayoutConstraint *constraint in self.verticalSpacingCollection) {
-                             [constraint setConstant:(editing) ? 0 : kVerticalSpacingDefault];
-                         }
-                         
-                         for (NSLayoutConstraint *constraint in self.hideableFieldHeightConstraints) {
-                             [constraint setConstant:(editing) ? 0 : FLT_MAX];
-                         }
-                         
-                         for (NSLayoutConstraint *constraint in self.editableFieldSpacingConstraints) {
-                             [constraint setConstant:(editing) ? inputFieldPadding : kVerticalSpacingDefault];
-                         }
-                         
-                         self.userContainerHeightConstraint.constant = (contentMode == WorthUserHomeControllerContentModeEditing) ? kUserContainerHeight : 0;
-                         [self.view layoutIfNeeded];
-                     }];
+#pragma mark - Lazy
+
+- (WorthHeaderView *)userHeaderView {
+    if (_userHeaderView == nil) {
+        _userHeaderView = [[WorthHeaderView alloc] initWithFrame:CGRectZero];
+        NSString *salary = [NSString stringWithFormat:@"%@/year", self.user.salary];
+        [_userHeaderView setTitle:self.user.name subTitle:salary];
+        [_userHeaderView setAccessoryType:WorthHeaderViewAccessoryButtonTypeNone];
+    }
+    return _userHeaderView;
+}
+
+- (WorthMoneyTextView *)earnedThisYearView {
+    if (_earnedThisYearView == nil) {
+        _earnedThisYearView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
+        [_earnedThisYearView setSubtitleText:@"Earned this year"];
+        [_earnedThisYearView.numberFormatter setMaximumFractionDigits:2];
+    }
+    return _earnedThisYearView;
+}
+
+- (WorthMoneyTextView *)earnedTodayView {
+    if (_earnedTodayView == nil) {
+        _earnedTodayView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
+        [_earnedTodayView setSubtitleText:@"Earned today"];
+        [_earnedTodayView.numberFormatter setMaximumFractionDigits:2];
+    }
+    return _earnedTodayView;
+}
+
+- (WorthMoneyTextView *)earnedTimerView {
+    if (_earnedTimerView == nil) {
+        _earnedTimerView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
+        [_earnedTimerView setDisplaysTimer:YES];
+        [_earnedTimerView.numberFormatter setMaximumFractionDigits:5];
+    }
+    return _earnedTimerView;
+}
+
+- (WorthHeaderView *)expensesHeaderView {
+    if (_expensesHeaderView == nil) {
+        _expensesHeaderView = [[WorthHeaderView alloc] initWithFrame:CGRectZero];
+        NSString *salary = [NSString stringWithFormat:@"%@/year", @"$1,234.00"];
+        [_expensesHeaderView setTitle:@"Recurring Expenses" subTitle:salary];
+        [_expensesHeaderView setAccessoryType:WorthHeaderViewAccessoryButtonTypePlus];
+    }
+    return _expensesHeaderView;
+}
+
+- (WorthMoneyTextView *)expensesThisYearView {
+    if (_expensesThisYearView == nil) {
+        _expensesThisYearView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
+        [_expensesThisYearView setSubtitleText:@"Spent this year"];
+        [_expensesThisYearView.numberFormatter setMaximumFractionDigits:2];
+    }
+    return _expensesThisYearView;
+}
+
+- (WorthMoneyTextView *)expensesTodayView {
+    if (_expensesTodayView == nil) {
+        _expensesTodayView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
+        [_expensesTodayView setSubtitleText:@"Spent today"];
+        [_expensesTodayView.numberFormatter setMaximumFractionDigits:2];
+    }
+    return _expensesTodayView;
+}
+
+- (WorthMoneyTextView *)expensesTimerView {
+    if (_expensesTimerView == nil) {
+        _expensesTimerView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
+        [_expensesTimerView setDisplaysTimer:YES];
+        [_expensesTimerView.numberFormatter setMaximumFractionDigits:5];
+    }
+    return _expensesTimerView;
 }
 
 @end

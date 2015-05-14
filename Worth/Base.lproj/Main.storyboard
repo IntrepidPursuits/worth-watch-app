@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="acc-bk-gBT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="acc-bk-gBT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -173,28 +173,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UcO-J3-ADz" userLabel="Salary Container View">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="204"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="164"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="nbt-QE-ya9" userLabel="Salary - Worth Money Text View" customClass="WorthMoneyTextView">
-                                        <rect key="frame" x="8" y="8" width="584" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="RWH-4r-qKa" userLabel="YTD - Worth Money Text View" customClass="WorthMoneyTextView">
-                                        <rect key="frame" x="8" y="57" width="584" height="41"/>
+                                        <rect key="frame" x="0.0" y="41" width="600" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="600" id="jb0-Ra-S4Z"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="sO4-ay-tp2" userLabel="Earned Today - Worth Money Text View" customClass="WorthMoneyTextView">
-                                        <rect key="frame" x="8" y="106" width="584" height="41"/>
+                                        <rect key="frame" x="0.0" y="82" width="600" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="600" id="lrQ-bc-Vuz"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="qtU-rz-woR" userLabel="Earned Timer - Worth Money Text View" customClass="WorthMoneyTextView">
-                                        <rect key="frame" x="8" y="155" width="584" height="41"/>
+                                        <rect key="frame" x="0.0" y="123" width="600" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="600" id="b1k-Em-JfR"/>
@@ -203,31 +203,31 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="RWH-4r-qKa" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" priority="750" constant="8" id="0WC-97-LCx"/>
-                                    <constraint firstAttribute="trailing" secondItem="qtU-rz-woR" secondAttribute="trailing" priority="750" constant="8" id="3k8-E9-gXT"/>
-                                    <constraint firstItem="RWH-4r-qKa" firstAttribute="top" secondItem="nbt-QE-ya9" secondAttribute="bottom" priority="750" constant="8" id="8hY-Sl-wa2"/>
-                                    <constraint firstAttribute="bottom" secondItem="qtU-rz-woR" secondAttribute="bottom" priority="750" constant="8" id="FEi-B9-sdj"/>
-                                    <constraint firstItem="nbt-QE-ya9" firstAttribute="top" secondItem="UcO-J3-ADz" secondAttribute="top" constant="8" id="GHm-QF-J2d"/>
-                                    <constraint firstItem="nbt-QE-ya9" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" constant="8" id="IkM-kB-MUz"/>
-                                    <constraint firstAttribute="trailing" secondItem="RWH-4r-qKa" secondAttribute="trailing" priority="750" constant="8" id="MlR-rt-0mL"/>
-                                    <constraint firstAttribute="trailing" secondItem="nbt-QE-ya9" secondAttribute="trailing" constant="8" id="PBJ-vA-dPk"/>
-                                    <constraint firstAttribute="trailing" secondItem="sO4-ay-tp2" secondAttribute="trailing" priority="750" constant="8" id="SX9-8a-OrS"/>
-                                    <constraint firstItem="sO4-ay-tp2" firstAttribute="top" secondItem="RWH-4r-qKa" secondAttribute="bottom" priority="750" constant="8" id="d7S-Ag-AyC"/>
-                                    <constraint firstItem="qtU-rz-woR" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" priority="750" constant="8" id="iyi-Ki-FZd"/>
-                                    <constraint firstItem="qtU-rz-woR" firstAttribute="top" secondItem="sO4-ay-tp2" secondAttribute="bottom" priority="750" constant="8" id="qVC-uj-069"/>
+                                    <constraint firstItem="RWH-4r-qKa" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" priority="750" id="0WC-97-LCx"/>
+                                    <constraint firstAttribute="trailing" secondItem="qtU-rz-woR" secondAttribute="trailing" priority="750" id="3k8-E9-gXT"/>
+                                    <constraint firstItem="RWH-4r-qKa" firstAttribute="top" secondItem="nbt-QE-ya9" secondAttribute="bottom" priority="750" id="8hY-Sl-wa2"/>
+                                    <constraint firstAttribute="bottom" secondItem="qtU-rz-woR" secondAttribute="bottom" priority="750" id="FEi-B9-sdj"/>
+                                    <constraint firstItem="nbt-QE-ya9" firstAttribute="top" secondItem="UcO-J3-ADz" secondAttribute="top" id="GHm-QF-J2d"/>
+                                    <constraint firstItem="nbt-QE-ya9" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" id="IkM-kB-MUz"/>
+                                    <constraint firstAttribute="trailing" secondItem="RWH-4r-qKa" secondAttribute="trailing" priority="750" id="MlR-rt-0mL"/>
+                                    <constraint firstAttribute="trailing" secondItem="nbt-QE-ya9" secondAttribute="trailing" id="PBJ-vA-dPk"/>
+                                    <constraint firstAttribute="trailing" secondItem="sO4-ay-tp2" secondAttribute="trailing" priority="750" id="SX9-8a-OrS"/>
+                                    <constraint firstItem="sO4-ay-tp2" firstAttribute="top" secondItem="RWH-4r-qKa" secondAttribute="bottom" priority="750" id="d7S-Ag-AyC"/>
+                                    <constraint firstItem="qtU-rz-woR" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" priority="750" id="iyi-Ki-FZd"/>
+                                    <constraint firstItem="qtU-rz-woR" firstAttribute="top" secondItem="sO4-ay-tp2" secondAttribute="bottom" priority="750" id="qVC-uj-069"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="1" id="up7-uQ-F8z"/>
-                                    <constraint firstItem="sO4-ay-tp2" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" priority="750" constant="8" id="ytM-4P-BYe"/>
+                                    <constraint firstItem="sO4-ay-tp2" firstAttribute="leading" secondItem="UcO-J3-ADz" secondAttribute="leading" priority="750" id="ytM-4P-BYe"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrB-eU-ET9" userLabel="Hourly Container View">
-                                <rect key="frame" x="0.0" y="204" width="600" height="114"/>
+                                <rect key="frame" x="0.0" y="164" width="600" height="82"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="3AA-PZ-8Ne" userLabel="Earned Timer - Worth Money Text View" customClass="WorthMoneyTextView">
-                                        <rect key="frame" x="8" y="8" width="584" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="249" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="41" translatesAutoresizingMaskIntoConstraints="NO" id="Fgc-6W-kEc" userLabel="Earned Timer - Worth Money Text View" customClass="WorthMoneyTextView">
-                                        <rect key="frame" x="8" y="57" width="584" height="41"/>
+                                        <rect key="frame" x="0.0" y="41" width="600" height="41"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="600" id="U18-Rg-PjS"/>
@@ -236,13 +236,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Fgc-6W-kEc" secondAttribute="bottom" priority="750" constant="16" id="4nQ-gj-Puh"/>
-                                    <constraint firstAttribute="trailing" secondItem="Fgc-6W-kEc" secondAttribute="trailing" priority="750" constant="8" id="GI1-bS-GtS"/>
-                                    <constraint firstItem="Fgc-6W-kEc" firstAttribute="top" secondItem="3AA-PZ-8Ne" secondAttribute="bottom" priority="750" constant="8" id="TVA-9M-Rvo"/>
-                                    <constraint firstItem="3AA-PZ-8Ne" firstAttribute="top" secondItem="PrB-eU-ET9" secondAttribute="top" priority="750" constant="8" id="WmK-35-iWt"/>
-                                    <constraint firstItem="3AA-PZ-8Ne" firstAttribute="leading" secondItem="PrB-eU-ET9" secondAttribute="leading" priority="750" constant="8" id="kdH-ms-LEt"/>
-                                    <constraint firstAttribute="trailing" secondItem="3AA-PZ-8Ne" secondAttribute="trailing" priority="750" constant="8" id="q0e-hm-86n"/>
-                                    <constraint firstItem="Fgc-6W-kEc" firstAttribute="leading" secondItem="PrB-eU-ET9" secondAttribute="leading" priority="750" constant="8" id="qJ0-eV-p93"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fgc-6W-kEc" secondAttribute="bottom" priority="750" id="4nQ-gj-Puh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fgc-6W-kEc" secondAttribute="trailing" priority="750" id="GI1-bS-GtS"/>
+                                    <constraint firstItem="Fgc-6W-kEc" firstAttribute="top" secondItem="3AA-PZ-8Ne" secondAttribute="bottom" priority="750" id="TVA-9M-Rvo"/>
+                                    <constraint firstItem="3AA-PZ-8Ne" firstAttribute="top" secondItem="PrB-eU-ET9" secondAttribute="top" priority="750" id="WmK-35-iWt"/>
+                                    <constraint firstItem="3AA-PZ-8Ne" firstAttribute="leading" secondItem="PrB-eU-ET9" secondAttribute="leading" priority="750" id="kdH-ms-LEt"/>
+                                    <constraint firstAttribute="trailing" secondItem="3AA-PZ-8Ne" secondAttribute="trailing" priority="750" id="q0e-hm-86n"/>
+                                    <constraint firstItem="Fgc-6W-kEc" firstAttribute="leading" secondItem="PrB-eU-ET9" secondAttribute="leading" priority="750" id="qJ0-eV-p93"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="1" id="uaP-zG-ueP"/>
                                 </constraints>
                             </view>
