@@ -13,10 +13,6 @@
 #import "UIColor+WorthStyle.h"
 #import "UIFont+WorthStyle.h"
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
 
@@ -40,11 +36,12 @@
 - (void)customizeAppearance {
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
     [navigationBarAppearance setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [navigationBarAppearance setBarTintColor:[UIColor worth_darkGreenColor]];
+    [navigationBarAppearance setBarTintColor:[UIColor worth_TitleBarColor]];
     [navigationBarAppearance setShadowImage:[UIImage new]];
     [navigationBarAppearance setTintColor:[UIColor whiteColor]];
     [navigationBarAppearance setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                       NSFontAttributeName: [UIFont worth_boldFontWithSize:18.0f]}];
+    [navigationBarAppearance setTranslucent:NO];
     
     UIBarButtonItem *barButtonItemAppearance = [UIBarButtonItem appearance];
     [barButtonItemAppearance setTitleTextAttributes:@{NSFontAttributeName: [UIFont worth_lightFontWithSize:16.0f]} forState:UIControlStateNormal];

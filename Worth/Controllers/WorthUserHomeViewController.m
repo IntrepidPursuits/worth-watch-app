@@ -65,6 +65,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 
 - (void)configureContainerViews {
     [self.view setBackgroundColor:[UIColor worth_greenColor]];
+    [self.tableView setBackgroundColor:[UIColor worth_greenColor]];
     [self.tableView setEstimatedRowHeight:UITableViewAutomaticDimension];
 }
 
