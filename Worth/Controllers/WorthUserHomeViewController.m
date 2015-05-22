@@ -7,6 +7,7 @@
 //
 
 #import "WorthUserHomeViewController.h"
+#import "WorthEditUserViewController.h"
 #import "WorthMoneyTextView.h"
 #import "WorthHeaderView.h"
 #import "WorthUserManager.h"
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 
 @property (strong, nonatomic) WorthUser *user;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSNumberFormatter *numberFormatter;
 
 @property (strong, nonatomic) WorthHeaderView *userHeaderView;
 @property (strong, nonatomic) WorthMoneyTextView *earnedThisYearView;
@@ -60,7 +62,13 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
     
     self.user = [[WorthUserManager sharedManager] currentUser];
     [self configureContainerViews];
+    [self configureContextUpdates];
     [self resetInputs];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateUser];
 }
 
 - (void)configureContainerViews {
@@ -103,7 +111,27 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
     [defaults synchronize];
 }
 
+- (void)configureContextUpdates {
+    NSManagedObjectContext *context = [[[WorthUserManager sharedManager] currentUser] managedObjectContext];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUser) name:NSManagedObjectContextDidSaveNotification object:context];
+}
+
+#pragma mark - Navigation Helpers
+
+- (void)navigateToEditUser {
+    WorthEditUserViewController *editVC = [WorthEditUserViewController new];
+    [editVC configureWithUser:self.user];
+    [self.navigationController pushViewController:editVC animated:YES];
+}
+
 #pragma mark - Reset Helpers
+
+- (void)updateUser {
+    [self resetInputs];
+    
+    NSString *salary = [NSString stringWithFormat:@"%@/year", [self.numberFormatter stringFromNumber:self.user.salary]];
+    [self.userHeaderView setTitle:self.user.name subTitle:salary];
+}
 
 - (void)resetEarnings {
     CGFloat salaryPerSecond = [self.user salaryPerSecond];
@@ -139,12 +167,15 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 
 #pragma mark - UITableView
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%@", indexPath);
+    if (indexPath.section == 0) {
+        
+    }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Tapped %@", indexPath);
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -206,9 +237,9 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 - (WorthHeaderView *)userHeaderView {
     if (_userHeaderView == nil) {
         _userHeaderView = [[WorthHeaderView alloc] initWithFrame:CGRectZero];
-        NSString *salary = [NSString stringWithFormat:@"%@/year", self.user.salary];
-        [_userHeaderView setTitle:self.user.name subTitle:salary];
         [_userHeaderView setAccessoryType:WorthHeaderViewAccessoryButtonTypeNone];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateToEditUser)];
+        [_userHeaderView addGestureRecognizer:tapGesture];
     }
     return _userHeaderView;
 }
@@ -216,7 +247,8 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 - (WorthMoneyTextView *)earnedThisYearView {
     if (_earnedThisYearView == nil) {
         _earnedThisYearView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
-        [_earnedThisYearView setSubtitleText:@"Earned this year"];
+        [_earnedThisYearView setContentType:WorthMoneyTextViewContentTypeYearly];
+        [_earnedThisYearView setContentMode:WorthMoneyTextViewContentModeEarned];
         [_earnedThisYearView.numberFormatter setMaximumFractionDigits:2];
     }
     return _earnedThisYearView;
@@ -225,7 +257,8 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 - (WorthMoneyTextView *)earnedTodayView {
     if (_earnedTodayView == nil) {
         _earnedTodayView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
-        [_earnedTodayView setSubtitleText:@"Earned today"];
+        [_earnedTodayView setContentMode:WorthMoneyTextViewContentModeEarned];
+        [_earnedTodayView setContentType:WorthMoneyTextViewContentTypeDaily];
         [_earnedTodayView.numberFormatter setMaximumFractionDigits:2];
     }
     return _earnedTodayView;
@@ -234,7 +267,8 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 - (WorthMoneyTextView *)earnedTimerView {
     if (_earnedTimerView == nil) {
         _earnedTimerView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
-        [_earnedTimerView setDisplaysTimer:YES];
+        [_earnedTimerView setContentType:WorthMoneyTextViewContentTypeTimed];
+        [_earnedTimerView setContentMode:WorthMoneyTextViewContentModeEarned];
         [_earnedTimerView.numberFormatter setMaximumFractionDigits:5];
     }
     return _earnedTimerView;
@@ -253,7 +287,8 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 - (WorthMoneyTextView *)expensesThisYearView {
     if (_expensesThisYearView == nil) {
         _expensesThisYearView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
-        [_expensesThisYearView setSubtitleText:@"Spent this year"];
+        [_expensesThisYearView setContentMode:WorthMoneyTextViewContentModeSpent];
+        [_expensesThisYearView setContentType:WorthMoneyTextViewContentTypeYearly];
         [_expensesThisYearView.numberFormatter setMaximumFractionDigits:2];
     }
     return _expensesThisYearView;
@@ -262,7 +297,8 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 - (WorthMoneyTextView *)expensesTodayView {
     if (_expensesTodayView == nil) {
         _expensesTodayView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
-        [_expensesTodayView setSubtitleText:@"Spent today"];
+        [_expensesTodayView setContentType:WorthMoneyTextViewContentTypeDaily];
+        [_expensesTodayView setContentMode:WorthMoneyTextViewContentModeSpent];
         [_expensesTodayView.numberFormatter setMaximumFractionDigits:2];
     }
     return _expensesTodayView;
@@ -271,10 +307,19 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 - (WorthMoneyTextView *)expensesTimerView {
     if (_expensesTimerView == nil) {
         _expensesTimerView = [[WorthMoneyTextView alloc] initWithFrame:CGRectZero];
-        [_expensesTimerView setDisplaysTimer:YES];
+        [_expensesTimerView setContentMode:WorthMoneyTextViewContentModeSpent];
+        [_expensesTimerView setContentType:WorthMoneyTextViewContentTypeTimed];
         [_expensesTimerView.numberFormatter setMaximumFractionDigits:5];
     }
     return _expensesTimerView;
+}
+
+- (NSNumberFormatter *)numberFormatter {
+    if (_numberFormatter == nil) {
+        _numberFormatter = [NSNumberFormatter new];
+        [_numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    }
+    return _numberFormatter;
 }
 
 @end

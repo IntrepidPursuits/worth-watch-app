@@ -55,6 +55,8 @@
 		CDBFBBE41AFD0E6C00BF4C3E /* WorthHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDBFBBE31AFD0E6C00BF4C3E /* WorthHeaderView.xib */; };
 		CDBFBBE71AFD44CB00BF4C3E /* NSDate+Worth.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBFBBE61AFD44CB00BF4C3E /* NSDate+Worth.m */; };
 		CDC3D8A71B0F749900415A08 /* WorthCompareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8A61B0F749900415A08 /* WorthCompareViewController.xib */; };
+		CDC3D8AB1B0F8DBA00415A08 /* WorthEditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */; };
+		CDC3D8AC1B0F8DBA00415A08 /* WorthEditUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +179,9 @@
 		CDBFBBE51AFD44CB00BF4C3E /* NSDate+Worth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Worth.h"; sourceTree = "<group>"; };
 		CDBFBBE61AFD44CB00BF4C3E /* NSDate+Worth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Worth.m"; sourceTree = "<group>"; };
 		CDC3D8A61B0F749900415A08 /* WorthCompareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthCompareViewController.xib; sourceTree = "<group>"; };
+		CDC3D8A81B0F8DBA00415A08 /* WorthEditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthEditUserViewController.h; sourceTree = "<group>"; };
+		CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthEditUserViewController.m; sourceTree = "<group>"; };
+		CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthEditUserViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +244,9 @@
 				CDBFBBD91AFD07F800BF4C3E /* WorthRootTabBarViewController.h */,
 				CDBFBBDA1AFD07F800BF4C3E /* WorthRootTabBarViewController.m */,
 				CDBFBBDB1AFD07F800BF4C3E /* WorthRootTabBarViewController.xib */,
+				CDC3D8A81B0F8DBA00415A08 /* WorthEditUserViewController.h */,
+				CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */,
+				CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -591,6 +599,7 @@
 				CDBFBBE41AFD0E6C00BF4C3E /* WorthHeaderView.xib in Resources */,
 				CDB3F0CB1AB5F5A1002E0D31 /* DINRoundPro-Light.otf in Resources */,
 				CD5946A31AB36A2D00527F76 /* Images.xcassets in Resources */,
+				CDC3D8AC1B0F8DBA00415A08 /* WorthEditUserViewController.xib in Resources */,
 				CD2871021AB4BECF005CED9A /* WorthMoneyTextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -660,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC3D8AB1B0F8DBA00415A08 /* WorthEditUserViewController.m in Sources */,
 				CDB3F0E01AB614B1002E0D31 /* WorthUserView.m in Sources */,
 				CDB3F1071AB662B5002E0D31 /* WorthFavoritesViewController.m in Sources */,
 				CDB3F10A1AB6C1B9002E0D31 /* NSString+StripCurrencySymbols.m in Sources */,

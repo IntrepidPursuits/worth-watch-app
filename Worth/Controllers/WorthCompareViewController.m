@@ -65,10 +65,12 @@
 
 - (void)configureFields {
     [self.selfYearlyEarningsField setSubtitleText:@"Earned so far this year"];
-    [self.selfTimerEarningsField setDisplaysTimer:YES];
+    [self.selfYearlyEarningsField setContentType:WorthMoneyTextViewContentTypeTimed];
+    [self.selfYearlyEarningsField setContentMode:WorthMoneyTextViewContentModeEarned];
     
     [self.compareYearlyEarningsField setSubtitleText:@"Earned so far this year"];
-    [self.compareTimerEarningsField setDisplaysTimer:YES];
+    [self.compareYearlyEarningsField setContentMode:WorthMoneyTextViewContentModeEarned];
+    [self.compareYearlyEarningsField setContentType:WorthMoneyTextViewContentTypeTimed];
 }
 
 #pragma mark - Animations
