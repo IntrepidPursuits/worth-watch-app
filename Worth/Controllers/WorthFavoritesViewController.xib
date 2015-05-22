@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WorthFavoritesViewController">
+            <connections>
+                <outlet property="tableView" destination="q1Q-uP-NYU" id="pQ3-d3-joM"/>
+                <outlet property="userView" destination="pI4-Jb-kOY" id="IKx-gY-Dn4"/>
+                <outlet property="view" destination="iN0-l3-epB" id="UPy-JR-gu5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="q1Q-uP-NYU">
+                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="4E8-7B-Iyb"/>
+                        <outlet property="delegate" destination="-1" id="oYV-m1-ek4"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="84" translatesAutoresizingMaskIntoConstraints="NO" id="pI4-Jb-kOY" customClass="WorthUserView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="wjS-Sn-dVX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="q1Q-uP-NYU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CB8-K6-Jhn"/>
+                <constraint firstAttribute="bottom" secondItem="q1Q-uP-NYU" secondAttribute="bottom" id="Dos-Ht-yLC"/>
+                <constraint firstItem="pI4-Jb-kOY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ODS-hg-mjc"/>
+                <constraint firstItem="pI4-Jb-kOY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SHM-BR-DEd"/>
+                <constraint firstAttribute="trailing" secondItem="q1Q-uP-NYU" secondAttribute="trailing" id="jyV-qU-zXm"/>
+                <constraint firstAttribute="trailing" secondItem="pI4-Jb-kOY" secondAttribute="trailing" id="kFT-LN-sab"/>
+                <constraint firstItem="q1Q-uP-NYU" firstAttribute="top" secondItem="pI4-Jb-kOY" secondAttribute="bottom" id="oNW-p0-HkL"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

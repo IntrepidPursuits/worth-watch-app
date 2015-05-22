@@ -37,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Compare";
-    self.user = [[WorthUserManager sharedManager] currentUser];
     [self configureAppearance];
     [self configureFields];
 }
@@ -67,10 +66,12 @@
     [self.selfYearlyEarningsField setSubtitleText:@"Earned so far this year"];
     [self.selfYearlyEarningsField setContentType:WorthMoneyTextViewContentTypeTimed];
     [self.selfYearlyEarningsField setContentMode:WorthMoneyTextViewContentModeEarned];
-    
+    [self.selfYearlyEarningsField setBackgroundColor:[UIColor worth_lightGreenColor]];
+
     [self.compareYearlyEarningsField setSubtitleText:@"Earned so far this year"];
     [self.compareYearlyEarningsField setContentMode:WorthMoneyTextViewContentModeEarned];
     [self.compareYearlyEarningsField setContentType:WorthMoneyTextViewContentTypeTimed];
+    [self.compareYearlyEarningsField setBackgroundColor:[UIColor worth_lightGreenColor]];
 }
 
 #pragma mark - Animations

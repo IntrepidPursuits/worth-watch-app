@@ -57,6 +57,7 @@
 		CDC3D8A71B0F749900415A08 /* WorthCompareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8A61B0F749900415A08 /* WorthCompareViewController.xib */; };
 		CDC3D8AB1B0F8DBA00415A08 /* WorthEditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */; };
 		CDC3D8AC1B0F8DBA00415A08 /* WorthEditUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */; };
+		CDC3D8AE1B0FA77800415A08 /* WorthFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8AD1B0FA77800415A08 /* WorthFavoritesViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +183,7 @@
 		CDC3D8A81B0F8DBA00415A08 /* WorthEditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthEditUserViewController.h; sourceTree = "<group>"; };
 		CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthEditUserViewController.m; sourceTree = "<group>"; };
 		CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthEditUserViewController.xib; sourceTree = "<group>"; };
+		CDC3D8AD1B0FA77800415A08 /* WorthFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthFavoritesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 				CDC3D8A61B0F749900415A08 /* WorthCompareViewController.xib */,
 				CDB3F1051AB662B5002E0D31 /* WorthFavoritesViewController.h */,
 				CDB3F1061AB662B5002E0D31 /* WorthFavoritesViewController.m */,
+				CDC3D8AD1B0FA77800415A08 /* WorthFavoritesViewController.xib */,
 				CDBFBBD91AFD07F800BF4C3E /* WorthRootTabBarViewController.h */,
 				CDBFBBDA1AFD07F800BF4C3E /* WorthRootTabBarViewController.m */,
 				CDBFBBDB1AFD07F800BF4C3E /* WorthRootTabBarViewController.xib */,
@@ -600,6 +603,7 @@
 				CDB3F0CB1AB5F5A1002E0D31 /* DINRoundPro-Light.otf in Resources */,
 				CD5946A31AB36A2D00527F76 /* Images.xcassets in Resources */,
 				CDC3D8AC1B0F8DBA00415A08 /* WorthEditUserViewController.xib in Resources */,
+				CDC3D8AE1B0FA77800415A08 /* WorthFavoritesViewController.xib in Resources */,
 				CD2871021AB4BECF005CED9A /* WorthMoneyTextView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

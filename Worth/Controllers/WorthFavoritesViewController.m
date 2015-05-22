@@ -21,6 +21,7 @@ static NSString * const kSegueCompareIdentifier = @"kCompareSegue";
 
 @interface WorthFavoritesViewController () <NSFetchedResultsControllerDelegate, WorthCompareUserTableViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) WorthUser *user;
 @property (strong, nonatomic) NSFetchedResultsController *fetchResultsController;
 @property (strong, nonatomic) NSFetchRequest *fetchRequest;
 @property (weak, nonatomic) IBOutlet WorthUserView *userView;
@@ -40,7 +41,8 @@ static NSString * const kSegueCompareIdentifier = @"kCompareSegue";
 }
 
 - (void)configureView {
-    [self.userView configureWithUser:[[WorthUserManager sharedManager] currentUser]];
+    self.user = [[WorthUserManager sharedManager] currentUser];
+    [self.userView configureWithUser:self.user];
     [self.userView setBackgroundColor:[UIColor worth_lightGreenColor]];
     [self.view setBackgroundColor:[UIColor worth_greenColor]];
 }
@@ -59,15 +61,6 @@ static NSString * const kSegueCompareIdentifier = @"kCompareSegue";
                                                                                          action:@selector(didTapSearchButton:)];
     self.navigationController.topViewController.navigationItem.rightBarButtonItem = searchBarButtonItem;
     self.navigationController.topViewController.navigationItem.leftBarButtonItem = nil;
-}
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kSegueCompareIdentifier]) {
-        WorthUser *user = [self.fetchResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        [(WorthCompareViewController *)segue.destinationViewController setComparedToUser:user];
-    }
 }
 
 #pragma mark - Button Event Methods
@@ -128,7 +121,11 @@ static NSString * const kSegueCompareIdentifier = @"kCompareSegue";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:kSegueCompareIdentifier sender:self];
+    WorthUser *compareToUser = [self.fetchResultsController objectAtIndexPath:indexPath];
+    WorthCompareViewController *compareVC = [WorthCompareViewController new];
+    [compareVC setUser:self.user];
+    [compareVC setComparedToUser:compareToUser];
+    [self.navigationController pushViewController:compareVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
