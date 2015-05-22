@@ -10,6 +10,7 @@
 #import "NSString+StripCurrencySymbols.h"
 #import "NSString+TimeString.h"
 #import "UIFont+WorthStyle.h"
+#import "UIColor+WorthStyle.h"
 
 static CGFloat kFramesPerSecond = 25.0f;
 static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
@@ -44,6 +45,9 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bar]-0-|" options:0 metrics:nil views:@{@"bar" : self.nibView}]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bar]-0-|" options:0 metrics:nil views:@{@"bar" : self.nibView}]];
         self.nibView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [self.progressView setBackgroundColor:[UIColor worth_StatsBarsColor]];
+        self.backgroundColor = [UIColor worth_Section2TextColor];
     }
     return self;
 }
@@ -73,11 +77,15 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
         CGFloat newAmount = ([self.startAmount floatValue] + (self.dollarsPerSecond * elapsedTime));
         [self.inputLabel setText:[NSString stringWithFormat:@"$%@", [self.numberFormatter stringFromNumber:@(newAmount)]]];
         
-        if (self.displaysTimer) {
+        if (self.contentType == WorthMoneyTextViewContentTypeTimed) {
             NSString *timeString = [NSString timeStringFromSecond:elapsedTime];
             NSString *earnedString = [NSString stringWithFormat:@"In last %@", timeString];
             self.subTitleLabel.text = earnedString;
+        } else {
+            self.subTitleLabel.text = [self subtitleTextForContentMode:self.contentMode contentType:self.contentType];
         }
+        
+        [self updateProgressWithNewAmount:newAmount];
     }];
     
     [self.timer invalidate];
@@ -106,6 +114,53 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     }
 }
 
+#pragma mark - Layout Helpers
+
+- (void)updateProgressWithNewAmount:(CGFloat)amount {
+    CGFloat secondsForContentType = [self secondsForContentType:self.contentType];
+    CGFloat totalAmount = secondsForContentType * self.dollarsPerSecond;
+    CGFloat progress = (amount / totalAmount);
+    [self animateIntoViewWithProgress:progress animated:NO];
+}
+
+- (NSString *)subtitleTextForContentMode:(WorthMoneyTextViewContentMode)mode contentType:(WorthMoneyTextViewContentType)type {
+    NSString *prefix = [self stringForContentMode:mode];
+    NSString *suffix = [self stringForContentType:type];
+    return [NSString stringWithFormat:@"%@ %@", prefix, suffix];
+}
+
+- (NSString *)stringForContentMode:(WorthMoneyTextViewContentMode)mode {
+    switch (mode) {
+        case WorthMoneyTextViewContentModeEarned:   return @"Earned";
+        case WorthMoneyTextViewContentModeSpent:    return @"Spent";
+        default:                                    return @"";
+    }
+}
+
+- (NSString *)stringForContentType:(WorthMoneyTextViewContentType)type {
+    switch (type) {
+        case WorthMoneyTextViewContentTypeCustom:   return self.subtitleText;
+        case WorthMoneyTextViewContentTypeDaily:    return @"Today";
+        case WorthMoneyTextViewContentTypeMinute:   return @"This Minute";
+        case WorthMoneyTextViewContentTypeHourly:   return @"This Hour";
+        case WorthMoneyTextViewContentTypeMonthly:  return @"This Month";
+        case WorthMoneyTextViewContentTypeYearly:   return @"This Year";
+        case WorthMoneyTextViewContentTypeTimed:
+        default:                                    return nil;
+    }
+}
+
+- (CGFloat)secondsForContentType:(WorthMoneyTextViewContentType)type {
+    switch (type) {
+        case WorthMoneyTextViewContentTypeDaily:    return (60 * 60 * 24);
+        case WorthMoneyTextViewContentTypeHourly:   return (60 * 60);
+        case WorthMoneyTextViewContentTypeMonthly:  return (60 * 60 * 24 * 30);
+        case WorthMoneyTextViewContentTypeMinute:   return (60);
+        case WorthMoneyTextViewContentTypeYearly:   return (60 * 60 * 24 * 365);
+        default:                                    return 1;
+    }
+}
+
 #pragma mark - Animations
 
 - (void)animateIntoViewWithProgress:(CGFloat)progress animated:(BOOL)animated {
@@ -115,8 +170,8 @@ static NSUInteger kMoneyTextViewDefaultDecimalPlaces = 6;
     CGFloat progressWidth = (width * adjustedProgress);
     CGFloat trailingSpace = (width - progressWidth);
 
-    self.progressViewTrailingConstraint.constant = width;
-    [self layoutIfNeeded];
+//    self.progressViewTrailingConstraint.constant = width;
+//    [self layoutIfNeeded];
     
     [UIView animateWithDuration:animationDuration animations:^{
         self.progressViewTrailingConstraint.constant = trailingSpace;

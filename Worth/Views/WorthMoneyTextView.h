@@ -8,9 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, WorthMoneyTextViewContentType) {
+    WorthMoneyTextViewContentTypeMinute,
+    WorthMoneyTextViewContentTypeHourly,
+    WorthMoneyTextViewContentTypeDaily,
+    WorthMoneyTextViewContentTypeMonthly,
+    WorthMoneyTextViewContentTypeYearly,
+    WorthMoneyTextViewContentTypeTimed,
+    WorthMoneyTextViewContentTypeCustom,
+};
+
+typedef NS_ENUM(NSUInteger, WorthMoneyTextViewContentMode) {
+    WorthMoneyTextViewContentModeSpent,
+    WorthMoneyTextViewContentModeEarned,
+};
+
 @interface WorthMoneyTextView : UIView
 
-@property (nonatomic) BOOL displaysTimer;
+@property (nonatomic) WorthMoneyTextViewContentMode contentMode;
+@property (nonatomic) WorthMoneyTextViewContentType contentType;
 @property (nonatomic) CGFloat dollarsPerSecond;
 @property (nonatomic, strong) NSString *inputAccessoryText;
 @property (nonatomic, strong) NSNumberFormatter *numberFormatter;
