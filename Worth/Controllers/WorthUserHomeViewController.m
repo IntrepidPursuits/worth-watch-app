@@ -186,12 +186,12 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
             break;
         case 1: {
             [header setImageContainerBackgroundColor:[UIColor worth_Section1TextColor]];
-            [header setInformationContainerBackgroundColor:[UIColor worth_Section2TextColor]];
+            [header setInformationContainerBackgroundColor:[UIColor worth_Section2PhotoColor]];
         }
             break;
         case 2: {
-            [header setImageContainerBackgroundColor:[UIColor worth_Section2TextColor]];
-            [header setInformationContainerBackgroundColor:[UIColor worth_Section1PhotoColor]];
+            [header setImageContainerBackgroundColor:[UIColor worth_Section2PhotoColor]];
+            [header setInformationContainerBackgroundColor:[UIColor worth_Section2TextColor]];
         }
         default:
             break;
