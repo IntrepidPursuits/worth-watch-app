@@ -563,6 +563,7 @@
 				TargetAttributes = {
 					CD5946911AB36A2D00527F76 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = THP5EV5EJ9;
 					};
 					CD5946AA1AB36A2D00527F76 = {
 						CreatedOnToolsVersion = 6.2;
@@ -570,9 +571,11 @@
 					};
 					CD5946BE1AB36F1300527F76 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = THP5EV5EJ9;
 					};
 					CD5946CD1AB36F1300527F76 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = THP5EV5EJ9;
 					};
 				};
 			};
@@ -791,7 +794,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Intrepid Pursuits, LLC";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -832,7 +835,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Intrepid Pursuits, LLC";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
