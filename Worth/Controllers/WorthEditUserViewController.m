@@ -8,6 +8,7 @@
 
 #import "WorthEditUserViewController.h"
 #import "WorthRoundAvatarImageView.h"
+#import "WorthTextField.h"
 #import "WorthUser+UserGenerated.h"
 #import "UIColor+WorthStyle.h"
 #import "UIFont+WorthStyle.h"
@@ -15,8 +16,8 @@
 @interface WorthEditUserViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) WorthUser *user;
-@property (weak, nonatomic) IBOutlet UITextField *nameInputField;
-@property (weak, nonatomic) IBOutlet UITextField *salaryInputField;
+@property (weak, nonatomic) IBOutlet WorthTextField *nameInputField;
+@property (weak, nonatomic) IBOutlet WorthTextField *salaryInputField;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 @property (weak, nonatomic) IBOutlet WorthRoundAvatarImageView *avatarImageView;
 
@@ -39,13 +40,9 @@
 
 - (void)configureLayout {
     [self.view setBackgroundColor:[UIColor worth_MainPhotoAreaColor]];
-    [self.nameInputField setBackgroundColor:[UIColor worth_MainTextAreaColor]];
-    [self.salaryInputField setBackgroundColor:[UIColor worth_MainTextAreaColor]];
     [self.continueButton setBackgroundColor:[UIColor worth_Section2TextColor]];
     
     UIFont *inputFont = [UIFont worth_boldFontWithSize:17.0f];
-    [self.nameInputField setFont:inputFont];
-    [self.salaryInputField setFont:inputFont];
     [self.continueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.continueButton.titleLabel setFont:inputFont];
 }

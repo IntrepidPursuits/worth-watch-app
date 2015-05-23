@@ -8,8 +8,8 @@
             <connections>
                 <outlet property="avatarImageView" destination="wiX-eX-Tqx" id="D8v-Qy-WFA"/>
                 <outlet property="continueButton" destination="hUO-0B-gQR" id="l4R-e4-3w1"/>
-                <outlet property="nameInputField" destination="fa7-3A-d7a" id="4Qo-Zc-u3V"/>
-                <outlet property="salaryInputField" destination="Gab-iH-h78" id="31q-T5-Pi9"/>
+                <outlet property="nameInputField" destination="fa7-3A-d7a" id="PfN-ms-OPc"/>
+                <outlet property="salaryInputField" destination="Gab-iH-h78" id="0Gt-Vm-5M3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fa7-3A-d7a" userLabel="Name Field">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fa7-3A-d7a" userLabel="Name Field" customClass="WorthTextField">
                     <rect key="frame" x="0.0" y="86" width="600" height="60"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.49019607840000001" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -31,7 +31,7 @@
                         <outlet property="delegate" destination="-1" id="EpX-gk-NSU"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gab-iH-h78" userLabel="Salary Field">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gab-iH-h78" userLabel="Salary Field" customClass="WorthTextField">
                     <rect key="frame" x="0.0" y="161" width="600" height="60"/>
                     <color key="backgroundColor" red="0.28736489459999998" green="1" blue="0.16864322030000001" alpha="0.85999999999999999" colorSpace="calibratedRGB"/>
                     <constraints>

@@ -75,7 +75,9 @@
 #pragma mark - Button Events
 
 - (IBAction)accessoryButtonTapped:(id)sender {
-    NSLog(@"Tapped");
+    if ([self.delegate respondsToSelector:@selector(worthHeaderView:didTapAccessoryButton:)]) {
+        [self.delegate worthHeaderView:self didTapAccessoryButton:sender];
+    }
 }
 
 #pragma mark - Public

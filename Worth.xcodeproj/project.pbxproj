@@ -58,6 +58,9 @@
 		CDC3D8AB1B0F8DBA00415A08 /* WorthEditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */; };
 		CDC3D8AC1B0F8DBA00415A08 /* WorthEditUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */; };
 		CDC3D8AE1B0FA77800415A08 /* WorthFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8AD1B0FA77800415A08 /* WorthFavoritesViewController.xib */; };
+		CDC3D8B21B0FB2D300415A08 /* WorthCreateExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3D8B01B0FB2D300415A08 /* WorthCreateExpenseViewController.m */; };
+		CDC3D8B31B0FB2D300415A08 /* WorthCreateExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3D8B11B0FB2D300415A08 /* WorthCreateExpenseViewController.xib */; };
+		CDC3D8B61B0FC61E00415A08 /* WorthTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3D8B51B0FC61E00415A08 /* WorthTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +187,11 @@
 		CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthEditUserViewController.m; sourceTree = "<group>"; };
 		CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthEditUserViewController.xib; sourceTree = "<group>"; };
 		CDC3D8AD1B0FA77800415A08 /* WorthFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthFavoritesViewController.xib; sourceTree = "<group>"; };
+		CDC3D8AF1B0FB2D300415A08 /* WorthCreateExpenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthCreateExpenseViewController.h; sourceTree = "<group>"; };
+		CDC3D8B01B0FB2D300415A08 /* WorthCreateExpenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthCreateExpenseViewController.m; sourceTree = "<group>"; };
+		CDC3D8B11B0FB2D300415A08 /* WorthCreateExpenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorthCreateExpenseViewController.xib; sourceTree = "<group>"; };
+		CDC3D8B41B0FC61E00415A08 /* WorthTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorthTextField.h; sourceTree = "<group>"; };
+		CDC3D8B51B0FC61E00415A08 /* WorthTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorthTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +235,8 @@
 				CDBFBBE01AFD0E5D00BF4C3E /* WorthHeaderView.h */,
 				CDBFBBE11AFD0E5D00BF4C3E /* WorthHeaderView.m */,
 				CDBFBBE31AFD0E6C00BF4C3E /* WorthHeaderView.xib */,
+				CDC3D8B41B0FC61E00415A08 /* WorthTextField.h */,
+				CDC3D8B51B0FC61E00415A08 /* WorthTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +260,9 @@
 				CDC3D8A81B0F8DBA00415A08 /* WorthEditUserViewController.h */,
 				CDC3D8A91B0F8DBA00415A08 /* WorthEditUserViewController.m */,
 				CDC3D8AA1B0F8DBA00415A08 /* WorthEditUserViewController.xib */,
+				CDC3D8AF1B0FB2D300415A08 /* WorthCreateExpenseViewController.h */,
+				CDC3D8B01B0FB2D300415A08 /* WorthCreateExpenseViewController.m */,
+				CDC3D8B11B0FB2D300415A08 /* WorthCreateExpenseViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -590,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB3F0CA1AB5F5A1002E0D31 /* DINRoundPro-Bold.otf in Resources */,
+				CDC3D8B31B0FB2D300415A08 /* WorthCreateExpenseViewController.xib in Resources */,
 				CDB3F0C91AB5F5A1002E0D31 /* DINRoundPro-Black.otf in Resources */,
 				CDB3F0E21AB614BF002E0D31 /* WorthUserView.xib in Resources */,
 				CDBFBBDF1AFD088D00BF4C3E /* WorthUserHomeViewController.xib in Resources */,
@@ -681,12 +695,14 @@
 				CDB3F0D91AB60BEC002E0D31 /* WorthCompareViewController.m in Sources */,
 				CDBFBBD81AFCFB9400BF4C3E /* WorthExpense.m in Sources */,
 				CDB3F0F11AB626E6002E0D31 /* WorthUser.m in Sources */,
+				CDC3D8B61B0FC61E00415A08 /* WorthTextField.m in Sources */,
 				CDBFBBE71AFD44CB00BF4C3E /* NSDate+Worth.m in Sources */,
 				CDB3F0FC1AB62E06002E0D31 /* WorthObjectModel.m in Sources */,
 				CD2871131AB4DFF8005CED9A /* UIColor+WorthStyle.m in Sources */,
 				CDBFBBDC1AFD07F800BF4C3E /* WorthRootTabBarViewController.m in Sources */,
 				CDB3F0F51AB6270E002E0D31 /* WorthUser+UserGenerated.m in Sources */,
 				CD28711E1AB4EF67005CED9A /* WorthCompareUserTableViewCell.m in Sources */,
+				CDC3D8B21B0FB2D300415A08 /* WorthCreateExpenseViewController.m in Sources */,
 				CDBFBBE21AFD0E5D00BF4C3E /* WorthHeaderView.m in Sources */,
 				CDB3F0D31AB6036F002E0D31 /* UIImage+WorthStyle.m in Sources */,
 				CD2871161AB4E446005CED9A /* UIFont+WorthStyle.m in Sources */,

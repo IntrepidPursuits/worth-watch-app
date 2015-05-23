@@ -13,11 +13,16 @@ typedef NS_ENUM(NSUInteger, WorthHeaderViewAccessoryButtonType) {
     WorthHeaderViewAccessoryButtonTypeNone,
 };
 
-@interface WorthHeaderView : UIView
+@protocol WorthHeaderViewDelegate;
 
+@interface WorthHeaderView : UIView
+@property (nonatomic, weak) id<WorthHeaderViewDelegate>delegate;
 - (void)setAccessoryType:(WorthHeaderViewAccessoryButtonType)type;
 - (void)setTitle:(NSString *)title subTitle:(NSString *)subTitle;
 - (void)setImageContainerBackgroundColor:(UIColor *)color;
 - (void)setInformationContainerBackgroundColor:(UIColor *)color;
+@end
 
+@protocol WorthHeaderViewDelegate <NSObject>
+- (void)worthHeaderView:(WorthHeaderView *)view didTapAccessoryButton:(id)button;
 @end

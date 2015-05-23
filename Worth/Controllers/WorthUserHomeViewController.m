@@ -8,6 +8,7 @@
 
 #import "WorthUserHomeViewController.h"
 #import "WorthEditUserViewController.h"
+#import "WorthCreateExpenseViewController.h"
 #import "WorthMoneyTextView.h"
 #import "WorthHeaderView.h"
 #import "WorthUserManager.h"
@@ -36,7 +37,7 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
     WorthUserHomeInfoSectionExpensesDetail,
 };
 
-@interface WorthUserHomeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface WorthUserHomeViewController () <UITableViewDataSource, UITableViewDelegate, WorthHeaderViewDelegate>
 
 @property (strong, nonatomic) WorthUser *user;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -167,13 +168,6 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
 
 #pragma mark - UITableView
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", indexPath);
-    if (indexPath.section == 0) {
-        
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
 }
@@ -232,6 +226,15 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
     return header;
 }
 
+#pragma mark - Worth Header View Delegate Methods
+
+- (void)worthHeaderView:(WorthHeaderView *)view didTapAccessoryButton:(id)button {
+    if (view == self.expensesHeaderView) {
+        WorthCreateExpenseViewController *createVC = [WorthCreateExpenseViewController new];
+        [self.navigationController pushViewController:createVC animated:YES];
+    }
+}
+
 #pragma mark - Lazy
 
 - (WorthHeaderView *)userHeaderView {
@@ -278,8 +281,9 @@ typedef NS_ENUM(NSUInteger, WorthUserHomeInfoSection) {
     if (_expensesHeaderView == nil) {
         _expensesHeaderView = [[WorthHeaderView alloc] initWithFrame:CGRectZero];
         NSString *salary = [NSString stringWithFormat:@"%@/year", @"$1,234.00"];
-        [_expensesHeaderView setTitle:@"Recurring Expenses" subTitle:salary];
         [_expensesHeaderView setAccessoryType:WorthHeaderViewAccessoryButtonTypePlus];
+        [_expensesHeaderView setDelegate:self];
+        [_expensesHeaderView setTitle:@"Recurring Expenses" subTitle:salary];
     }
     return _expensesHeaderView;
 }
